@@ -52,7 +52,77 @@ include '../include/db_conn.php';
         </div>
     </div> 
 <div class="news">
-    <h1>Current News and Events</h1>
+    <h1>Current Events</h1>
+    <div class="Services2">
+    <div class="servicescontent2">
+             <?php
+                    $sql = "SELECT id, eventTitle, eventDesc, eventPic from announcements where eventTitle != ''";
+                    $result = $connn-> query($sql);
+
+                    if ($result-> num_rows > 0) {
+                        while ($row = $result-> fetch_assoc()) {
+                            echo '<div class="announceBox 1">
+                                                                    <div class="boximg2">
+                                                                        <img width="160" height="130" src="image/'. $row['eventPic'] .'">
+                                                                    </div>
+                                                                    <div class="evedesc2">
+                                                                        <h4>
+                                                                            '. $row['eventTitle'] .'
+                                                                        </h4>
+                                                                    </div>
+                                                                        <section class="boxbut2">
+                                                                           <a href="AEmore.php?id='.$row['id']. ' ">
+                                                                                    <button class="btnservice" type="submit" name="submit">Edit</button>
+                                                                            </a>
+                                                                        </section>
+                                                                </div>';
+                        }
+                    }
+                    else {
+                        echo "<p style='text-align:center;font-size:25px;padding:10px;background-color:white;'>There are currently no Events at the moment</p>";
+                    }
+             
+                   ?>   
+            
+        </div>
+        </div>
+<hr>
+        <h1 style="margin-top: 30px;">Current News</h1>
+    <div class="Services2">
+    <div class="servicescontent2">
+              <?php
+                    $sql2 = "SELECT id, newsTitle, newsDesc, newsPic from announcements where newsTitle != ''";
+                    $result2 = $connn-> query($sql2);
+
+                    if ($result2-> num_rows > 0) {
+                        while ($row = $result2-> fetch_assoc()) {
+                            echo '<div class="announceBox 1">
+                                                                    <div class="boximg2">
+                                                                        <img width="160" height="130" src="image/'. $row['newsPic'] .'">
+                                                                    </div>
+                                                                    <div class="evedesc2">
+                                                                        <h4>
+                                                                            '. $row['newsTitle'] .'
+                                                                        </h4>
+                                                                    </div>
+                                                                        
+                                                                        <section class="boxbut2">
+                                                                            <a href="ANmore.php?id='.$row['id']. ' ">
+                                                                                    <button class="btnservice" type="submit" name="submit">Edit</button>
+                                                                            </a>
+                                                                        </section>
+                                                                
+                                                                </div>';
+                        }
+                    }
+                    else {
+                        echo "<p style='text-align:center;font-size:25px;padding:10px;background-color:white;'>There are currently no News at the moment</p>";
+                    }
+                    $connn-> close();
+                   ?>         
+            
+        </div>
+        </div>
 </div>      
 </div>
 </div>
