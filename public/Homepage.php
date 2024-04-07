@@ -445,7 +445,8 @@ if ($purokss == "" && $ciiit == "") {
 						<?php
 							if (isset($_SESSION['ID'])) {
 								if ($status == "Approved") {
-									echo '<button class="btnservice" type="submit" name="submit">PROCEED</button>';
+									echo '<button class="btnservice" type="submit" name="submit">Request</button>
+									<a href="#" style="font-size:32px;margin-left:10px" title="Print"><i class="bx bxs-printer serviceprint"></i></a>';
 								} elseif ($status == "Denied") {
 									echo '<p class="boxreq">Sorry but your account have been denied to access this service.</p>';
 								} elseif ($status == "Processing") {
@@ -477,7 +478,8 @@ if ($purokss == "" && $ciiit == "") {
 						<?php
 							if (isset($_SESSION['ID'])) {
 								if ($status == "Approved") {
-									echo '<button class="btnservice" type="submit" name="submit2">PROCEED</button>';
+									echo '<button class="btnservice" type="submit" name="submit2">Request</button>
+									<a href="#" style="font-size:32px;margin-left:10px" title="Print"><i class="bx bxs-printer serviceprint"></i></a>';
 								} elseif ($status == "Denied") {
 									echo '<p class="boxreq">Sorry but your account have been denied to access this service.</p>';
 								} elseif ($status == "Processing") {

@@ -680,6 +680,38 @@ function addEvents($connn, $title, $desc, $newImageName, $date) {
 	header("location: Announcements.php");
 		exit();
 }
+function addEvents2($connn, $title, $desc, $date, $id) {
+	$sql = "UPDATE announcements SET eventTitle=?, eventDesc=?, updateddate=? WHERE id=?;";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: sign_up.php?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "sssi", $title, $desc, $date, $id);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	session_start();
+	$_SESSION["statuss"] = "Event Successfully Edited!";
+	
+	header("location: Announcements.php");
+		exit();
+}
+function addEvents3($connn, $title, $desc, $newImageName, $date, $id) {
+	$sql = "UPDATE announcements SET eventTitle=?, eventDesc=?, eventPic=?, updateddate=? WHERE id=?;";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: sign_up.php?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "ssssi", $title, $desc, $newImageName, $date, $id);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	session_start();
+	$_SESSION["statuss"] = "Event Successfully Edited!";
+	
+	header("location: Announcements.php");
+		exit();
+}
 function addNews($connn, $title, $desc, $newImageName, $date) {
 	$sql = "INSERT INTO announcements (newsTitle, newsDesc, newsPic, curdate) VALUES (?,?,?,?);";
 	$stmt = mysqli_stmt_init($connn);
@@ -692,6 +724,38 @@ function addNews($connn, $title, $desc, $newImageName, $date) {
 	mysqli_stmt_close($stmt);
 	session_start();
 	$_SESSION["statuss"] = "News Successfully Added!";
+	
+	header("location: Announcements.php");
+		exit();
+}
+function addNews2($connn, $title, $desc, $date, $id) {
+	$sql = "UPDATE announcements SET newsTitle=?, newsDesc=?, updateddate=? WHERE id=?;";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: sign_up.php?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "sssi", $title, $desc, $date, $id);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	session_start();
+	$_SESSION["statuss"] = "News Successfully Edited!";
+	
+	header("location: Announcements.php");
+		exit();
+}
+function addNews3($connn, $title, $desc, $newImageName, $date, $id) {
+	$sql = "UPDATE announcements SET newsTitle=?, newsDesc=?, newsPic=?, updateddate=? WHERE id=?;";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: sign_up.php?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "ssssi", $title, $desc, $newImageName, $date, $id);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	session_start();
+	$_SESSION["statuss"] = "News Successfully Edited!";
 	
 	header("location: Announcements.php");
 		exit();
