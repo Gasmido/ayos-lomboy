@@ -51,9 +51,8 @@ if (isset($_SESSION['ID'])){
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
-                    <th>Full Name</th>
-                    <th>Date Requested</th>
                     <th>Document Type</th>
+                    <th>Date Requested</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -66,13 +65,13 @@ if (isset($_SESSION['ID'])){
 
                     if ($result-> num_rows > 0) {
                         while ($row = $result-> fetch_assoc()) {
-                            echo "<tr><td>". $row["Fullname"] ."</td><td>". $row["CURDATE"] ."</td><td>". $row["documentType"] ."</td><td>". $row["Status"] ."</td>
+                            echo "<tr><td>". $row["documentType"] ."</td><td>". $row["CURDATE"] ."</td><td>". $row["Status"] ."</td>
                                     <td>
                                    ";
 
                                     if ($row['Status'] == 'Picked-up') { 
                                         echo "
-                                        <button class='donee'>DONE</button>
+                                        <button class='donee'></button>
                                           ";
                                     }
                                     
@@ -81,7 +80,7 @@ if (isset($_SESSION['ID'])){
                                         echo "
                                         </a>
                                         <a>
-                                        <button class='cancelled'>CANCELLED</button>
+                                        <button class='cancelled'></button>
                                         </a>
                                             ";
 
@@ -91,7 +90,7 @@ if (isset($_SESSION['ID'])){
                                         echo "
                                         </a>
                                         <a>
-                                        <button class='cancelled'>DENIED</button>
+                                        <button class='cancelled'></button>
                                         </a>
                                             ";
 
