@@ -2,7 +2,7 @@
 session_start();
 
 		if ($_GET["error"] == "access_denied") {
-		    header("Location: login.php");
+		    header("Location: login");
 		    
 		}
 	
@@ -55,7 +55,7 @@ $result = mysqli_query($connn, $sql);
     $sql = "INSERT INTO users (user_email, user_type, Last_name, First_name, Status, dateReg, RequestNo, verifiedEmail, token) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?);";
   $stmt = mysqli_stmt_init($connn);
   if (!mysqli_stmt_prepare($stmt, $sql)) {
-    header("location: sign_up.php?error=stmtfailed");
+    header("location: sign_up?error=stmtfailed");
     exit();
   }
 
@@ -92,11 +92,11 @@ $result = mysqli_query($connn, $sql);
 
 
 if ($purok == "" && $citizenship == "") {
-  header("Location: GoogleAccSettings.php");
+  header("Location: GoogleAccSettings");
   exit();
 }
 else {
-  header("Location: Homepage.php");
+  header("Location: Homepage");
 }
 
   // now you can use this profile info to create account in your website and make user logged in.

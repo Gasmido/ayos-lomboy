@@ -26,7 +26,7 @@ if (isset($_SESSION['ID'])){
     <div class="yellow">
          <nav>
   <ul>
-      <li><a class="ac" href="../public/Homepage.php">Back to Home</a></li>
+      <li><a class="ac" href="../public/Homepage">Back to Home</a></li>
    
   </ul>
 </nav>
@@ -37,7 +37,7 @@ if (isset($_SESSION['ID'])){
 <div class="docmain">
 <div class="adddel2">
    
-    <button class="addd" onclick="document.location='doctrackblotter.php'">BLOTTER REQUEST</button> 
+    <button class="addd" onclick="document.location='doctrackblotter'">BLOTTER REQUEST</button> 
       </div> 
   <div class="docbod">
 
@@ -99,7 +99,7 @@ if (isset($_SESSION['ID'])){
                                     else {
                                         echo "
                                     
-                                    <a href='doccancel.php?id=". $row['id'] ."'>";
+                                    <a href='doccancel?id=". $row['id'] ."'>";
                                     echo "
                                         <button class='dell'>CANCEL</button>
                                             ";
@@ -181,7 +181,7 @@ if (isset($_SESSION['ID'])){
     <div class="yellow">
          <nav>
   <ul>
-      <li><a class="ac" href="../public/Homepage.php">Back to Home</a></li>
+      <li><a class="ac" href="../public/Homepage">Back to Home</a></li>
    
   </ul>
 </nav>
@@ -233,7 +233,7 @@ if (isset($_SESSION['ID'])){
     <div class="yellow">
          <nav>
   <ul>
-      <li><a class="ac" href="../public/Homepage.php">Back to Home</a></li>
+      <li><a class="ac" href="../public/Homepage">Back to Home</a></li>
    
   </ul>
 </nav>
@@ -268,6 +268,6 @@ if (isset($_SESSION['ID'])){
 <?php
 } 
 }else {
- header("location:Homepage.php");
+ header("location:Homepage");
 }
 ?>

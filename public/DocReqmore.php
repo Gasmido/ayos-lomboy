@@ -250,12 +250,15 @@ include '../include/db_conn.php';
                         } 
  ?>
   </div>
-  <div style="margin-top:30px;padding: px;border:2px solid black;">
+  <br><br><br>
+  <hr>
+
+  <div style="margin-top:30px;padding: px;width: 100%;overflow-x: auto;">
       <h2 style="padding: 10px;">Blotter Record (<?= $blotternum ?>)</h2>
 <div class="container">
             <div class="row">
                 <div class="col-xs-12">
-                    <table id="example" class="table table-striped table-bordered" style="width:100%">
+                    <table id="example" class="table table-striped table-bordered" style="width:95%; overflow-x: auto;">
             <thead>
                 <tr>
                     <th>Blotter No.</th>
@@ -304,12 +307,14 @@ include '../include/db_conn.php';
             </div>
         </div>
   </div>
-  <div style="margin-top:30px;padding: px;border:2px solid black;">
+  <br>
+  <hr>
+  <div style="margin-top:30px;padding: px;width:100%;overflow-x: auto;">
       <h2 style="padding: 10px;">Residents Record (<?= $residentnum ?>)</h2>
        <div class="container">
             <div class="row">
                 <div class="col-xs-12">
-                    <table id="example" class="table table-striped table-bordered" style="width:100%">
+                    <table id="example" class="table table-striped table-bordered" style="width:95%; overflow-x: auto;">
             <thead>
                 <tr>
                     <th>Name</th>

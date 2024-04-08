@@ -121,12 +121,14 @@ include '../include/db_conn.php';
                             mysqli_free_result($result8); 
                         }  
   ?>
-  <div style="margin-top:30px;padding: px;border:2px solid black;">
+  <br><br>
+  <hr>
+  <div style="margin-top:30px;padding: px;overflow-x: auto;">
       <h2 style="padding: 10px;">Residents Record (<?= $res ?>)</h2>
        <div class="container">
             <div class="row">
                 <div class="col-xs-12">
-                    <table id="example" class="table table-striped table-bordered" style="width:100%">
+                    <table id="example" class="table table-striped table-bordered" style="width:95%;overflow-x: auto;">
             <thead>
                 <tr>
                     <th>Name</th>

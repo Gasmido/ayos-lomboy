@@ -4,7 +4,7 @@ unset($_SESSION['otp']);
 session_start();
 
     if (isset($_SESSION['ID'])) {
-        header("Location: Homepage.php");
+        header("Location: Homepage");
         exit();
     }
 ?>
@@ -31,7 +31,7 @@ session_start();
     <div class="yellow">
          <nav>
   <ul>
-      <li><a class="ac" href="../public/Homepage.php">Back to Home</a></li>
+      <li><a class="ac" href="../public/Homepage">Back to Home</a></li>
    
   </ul>
 </nav>
@@ -136,7 +136,7 @@ session_start();
 				</section>
 
 				<br />
-					<p style="text-align: center;color: #C7DAD4;">Already have an account? <a href="login.php" style="color:#00FFFF">Sign-in</a></p>
+					<p style="text-align: center;color: #C7DAD4;">Already have an account? <a href="login" style="color:#00FFFF">Sign-in</a></p>
 					
 					</form>
 				</div>

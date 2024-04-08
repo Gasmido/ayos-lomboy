@@ -5,7 +5,7 @@
     session_start();
 
     if (isset($_SESSION['ID'])) {
-        header("Location: Homepage.php");
+        header("Location: Homepage");
         exit();
     }
     else {
@@ -38,7 +38,7 @@
     <div class="yellow">
          <nav>
   <ul>
-      <li><a class="ac" href="../public/Homepage.php">Back to Home</a></li>
+      <li><a class="ac" href="../public/Homepage">Back to Home</a></li>
    
   </ul>
 </nav>
@@ -70,7 +70,7 @@
 ?>
 </div>
 <div class="inputs">
-  <form action="login_process.php" method="post">
+  <form action="login_process" method="post">
   <p>E-mail:</p>
   <input id="txt5" type="text" name="user1" onkeyup="saveValue(this);" placeholder="Enter E-mail"></input>
    <p>Password:</p>
@@ -81,24 +81,22 @@
 
 		</section>
 		<br />
-		<p style="text-align: center;color:#C7DAD4;">Don't have an account? <a href="register.php" style="color:#00FFFF">Sign-up</a></p>
+		<p style="text-align: center;color:#C7DAD4;">Don't have an account? <a href="register" style="color:#00FFFF">Sign-up</a></p>
   </form>
    
-      
-    <!--      <div style="width: 100%; height: 16px; border-bottom: 1px solid grey; text-align: center; margin-top: 10px;">
+        
+        <div style="width: 100%; height: 16px; border-bottom: 1px solid grey; text-align: center; margin-top: 10px;">
   <span style="font-size: 20px; padding: 0px 10px; color: grey;background-color: #2F414F;">
-    O
+    OR<!--Padding is optional-->
   </span>
 </div>
-
  <section style="text-align:center;margin-top: 10px;">
     <?php
-   //  echo "<a href='".$client->createAuthUrl()."'>";
+     echo "<a href='".$client->createAuthUrl()."'>";
      ?>
         <input type="submit" name="google" value="Login with Google" class=btnlog2>
         </a>
     </section>
-    -->
   </div>
   </div>
    <script type="text/javascript">

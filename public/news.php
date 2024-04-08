@@ -2,7 +2,7 @@
 include '../include/db_conn.php';
 if (isset($_SESSION['ID'])) {
 if ($purokss == "" && $ciiit == "") {
-	header("Location: GoogleAccSettings.php");
+	header("Location: GoogleAccSettings");
 	exit();
 }
 }
@@ -28,7 +28,7 @@ if ($purokss == "" && $ciiit == "") {
     <div class="yellow">
          <nav>
   <ul>
-      <li><a class="ac" href="Homepage.php">Back to Home</a></li>
+      <li><a class="ac" href="Homepage">Back to Home</a></li>
    
   </ul>
 </nav>
@@ -62,7 +62,7 @@ if ($purokss == "" && $ciiit == "") {
 																			'. $row['newsTitle'] .'
 																		</h2>
 																	</div>
-																	<form action="newsmore.php" method="post">
+																	<form action="newsmore" method="post">
 																		<section class="boxbut">
 																			<input type="text" name="cor" value="'. $row['id'] .'" hidden></input>
 																					<button class="btnservice" type="submit" name="submit">Read More</button>

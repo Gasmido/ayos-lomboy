@@ -2,13 +2,13 @@
 session_start();
 $type = $_SESSION["user_type"];
 if ($type == "user") {
-  header("location:Homepage.php");
+  header("location:Homepage");
 }
 else if ($type == "admin") {
-    header("location:home-section.php");
+    header("location:home-section");
 }
 else {
-  header("location:Homepage.php");
+  header("location:Homepage");
 }
 ?>
 <!--
@@ -30,7 +30,7 @@ else {
 		<a href="#">Home2</a>
 		<a href="#">Home2</a>
 		<a href="#">Home3</a>
-		     <a href="logout.php">
+		     <a href="logout">
             <i class='bx bx-log-out'></i>
             <span class="links_name">Log out</span>
           </a>

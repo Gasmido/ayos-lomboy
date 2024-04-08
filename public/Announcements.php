@@ -34,7 +34,7 @@ include '../include/db_conn.php';
     <div class="admin-events">
          
         <div class="admin-home-boxex c">
-            <a href="Announcementsnews.php">
+            <a href="Announcementsnews">
                 <h2 >
                     Add News
                 </h2>
@@ -43,7 +43,7 @@ include '../include/db_conn.php';
         </div>
      
         <div class="admin-home-boxex d">
-            <a href="Announcementsevents.php">
+            <a href="Announcementsevents">
                 <h2 >
                     Add Events
                 </h2>
@@ -71,7 +71,7 @@ include '../include/db_conn.php';
                                                                         </h4>
                                                                     </div>
                                                                         <section class="boxbut2">
-                                                                           <a href="AEmore.php?id='.$row['id']. ' ">
+                                                                           <a href="AEmore?id='.$row['id']. ' ">
                                                                                     <button class="btnservice" type="submit" name="submit">Edit</button>
                                                                             </a>
                                                                         </section>
@@ -107,7 +107,7 @@ include '../include/db_conn.php';
                                                                     </div>
                                                                         
                                                                         <section class="boxbut2">
-                                                                            <a href="ANmore.php?id='.$row['id']. ' ">
+                                                                            <a href="ANmore?id='.$row['id']. ' ">
                                                                                     <button class="btnservice" type="submit" name="submit">Edit</button>
                                                                             </a>
                                                                         </section>

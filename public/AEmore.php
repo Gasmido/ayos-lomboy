@@ -50,15 +50,15 @@ include '../include/db_conn.php';
                         }
                     }
                     else {
-                        header("Location: Announcements.php");
+                        header("Location: Announcements");
                     }
                 $connn-> close();
     ?>
-    <button class="addd" onclick="document.location='Announcements.php'">BACK</button> 
+    <button class="addd" onclick="document.location='Announcements'">BACK</button> 
 </div>      
 <div class="admin-homes"> 
     <div class="admin-events">
-        <form class="announceform" method="post" action="AEmore2.php" enctype="multipart/form-data">
+        <form class="announceform" method="post" action="AEmore2" enctype="multipart/form-data">
             <input type="text" name="id" value="<?= $id ?>" hidden>
             <label for="da">Event's Upload Date:</label><br>
             <input id="da" type="date" value="<?php if ($updateddate) {echo $updateddate;} else echo $curdate; ?>" disabled></input><br><br>

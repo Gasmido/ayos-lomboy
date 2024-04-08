@@ -2,7 +2,7 @@
 include '../include/head.php';
 if (isset($_SESSION['ID'])) {
 if ($purokss == "" && $ciiit == "") {
-    header("Location: GoogleAccSettings.php");
+    header("Location: GoogleAccSettings");
     exit();
 }
 }
@@ -17,7 +17,7 @@ if (isset($_SESSION['ID'])){
     <div class="yellow">
          <nav>
   <ul>
-      <li><a class="ac" href="../public/Homepage.php">Back to Home</a></li>
+      <li><a class="ac" href="../public/Homepage">Back to Home</a></li>
    
   </ul>
 </nav>
@@ -63,7 +63,7 @@ if (isset($_SESSION['ID'])){
 					<button id="edi" class="edd" onclick="Edit()">EDIT</button> 
 					
     			</div>
-					<form action="AccSettingedit.php" method="post">
+					<form action="AccSettingedit" method="post">
 					<label>First Name:</label>
 				<input id="1" type="text" minlength="2" maxlength="20" name="fname" class="inputt" value="<?= $firstnames ?>"  pattern="[A-Za-z ]{1,32}" required readonly></input>
 				<label>Middle Initial/Name:</label>
@@ -146,6 +146,6 @@ if (isset($_SESSION['ID'])){
 include '../include/footer.php';
 }
 else {
-	header('location:Homepage.php');
+	header('location:Homepage');
 }
 ?>

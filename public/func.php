@@ -110,7 +110,7 @@ function duplicateEmail($connn, $user) {
 	$sql = "SELECT * FROM users WHERE user_email = ?;";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	
@@ -132,7 +132,7 @@ function duplicateName($connn, $firstname, $lastname, $citizenship, $sex) {
 	$sql = "SELECT * FROM resident WHERE firstname = ? AND lastname = ? AND citizenship = ? AND sex = ?;";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	
@@ -155,7 +155,7 @@ function createUser($connn, $user, $pass, $use, $lastname, $firstname, $middlein
 	$sql = "INSERT INTO users (user_email, user_password, user_type, Last_name, First_name, Middle_name, Extension_name, Status, dateReg, RequestNo, birthdate, sex, purok, citizenship) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	
@@ -165,7 +165,7 @@ function createUser($connn, $user, $pass, $use, $lastname, $firstname, $middlein
 	mysqli_stmt_execute($stmt);
 	mysqli_stmt_close($stmt);
 	session_destroy();
-	header("location: login.php?error=Success");
+	header("location: login?error=Success");
 		exit();
 }
 
@@ -183,20 +183,20 @@ function loginUser($connn, $user, $pass, $type, $date, $time, $id2) {
 	$userexist = duplicateEmail($connn, $user);
 	
 	if ($userexist === false) {
-		header("location: login.php?error=User_not_found");
+		header("location: login?error=User_not_found");
 		exit();
 	}
 	$passhash = $userexist["user_password"];
 	$checkpass = password_verify($pass, $passhash);
 	
 	if ($checkpass === false) {
-		header("location: login.php?error=User_not_found");
+		header("location: login?error=User_not_found");
 		exit();
 	} else if ($checkpass === true) {
 		$sql = "UPDATE users SET logdate=?, logtime=? WHERE user_id=?";
 		$stmt = mysqli_stmt_init($connn);
 		if (!mysqli_stmt_prepare($stmt, $sql)) {
-			header("location: login.php?error=stmtfailed");
+			header("location: login?error=stmtfailed");
 			exit();
 		}
 		mysqli_stmt_bind_param($stmt, "ssi", $date, $time, $id2);
@@ -215,7 +215,7 @@ function loginUser($connn, $user, $pass, $type, $date, $time, $id2) {
 
 		$connn->close();
 
-		header("location: index.php");
+		header("location: index");
 		exit();
 	}
 }
@@ -233,7 +233,7 @@ function createdoc($connn, $docutype, $fname, $purok, $dateofres, $purpose, $cur
 	$sql4 = "UPDATE users SET RequestNo=?, DLRequest=? WHERE user_id=?";
 	$stmt4 = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt4, $sql4)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt4, "ssi", $ADD, $currentDate, $id);
@@ -246,7 +246,7 @@ function createdoc($connn, $docutype, $fname, $purok, $dateofres, $purpose, $cur
 	$sql = "INSERT INTO docreq (documentType, Fullname, purok, DateofResidence, CORPurpose, CURDATE, user_id, Status) VALUES (?,?,?,?,?,?,?,?);";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt, "ssssssss", $docutype, $fname, $purok, $dateofres, $purpose, $currentDate, $id, $stat);
@@ -254,7 +254,7 @@ function createdoc($connn, $docutype, $fname, $purok, $dateofres, $purpose, $cur
 	mysqli_stmt_close($stmt);
 
 	
-	header("location: doctrack.php?error=none");
+	header("location: doctrack?error=none");
 		exit();
 }
 function createdoc2($connn, $docutype, $fname, $reason, $currentDate, $id, $stat) {
@@ -271,7 +271,7 @@ function createdoc2($connn, $docutype, $fname, $reason, $currentDate, $id, $stat
 	$sql4 = "UPDATE users SET RequestNo=?, DLRequest=? WHERE user_id=?";
 	$stmt4 = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt4, $sql4)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt4, "ssi", $ADD, $currentDate, $id);
@@ -284,7 +284,7 @@ function createdoc2($connn, $docutype, $fname, $reason, $currentDate, $id, $stat
 	$sql = "INSERT INTO docreq (documentType, Fullname, COIReason, CURDATE, user_id, Status) VALUES (?,?,?,?,?,?);";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt, "ssssss", $docutype, $fname, $reason, $currentDate, $id, $stat);
@@ -292,7 +292,7 @@ function createdoc2($connn, $docutype, $fname, $reason, $currentDate, $id, $stat
 	mysqli_stmt_close($stmt);
 
 	
-	header("location: doctrack.php?error=none");
+	header("location: doctrack?error=none");
 		exit();
 }
 function createdoc3($connn, $fname, $purok, $complained, $phonenum, $incidenttype, $incidentdetails, $currentDate, $id, $stat) {
@@ -310,7 +310,7 @@ function createdoc3($connn, $fname, $purok, $complained, $phonenum, $incidenttyp
 	$sql4 = "UPDATE users SET blotreq=?, blotdateusers=? WHERE user_id=?";
 	$stmt4 = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt4, $sql4)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt4, "ssi", $ADD, $currentDate, $id);
@@ -322,14 +322,14 @@ function createdoc3($connn, $fname, $purok, $complained, $phonenum, $incidenttyp
 	$sql = "INSERT INTO blotter (complainant, locationOfIncident, complained, phonenumber, blotter_type, blotter_info, dateOfFiling, Status, user_id) VALUES (?,?,?,?,?,?,?,?, ?);";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt, "ssssssssi",  $fname, $purok, $complained, $phonenum, $incidenttype, $incidentdetails, $currentDate, $stat, $id);
 	mysqli_stmt_execute($stmt);
 	mysqli_stmt_close($stmt);
 
-	header("location: doctrackblotter.php?error=none");
+	header("location: doctrackblotter?error=none");
 		exit();
 }
 
@@ -337,7 +337,7 @@ function addBlotter($connn, $bno, $fname, $complainant, $complained, $loc, $dof,
 	$sql = "INSERT INTO blotter (blotter_no, blotter_type, complainant, complained, locationOfIncident, dateOfFiling, Status, blotter_info, personInCharge, blotter_status) VALUES (?,?,?,?,?,?,?,?,?,?);";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt, "ssssssssss", $bno, $fname, $complainant, $complained, $loc, $dof, $status, $BI, $pin, $stat);
@@ -346,14 +346,14 @@ function addBlotter($connn, $bno, $fname, $complainant, $complained, $loc, $dof,
 	session_start();
 	$_SESSION["statuss"] = "Blotter Successfully Added!";
 	
-	header("location: Blotter.php?error=none");
+	header("location: Blotter?error=none");
 		exit();
 }
 function editBlotter($connn, $bno, $fname, $complainant, $complained, $loc, $dof, $status, $BI, $pin, $id) {
 	$sql = "UPDATE blotter SET blotter_no=?, blotter_type=?, complainant=?, complained=?, locationOfIncident=?, dateOfFiling=?, Status=?, blotter_info=?, personInCharge=? WHERE id=?";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt, "sssssssssi", $bno, $fname, $complainant, $complained, $loc, $dof, $status, $BI, $pin, $id);
@@ -362,14 +362,14 @@ function editBlotter($connn, $bno, $fname, $complainant, $complained, $loc, $dof
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updated!";
 
-	header("location: Blottermore.php?row_id=$id");
+	header("location: Blottermore?row_id=$id");
 		exit();
 }
 function editBlotter2($connn, $bno, $fname, $complainant, $complained, $loc, $dof, $status, $BI, $pin, $sstat,$id) {
 	$sql = "UPDATE blotter SET blotter_no=?, blotter_type=?, complainant=?, complained=?, locationOfIncident=?, dateOfFiling=?, Status=?, blotter_info=?, personInCharge=?, Status=? WHERE id=?";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt, "ssssssssssi", $bno, $fname, $complainant, $complained, $loc, $dof, $status, $BI, $pin, $sstat, $id);
@@ -378,14 +378,14 @@ function editBlotter2($connn, $bno, $fname, $complainant, $complained, $loc, $do
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updated!";
 
-	header("location: Blotterrequestmore.php?row_id=$id");
+	header("location: Blotterrequestmore?row_id=$id");
 		exit();
 }
 function editBlotter3($connn, $sstat, $id) {
 	$sql = "UPDATE blotter SET Status=? WHERE id=?";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt, "si", $sstat, $id);
@@ -394,14 +394,14 @@ function editBlotter3($connn, $sstat, $id) {
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updated!";
 
-	header("location: BlotterRequest.php");
+	header("location: BlotterRequest");
 		exit();
 }
 function editDocReq($connn, $fname, $daterequest, $dt, $purok, $BI, $dof, $dp, $ap, $status, $id)  {
 	$sql = "UPDATE docreq SET Fullname=?, CURDATE=?, documentType=?, purok=?, CORPurpose=?, DateofResidence=?, datePickedup=?, amountpaid=?, Status=? WHERE id=?";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt, "sssssssssi", $fname, $daterequest, $dt, $purok, $BI, $dof, $dp, $ap, $status, $id);
@@ -411,7 +411,7 @@ function editDocReq($connn, $fname, $daterequest, $dt, $purok, $BI, $dof, $dp, $
 	$sql2 = "INSERT INTO revenues (fullname, datereq, docreq, purpose, datepick, amountpaid) VALUES (?,?,?,?,?,?);";
 	$stmt2 = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt2, $sql2)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt2, "ssssss", $fname, $daterequest, $dt, $BI, $dp, $ap);
@@ -421,14 +421,14 @@ function editDocReq($connn, $fname, $daterequest, $dt, $purok, $BI, $dof, $dp, $
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updatedd!";
 
-	header("location: DocReqmore.php?id=$id");
+	header("location: DocReqmore?id=$id");
 		exit();
 }
 function editDocReq11($connn, $fname, $daterequest, $dt, $purok, $BI, $dof, $status, $id)  {
 	$sql = "UPDATE docreq SET Fullname=?, CURDATE=?, documentType=?, purok=?, CORPurpose=?, DateofResidence=?, Status=? WHERE id=?";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt, "sssssssi", $fname, $daterequest, $dt, $purok, $BI, $dof, $status, $id);
@@ -438,14 +438,14 @@ function editDocReq11($connn, $fname, $daterequest, $dt, $purok, $BI, $dof, $sta
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updated!";
 	
-	header("location: DocReqmore.php?id=$id");
+	header("location: DocReqmore?id=$id");
 		exit();
 }
 function editDocReq2($connn, $fname, $daterequest, $dt, $BI, $dp, $ap, $status, $id)  {
 	$sql = "UPDATE docreq SET Fullname=?, CURDATE=?, documentType=?, CORPurpose=?, datePickedup=?, amountpaid=?, Status=? WHERE id=?";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt, "sssssssi", $fname, $daterequest, $dt, $BI, $dp, $ap, $status, $id);
@@ -455,7 +455,7 @@ function editDocReq2($connn, $fname, $daterequest, $dt, $BI, $dp, $ap, $status, 
 	$sql2 = "INSERT INTO revenues (fullname, datereq, docreq, purpose, datepick, amountpaid) VALUES (?,?,?,?,?,?);";
 	$stmt2 = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt2, $sql2)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt2, "ssssss", $fname, $daterequest, $dt, $BI, $dp, $ap);
@@ -465,14 +465,14 @@ function editDocReq2($connn, $fname, $daterequest, $dt, $BI, $dp, $ap, $status, 
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updatedd!";
 	
-	header("location: DocReqmore.php?id=$id");
+	header("location: DocReqmore?id=$id");
 		exit();
 }
 function editDocReq22($connn, $fname, $daterequest, $dt, $BI, $status, $id)  {
 	$sql = "UPDATE docreq SET Fullname=?, CURDATE=?, documentType=?, CORPurpose=?, Status=? WHERE id=?";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt, "sssssi", $fname, $daterequest, $dt, $BI, $status, $id);
@@ -482,14 +482,14 @@ function editDocReq22($connn, $fname, $daterequest, $dt, $BI, $status, $id)  {
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updated!";
 
-	header("location: DocReqmore.php?id=$id");
+	header("location: DocReqmore?id=$id");
 		exit();
 }
 function editUserAcc($connn, $status, $id)  {
 	$sql = "UPDATE users SET Status=? WHERE user_id=?";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt, "si", $status, $id);
@@ -499,14 +499,14 @@ function editUserAcc($connn, $status, $id)  {
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updated!";
 
-	header("location: UserAccmore.php?id=$id");
+	header("location: UserAccmore?id=$id");
 		exit();
 }
 function duplicateBlot($connn, $bno) {
 	$sql = "SELECT * FROM blotter WHERE blotter_no = ?;";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	
@@ -528,7 +528,7 @@ function duplicateBlot2($connn, $bno) {
 	$sql = "SELECT * FROM blotter WHERE blotter_no = ?;";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	
@@ -550,7 +550,7 @@ function duplicateResident($connn, $fname, $mname, $lname, $ename) {
 	 $sql = "SELECT * FROM resident WHERE firstname = ? AND middlename=? AND lastname=? AND extensionname=? OR firstname =? AND lastname=? OR firstname=? AND middlename=? AND lastname=?;";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	
@@ -573,7 +573,7 @@ function editStaff($connn, $name, $chairmanship, $termstart, $termend, $newImage
 	$sql = "UPDATE officials SET name=?, chairmanship=?, termstart=?, termend=?, image=?, status=? WHERE id=?";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: OffStaff.php?error=stmtfailed");
+		header("location: OffStaff?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt, "ssssssi", $name, $chairmanship, $termstart, $termend, $newImageName, $status, $id);
@@ -582,14 +582,14 @@ function editStaff($connn, $name, $chairmanship, $termstart, $termend, $newImage
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updated!";
 
-	header("location: OffStaffmore.php?id=$id");
+	header("location: OffStaffmore?id=$id");
 		exit();
 }
 function editStaff2($connn, $name, $chairmanship, $termstart, $termend, $status, $id) {
 	$sql = "UPDATE officials SET name=?, chairmanship=?, termstart=?, termend=?, status=? WHERE id=?";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: OffStaff.php?error=stmtfailed");
+		header("location: OffStaff?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt, "sssssi", $name, $chairmanship, $termstart, $termend, $status, $id);
@@ -598,14 +598,14 @@ function editStaff2($connn, $name, $chairmanship, $termstart, $termend, $status,
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updated!";
 
-	header("location: OffStaffmore.php?id=$id");
+	header("location: OffStaffmore?id=$id");
 		exit();
 }
 function addResident($connn, $fname, $mname, $lname, $ename, $birth, $sex, $citizenship, $civil, $brgy, $purok, $city, $province , $datereg) {
 	$sql = "INSERT INTO resident (firstname, middlename, lastname, extensionname, birthdate, sex, citizenship, civilstatus, street, purok, city, province, datereg) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt, "sssssssssssss", $fname, $mname, $lname, $ename, $birth, $sex, $citizenship, $civil, $brgy, $purok, $city, $province, $datereg);
@@ -614,7 +614,7 @@ function addResident($connn, $fname, $mname, $lname, $ename, $birth, $sex, $citi
 	session_start();
 	$_SESSION["statuss"] = "Resident Successfully Added!";
 	
-	header("location: ResidentRecord.php?error=none");
+	header("location: ResidentRecord?error=none");
 		exit();
 }
 
@@ -622,7 +622,7 @@ function editResident($connn, $fname, $mname, $lname, $ename, $birth, $sex, $cit
 	$sql = "UPDATE resident SET firstname=?, middlename=?, lastname=?, extensionname=?, birthdate=?, sex=?, citizenship=?, civilstatus=?, street=?, purok=?, city=?, province=?, datereg=? WHERE id=?";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt, "sssssssssssssi", $fname, $mname, $lname, $ename, $birth, $sex, $citizenship, $civil, $brgy, $purok, $city, $province, $datereg, $id);
@@ -631,14 +631,14 @@ function editResident($connn, $fname, $mname, $lname, $ename, $birth, $sex, $cit
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updated!";
 
-	header("location: Residentmore.php?row_id=$id");
+	header("location: Residentmore?row_id=$id");
 		exit();
 }
 function editResident2($connn, $fname, $mname, $lname, $ename, $bday, $sex, $citi, $id) {
 	$sql = "UPDATE users SET First_name=?, Middle_name=?, Last_name=?, Extension_name=?, birthdate=?, sex=?, citizenship=? WHERE user_id=?";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt, "sssssssi", $fname, $mname, $lname, $ename, $bday, $sex, $citi, $id);
@@ -647,28 +647,28 @@ function editResident2($connn, $fname, $mname, $lname, $ename, $bday, $sex, $cit
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updated!";
 
-	header("location: AccSetting.php");
+	header("location: AccSetting");
 		exit();
 }
 function editResident3($connn, $fname, $mname, $lname, $ename, $bday, $sex, $citi, $purok, $id) {
 	$sql = "UPDATE users SET First_name=?, Middle_name=?, Last_name=?, Extension_name=?, birthdate=?, sex=?, citizenship=?, purok=? WHERE user_id=?";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt, "ssssssssi", $fname, $mname, $lname, $ename, $bday, $sex, $citi, $purok, $id);
 	mysqli_stmt_execute($stmt);
 	mysqli_stmt_close($stmt);
 
-	header("location: Homepage.php");
+	header("location: Homepage");
 		exit();
 }
 function addEvents($connn, $title, $desc, $newImageName, $date) {
 	$sql = "INSERT INTO announcements (eventTitle, eventDesc, eventPic, curdate) VALUES (?,?,?,?);";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt, "ssss", $title, $desc, $newImageName, $date);
@@ -677,14 +677,14 @@ function addEvents($connn, $title, $desc, $newImageName, $date) {
 	session_start();
 	$_SESSION["statuss"] = "Event Successfully Added!";
 	
-	header("location: Announcements.php");
+	header("location: Announcements");
 		exit();
 }
 function addEvents2($connn, $title, $desc, $date, $id) {
 	$sql = "UPDATE announcements SET eventTitle=?, eventDesc=?, updateddate=? WHERE id=?;";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt, "sssi", $title, $desc, $date, $id);
@@ -693,14 +693,14 @@ function addEvents2($connn, $title, $desc, $date, $id) {
 	session_start();
 	$_SESSION["statuss"] = "Event Successfully Edited!";
 	
-	header("location: Announcements.php");
+	header("location: Announcements");
 		exit();
 }
 function addEvents3($connn, $title, $desc, $newImageName, $date, $id) {
 	$sql = "UPDATE announcements SET eventTitle=?, eventDesc=?, eventPic=?, updateddate=? WHERE id=?;";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt, "ssssi", $title, $desc, $newImageName, $date, $id);
@@ -709,14 +709,14 @@ function addEvents3($connn, $title, $desc, $newImageName, $date, $id) {
 	session_start();
 	$_SESSION["statuss"] = "Event Successfully Edited!";
 	
-	header("location: Announcements.php");
+	header("location: Announcements");
 		exit();
 }
 function addNews($connn, $title, $desc, $newImageName, $date) {
 	$sql = "INSERT INTO announcements (newsTitle, newsDesc, newsPic, curdate) VALUES (?,?,?,?);";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt, "ssss", $title, $desc, $newImageName, $date);
@@ -725,14 +725,14 @@ function addNews($connn, $title, $desc, $newImageName, $date) {
 	session_start();
 	$_SESSION["statuss"] = "News Successfully Added!";
 	
-	header("location: Announcements.php");
+	header("location: Announcements");
 		exit();
 }
 function addNews2($connn, $title, $desc, $date, $id) {
 	$sql = "UPDATE announcements SET newsTitle=?, newsDesc=?, updateddate=? WHERE id=?;";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt, "sssi", $title, $desc, $date, $id);
@@ -741,14 +741,14 @@ function addNews2($connn, $title, $desc, $date, $id) {
 	session_start();
 	$_SESSION["statuss"] = "News Successfully Edited!";
 	
-	header("location: Announcements.php");
+	header("location: Announcements");
 		exit();
 }
 function addNews3($connn, $title, $desc, $newImageName, $date, $id) {
 	$sql = "UPDATE announcements SET newsTitle=?, newsDesc=?, newsPic=?, updateddate=? WHERE id=?;";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: sign_up.php?error=stmtfailed");
+		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt, "ssssi", $title, $desc, $newImageName, $date, $id);
@@ -757,6 +757,6 @@ function addNews3($connn, $title, $desc, $newImageName, $date, $id) {
 	session_start();
 	$_SESSION["statuss"] = "News Successfully Edited!";
 	
-	header("location: Announcements.php");
+	header("location: Announcements");
 		exit();
 }

@@ -5,7 +5,7 @@ include '../include/db_conn.php';
 
 if (isset($_SESSION['ID'])) {
 if ($purokss == "" && $ciiit == "") {
-	header("Location: GoogleAccSettings.php");
+	header("Location: GoogleAccSettings");
 	exit();
 }
 }
@@ -439,7 +439,7 @@ if ($purokss == "" && $ciiit == "") {
 						View the requirements needed for the Certificate of Residency and request one now.
 					</p>
 				</div>
-				<form action="DocumentRequest.php" method="post">
+				<form action="DocumentRequest" method="post">
 					<section class="boxbut">
 						<input type="text" name="cor" value="Certificate of Residency" hidden></input>
 						<?php
@@ -454,7 +454,7 @@ if ($purokss == "" && $ciiit == "") {
 								}
 							}
 							else {
-								echo '<p class="boxreq">Please <a href="login.php">LOGIN</a> to request this document</p>';
+								echo '<p class="boxreq">Please <a href="login">LOGIN</a> to request this document</p>';
 							}
 						?>
 					</section>
@@ -472,7 +472,7 @@ if ($purokss == "" && $ciiit == "") {
 						View the requirements needed for the Certificate of Indigency and request one now.
 					</p>
 				</div>
-				<form action="DocumentRequest.php" method="post">
+				<form action="DocumentRequest" method="post">
 					<section class="boxbut">
 						<input type="text" name="bc" value="Certificate of Indigency" hidden></input>
 						<?php
@@ -487,7 +487,7 @@ if ($purokss == "" && $ciiit == "") {
 								}
 							}
 							else {
-								echo '<p class="boxreq">Please <a href="login.php">LOGIN</a> to request this document</p>';
+								echo '<p class="boxreq">Please <a href="login">LOGIN</a> to request this document</p>';
 							}
 						?>
 					</section>
@@ -504,7 +504,7 @@ if ($purokss == "" && $ciiit == "") {
 						View the requirements needed for Barangay Kasunduan and request one now.
 					</p>
 				</div>
-				<form action="DocumentRequest.php" method="post">
+				<form action="DocumentRequest" method="post">
 					<section class="boxbut">
 						<input type="text" name="bp" value="Kasunduan" hidden></input>
 						<?php
@@ -518,7 +518,7 @@ if ($purokss == "" && $ciiit == "") {
 								}
 							}
 							else {
-								echo '<p class="boxreq">Please <a href="login.php">LOGIN</a> to request this document</p>';
+								echo '<p class="boxreq">Please <a href="login">LOGIN</a> to request this document</p>';
 							}
 						?>
 					</section>
@@ -536,7 +536,7 @@ if ($purokss == "" && $ciiit == "") {
 						File a blotter report.
 					</p>
 				</div>
-				<form action="DocumentRequest.php" method="post">
+				<form action="DocumentRequest" method="post">
 					<section class="boxbut">
 						<input type="text" name="blotter" value="Blotter" hidden></input>
 						<?php
@@ -550,7 +550,7 @@ if ($purokss == "" && $ciiit == "") {
 								}
 							}
 							else {
-								echo '<p class="boxreq">Please <a href="login.php">LOGIN</a> to request this document</p>';
+								echo '<p class="boxreq">Please <a href="login">LOGIN</a> to request this document</p>';
 							}
 						?>
 					</section>
