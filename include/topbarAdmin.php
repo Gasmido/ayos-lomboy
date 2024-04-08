@@ -14,7 +14,7 @@
   <ul>
     <li><a href="#"><i class='bx bx-cog'></i></a>
       <ul>
-        <li><a class="ac" href="../public/logout.php">Log-out</a></li>
+        <li><a class="ac" href="../public/logout">Log-out</a></li>
       </ul>
     </li>
   </ul>
