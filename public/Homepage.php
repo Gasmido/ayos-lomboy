@@ -2,7 +2,6 @@
 include '../include/head.php';
 include '../include/topbar.php';
 include '../include/db_conn.php';
-
 if ($_SESSION["user_type"] == "admin") {
  	header("Location: home-section");	
  } 
@@ -13,7 +12,7 @@ if ($purokss == "" && $ciiit == "") {
 }
 }
 ?>
-<div class="homepage">
+<div class="homepage" style="margin-top:0;padding-top:0">
 	<div id="h" class="Home">
 		<div class="homepic">
 			<img class="homepice" src="image/home.jpeg">
