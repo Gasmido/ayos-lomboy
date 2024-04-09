@@ -189,9 +189,9 @@ if (isset($_SESSION['ID']) && $docutype != ""){
 				<input type="text" name="fName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
 				<label>Residing Barangay:</label>
 				<input type="text" name="rbrgy" class="inputt" minlength="4" maxlength="50" pattern="[A-Za-z0-9 ]{4,50}" placeholder="e.g. Cavite" required></input>
-				<label>Agricultural Land area: (sq.m. & hectares)</label>
+				<label>Agricultural Land area: (sq.m. & hectares)</label><br>
 				<input type="text" name="sqm" class="inputt" minlength="1" maxlength="10" pattern="[0-9 ]{1,10}" placeholder="sq. m." step="0.01" title="Numbers only" style="width:49%;" required></input>
-				<input type="text" name="hectare" class="inputt" minlength="1" maxlength="10" pattern="[0-9 ]{1,10}" placeholder="Hectares" step="0.01" title="Numbers only" style="width:49%;" required></input>
+				<input type="text" name="hectare" class="inputt" minlength="1" maxlength="10" pattern="[0-9 ]{1,10}" placeholder="Hectares" step="0.01" title="Numbers only" style="width:49%;" required></input><br>
 				<label>Registered Owner of Agricultural Land:</label>
 				<input type="text" name="owner" class="inputt" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full Name" required></input>
    			 <br />
