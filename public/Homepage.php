@@ -487,12 +487,109 @@ if ($purokss == "" && $ciiit == "") {
 								}
 							}
 							else {
-								echo '<p class="boxreq">Please <a href="login">LOGIN</a> to request this document</p>';
+								echo '<p class="boxreq">Please <a href="login">LOGIN</a> to use this service</p>';
 							}
 						?>
 					</section>
 				</form>
-			</div> <!--
+			</div>
+			<div class="servicesBox 4">
+				<div class="boxtitle">
+					<h2>
+						Barangay Clearance
+					</h2>
+				</div>
+				<div class="boxdesc">
+					<p>
+						View the requirements needed for the Barangay Clearance and request one now.
+					</p>
+				</div>
+				<form action="DocumentRequest" method="post">
+					<section class="boxbut">
+						<input type="text" name="brgyC" value="Barangay Clearance" hidden></input>
+						<?php
+							if (isset($_SESSION['ID'])) {
+								if ($status == "Approved") {
+									echo '<button class="btnservice" type="submit" name="submit4">Request</button>
+									<a href="#" style="font-size:32px;margin-left:10px" title="Print"><i class="bx bxs-printer serviceprint"></i></a>';
+								} elseif ($status == "Denied") {
+									echo '<p class="boxreq">Sorry but your account have been denied to access this service.</p>';
+								} elseif ($status == "Processing") {
+									echo '<p class="boxreq">Please wait for admin to approve your account to access this service.</p>';
+								}
+							}
+							else {
+								echo '<p class="boxreq">Please <a href="login">LOGIN</a> to use this service</p>';
+							}
+						?>
+					</section>
+				</form>
+			</div>
+			<div class="servicesBox 5">
+				<div class="boxtitle">
+					<h2>
+						Kasunduan
+					</h2>
+				</div>
+				<div class="boxdesc">
+					<p>
+						View the requirements needed for the Kasunduan document and request one now.
+					</p>
+				</div>
+				<form action="DocumentRequest" method="post">
+					<section class="boxbut">
+						<input type="text" name="kd" value="Kasunduan" hidden></input>
+						<?php
+							if (isset($_SESSION['ID'])) {
+								if ($status == "Approved") {
+									echo '<button class="btnservice" type="submit" name="submit5">Request</button>
+									<a href="#" style="font-size:32px;margin-left:10px" title="Print"><i class="bx bxs-printer serviceprint"></i></a>';
+								} elseif ($status == "Denied") {
+									echo '<p class="boxreq">Sorry but your account have been denied to access this service.</p>';
+								} elseif ($status == "Processing") {
+									echo '<p class="boxreq">Please wait for admin to approve your account to access this service.</p>';
+								}
+							}
+							else {
+								echo '<p class="boxreq">Please <a href="login">LOGIN</a> to use this service</p>';
+							}
+						?>
+					</section>
+				</form>
+			</div>
+			<div class="servicesBox 6">
+				<div class="boxtitle">
+					<h2>
+						BARC
+					</h2>
+				</div>
+				<div class="boxdesc">
+					<p>
+						View the requirements needed for the BARC and request one now.
+					</p>
+				</div>
+				<form action="DocumentRequest" method="post">
+					<section class="boxbut">
+						<input type="text" name="barc" value="BARC" hidden></input>
+						<?php
+							if (isset($_SESSION['ID'])) {
+								if ($status == "Approved") {
+									echo '<button class="btnservice" type="submit" name="submit6">Request</button>
+									<a href="#" style="font-size:32px;margin-left:10px" title="Print"><i class="bx bxs-printer serviceprint"></i></a>';
+								} elseif ($status == "Denied") {
+									echo '<p class="boxreq">Sorry but your account have been denied to access this service.</p>';
+								} elseif ($status == "Processing") {
+									echo '<p class="boxreq">Please wait for admin to approve your account to access this service.</p>';
+								}
+							}
+							else {
+								echo '<p class="boxreq">Please <a href="login">LOGIN</a> to use this service</p>';
+							}
+						?>
+					</section>
+				</form>
+			</div>
+			 <!--
 			<div class="servicesBox 3">
 				<div class=boxtitle>
 					<h2>
@@ -518,7 +615,7 @@ if ($purokss == "" && $ciiit == "") {
 								}
 							}
 							else {
-								echo '<p class="boxreq">Please <a href="login">LOGIN</a> to request this document</p>';
+								echo '<p class="boxreq">Please <a href="login">LOGIN</a> to use this service</p>';
 							}
 						?>
 					</section>
@@ -544,13 +641,13 @@ if ($purokss == "" && $ciiit == "") {
 								if ($status == "Approved") {
 									echo '<button class="btnservice" type="submit" name="submit3">PROCEED</button>';
 								} elseif ($status == "Denied") {
-									echo '<p class="boxreq">Sorry but your account have been denied to request this document</p>';
+									echo '<p class="boxreq">Sorry but your account have been denied to continue</p>';
 								} elseif ($status == "Processing") {
-									echo '<p class="boxreq">Please wait for admin to approve your account to request this document</p>';
+									echo '<p class="boxreq">Please wait for admin to approve your account</p>';
 								}
 							}
 							else {
-								echo '<p class="boxreq">Please <a href="login">LOGIN</a> to request this document</p>';
+								echo '<p class="boxreq">Please <a href="login">LOGIN</a> to use this service</p>';
 							}
 						?>
 					</section>
