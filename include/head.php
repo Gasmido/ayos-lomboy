@@ -6,12 +6,14 @@
 <head>
 	<title>
 		Ayos Lomboy Barangay Management System
+	</title>
 					    <?php
 session_start();
+if (isset($_SESSION['user_type'])) {
 if ($_SESSION["user_type"] == "admin") {
  	header("Location: home-section");	
- } 
-elseif (isset($_SESSION['ID'])) {
+ }
+ elseif (isset($_SESSION['ID'])) {
 $id = $_SESSION['ID'];
 $status = $_SESSION['status'];
 $lastname = $_SESSION['lastname'];
@@ -21,9 +23,11 @@ $extensionname = $_SESSION['extensionname'];
 $purokss = $_SESSION['purok'];
 $ciiit = $_SESSION['citizenship'];
 }
+} 
+
 
 ?>
-	</title>
+	
 
 	<meta charset="UTF-8">
     <link rel="stylesheet" href="../CSS/style.css">   
