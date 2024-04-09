@@ -511,7 +511,7 @@ function editBlotter3($connn, $sstat, $id) {
 	header("location: BlotterRequest");
 		exit();
 }
-function editDocReq($connn, $fname, $daterequest, $dt, $purok, $BI, $dof, $dp, $ap, $status, $id)  {
+function editDocReq($connn, $fname, $daterequest, $dt, $purok, $BI, $dof, $dp, $ap, $status, $emaiil, $id)  {
 	$sql = "UPDATE docreq SET Fullname=?, CURDATE=?, documentType=?, purok=?, CORPurpose=?, DateofResidence=?, datePickedup=?, amountpaid=?, Status=? WHERE id=?";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -522,13 +522,13 @@ function editDocReq($connn, $fname, $daterequest, $dt, $purok, $BI, $dof, $dp, $
 	mysqli_stmt_execute($stmt);
 	mysqli_stmt_close($stmt);
 
-	$sql2 = "INSERT INTO revenues (fullname, datereq, docreq, purpose, datepick, amountpaid) VALUES (?,?,?,?,?,?);";
+	$sql2 = "INSERT INTO revenues (fullname, datereq, docreq, datepick, amountpaid) VALUES (?,?,?,?,?);";
 	$stmt2 = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt2, $sql2)) {
 		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
-	mysqli_stmt_bind_param($stmt2, "ssssss", $fname, $daterequest, $dt, $BI, $dp, $ap);
+	mysqli_stmt_bind_param($stmt2, "ssssss", $emaiil, $daterequest, $dt, $dp, $ap);
 	mysqli_stmt_execute($stmt2);
 	mysqli_stmt_close($stmt2);
 
@@ -555,7 +555,7 @@ function editDocReq11($connn, $fname, $daterequest, $dt, $purok, $BI, $dof, $sta
 	header("location: DocReqmore?id=$id");
 		exit();
 }
-function editDocReq2($connn, $fname, $daterequest, $dt, $BI, $dp, $ap, $status, $id)  {
+function editDocReq2($connn, $fname, $daterequest, $dt, $BI, $dp, $ap, $status, $emaiil, $id)  {
 	$sql = "UPDATE docreq SET Fullname=?, CURDATE=?, documentType=?, CORPurpose=?, datePickedup=?, amountpaid=?, Status=? WHERE id=?";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -566,13 +566,13 @@ function editDocReq2($connn, $fname, $daterequest, $dt, $BI, $dp, $ap, $status, 
 	mysqli_stmt_execute($stmt);
 	mysqli_stmt_close($stmt);
 
-	$sql2 = "INSERT INTO revenues (fullname, datereq, docreq, purpose, datepick, amountpaid) VALUES (?,?,?,?,?,?);";
+	$sql2 = "INSERT INTO revenues (fullname, datereq, docreq, datepick, amountpaid) VALUES (?,?,?,?,?);";
 	$stmt2 = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt2, $sql2)) {
 		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
-	mysqli_stmt_bind_param($stmt2, "ssssss", $fname, $daterequest, $dt, $BI, $dp, $ap);
+	mysqli_stmt_bind_param($stmt2, "ssssss", $emaiil, $daterequest, $dt, $dp, $ap);
 	mysqli_stmt_execute($stmt2);
 	mysqli_stmt_close($stmt2);
 	
@@ -590,6 +590,138 @@ function editDocReq22($connn, $fname, $daterequest, $dt, $BI, $status, $id)  {
 		exit();
 	}
 	mysqli_stmt_bind_param($stmt, "sssssi", $fname, $daterequest, $dt, $BI, $status, $id);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	
+	session_start();
+	$_SESSION["statu"] = "Data Successfully Updated!";
+
+	header("location: DocReqmore?id=$id");
+		exit();
+}
+function editDocReq3($connn, $Bname, $Lname,$address, $money, $BAL,$BALL, $daterequest, $dt, $dp, $ap, $status, $emaiil, $id)  {
+	$sql = "UPDATE docreq SET Bname=?,Lname=? ,Kaddress=? ,Kmoney=? ,KBAL=? ,KBALL=?, CURDATE=?, documentType=?, datePickedup=?, amountpaid=?, Status=? WHERE id=?";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "sssssssssssi", $Bname, $Lname,$address, $money, $BAL,$BALL, $daterequest, $dt, $dp, $ap, $status, $id);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+
+	$sql2 = "INSERT INTO revenues (fullname, datereq, docreq, datepick, amountpaid) VALUES (?,?,?,?,?);";
+	$stmt2 = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt2, $sql2)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt2, "sssss", $emaiil, $daterequest, $dt, $dp, $ap);
+	mysqli_stmt_execute($stmt2);
+	mysqli_stmt_close($stmt2);
+	
+	session_start();
+	$_SESSION["statu"] = "Data Successfully Updatedd!";
+	
+	header("location: DocReqmore?id=$id");
+		exit();
+}
+function editDocReq33($connn, $Bname, $Lname,$address, $money, $BAL,$BALL, $daterequest, $dt, $status, $id)  {
+	$sql = "UPDATE docreq SET Bname=?,Lname=? ,Kaddress=? ,Kmoney=? ,KBAL=? ,KBALL=?, CURDATE=?, documentType=?, Status=? WHERE id=?";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "sssssssssi", $Bname, $Lname,$address, $money, $BAL,$BALL, $daterequest, $dt, $status, $id);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	
+	session_start();
+	$_SESSION["statu"] = "Data Successfully Updated!";
+
+	header("location: DocReqmore?id=$id");
+		exit();
+}
+function editDocReq4($connn, $fname, $purok,$dob, $pob, $height,$weight,$purpose, $daterequest, $dt, $dp, $ap, $status, $emaiil, $id)  {
+	$sql = "UPDATE docreq SET Fullname=?,purok=? ,dateOfBirth=? ,placeOfBirth=? ,height=? ,weight=?, BCpurpose=?, CURDATE=?, documentType=?, datePickedup=?, amountpaid=?, Status=? WHERE id=?";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "ssssssssssssi", $fname, $purok,$dob, $pob, $height,$weight,$purpose, $daterequest, $dt, $dp, $ap, $status, $id);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+
+	$sql2 = "INSERT INTO revenues (fullname, datereq, docreq, datepick, amountpaid) VALUES (?,?,?,?,?);";
+	$stmt2 = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt2, $sql2)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt2, "sssss", $emaiil, $daterequest, $dt, $dp, $ap);
+	mysqli_stmt_execute($stmt2);
+	mysqli_stmt_close($stmt2);
+	
+	session_start();
+	$_SESSION["statu"] = "Data Successfully Updatedd!";
+	
+	header("location: DocReqmore?id=$id");
+		exit();
+}
+function editDocReq44($connn,$fname, $purok,$dob, $pob, $height,$weight,$purpose, $daterequest, $dt, $status, $id)  {
+	$sql = "UPDATE docreq SET Fullname=?,purok=? ,dateOfBirth=? ,placeOfBirth=? ,height=? ,weight=?, BCpurpose=?, CURDATE=?, documentType=?, Status=? WHERE id=?";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "ssssssssssi", $fname, $purok,$dob, $pob, $height,$weight,$purpose, $daterequest, $dt, $status, $id);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	
+	session_start();
+	$_SESSION["statu"] = "Data Successfully Updated!";
+
+	header("location: DocReqmore?id=$id");
+		exit();
+}
+function editDocReq5($connn, $fname, $rbrgy,$sqm, $hectare, $owner,$daterequest, $dt, $dp, $ap, $status, $emaiil, $id)  {
+	$sql = "UPDATE docreq SET Fullname=?,BarcRBrgy=? ,BarcALAsqm=? ,BarcALAhectare=? ,BarcOwner=?, CURDATE=?, documentType=?, datePickedup=?, amountpaid=?, Status=? WHERE id=?";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "ssssssssssi", $fname, $rbrgy,$sqm, $hectare, $owner, $daterequest, $dt, $dp, $ap, $status, $id);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+
+	$sql2 = "INSERT INTO revenues (fullname, datereq, docreq, datepick, amountpaid) VALUES (?,?,?,?,?);";
+	$stmt2 = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt2, $sql2)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt2, "sssss", $emaiil, $daterequest, $dt, $dp, $ap);
+	mysqli_stmt_execute($stmt2);
+	mysqli_stmt_close($stmt2);
+	
+	session_start();
+	$_SESSION["statu"] = "Data Successfully Updatedd!";
+	
+	header("location: DocReqmore?id=$id");
+		exit();
+}
+function editDocReq55($connn, $fname, $rbrgy,$sqm, $hectare, $owner,$daterequest, $dt, $status, $id)  {
+	$sql = "UPDATE docreq SET Fullname=?,BarcRBrgy=? ,BarcALAsqm=? ,BarcALAhectare=? ,BarcOwner=?, CURDATE=?, documentType=?, Status=? WHERE id=?";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "ssssssssi", $fname, $rbrgy,$sqm, $hectare, $owner, $daterequest, $dt, $status, $id);
 	mysqli_stmt_execute($stmt);
 	mysqli_stmt_close($stmt);
 	

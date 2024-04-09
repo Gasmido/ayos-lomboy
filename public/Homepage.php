@@ -3,7 +3,8 @@ include '../include/head.php';
 include '../include/topbar.php';
 include '../include/db_conn.php';
 if ($_SESSION["user_type"] == "admin") {
- 	header("Location: home-section");	
+ 	header("Location: home-section");
+ 	exit();	
  } 
 elseif (isset($_SESSION['ID'])) {
 if ($purokss == "" && $ciiit == "") {

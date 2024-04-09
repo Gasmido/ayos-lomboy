@@ -19,7 +19,6 @@ include '../include/db_conn.php';
                             $id = $row['id'];
                             $documenttype = $row['docreq'];
                             $fullname = $row['fullname'];
-                            $CORPurpose = $row['purpose'];
                             $Curdate = $row['datepick'];
                             $dateRFP = $row['datereq'];
                             $pay = $row['amountpaid'];
@@ -44,7 +43,7 @@ include '../include/db_conn.php';
     <div class="modal-inside">
         <div class="models">
             <div class="inputpop">            
-                 <label>Full Name:</label><br>
+                 <label>Recipient:</label><br>
                 <input id="bt" class="inpu" type="text" name="name" value="<?= $fullname ?>" readonly placeholder="Enter Blotter Type" required><br>
                 <label>Date Requested:</label><br>
                 <input id="cp" class="inpu" type="text" name="daterequest" value="<?= $dateRFP ?>" readonly placeholder="Enter Complainant" required><br>
@@ -53,26 +52,15 @@ include '../include/db_conn.php';
 
             </div>
             <div class="inputpop2">
-                <label for="blotterin">Purpose:</label><br>
-                <textarea class="inpuer" id="blotterin" name="BI" rows="35" cols="5" readonly required><?php if ($documenttype == "Certificate of Residency") {echo $CORPurpose; } 
-                    else {
-                        echo $COIReason;
-                    }?></textarea>
-                <br> 
-
-                
-            </div>
-            <div class="inputpop3">
                 <label>Date Picked Up:</label><br>
                 <input id="dp" class="inpu" type="date" name="Datepicked" value="<?= $Curdate ?>" required readonly><br>
                 <label>Amount Paid:</label><br>
                 <input id="ap" class="inpu" type="number" name="Amountpaid" value="<?= $pay ?>" required readonly><br>
-                            
-                       
-                <input type="text" name="id" value="<?= $id ?>" hidden>
-                    
-
+ <input type="text" name="id" value="<?= $id ?>" hidden>
+                
             </div>
+            
+
         </div>  
 
       
