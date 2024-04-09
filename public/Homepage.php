@@ -3,7 +3,10 @@ include '../include/head.php';
 include '../include/topbar.php';
 include '../include/db_conn.php';
 
-if (isset($_SESSION['ID'])) {
+if ($_SESSION["user_type"] == "admin") {
+ 	header("Location: home-section");	
+ } 
+elseif (isset($_SESSION['ID'])) {
 if ($purokss == "" && $ciiit == "") {
 	header("Location: GoogleAccSettings");
 	exit();
@@ -560,12 +563,12 @@ if ($purokss == "" && $ciiit == "") {
 			<div class="servicesBox 6">
 				<div class="boxtitle">
 					<h2>
-						BARC
+						BARC Certification
 					</h2>
 				</div>
 				<div class="boxdesc">
 					<p>
-						View the requirements needed for the BARC and request one now.
+						View the requirements needed for the BARC certification and request one now.
 					</p>
 				</div>
 				<form action="DocumentRequest" method="post">
