@@ -37,6 +37,24 @@ include '../include/db_conn.php';
                             $datePickedup = $row['datePickedup'];
                             $pay = $row['amountpaid'];
                             $userid = $row['user_id'];
+                            //clearance
+                            $dateofBirth = $row['dateOfBirth'];
+                            $placeOfBirth = $row['placeOfBirth'];
+                            $height = $row['height'];
+                            $weight = $row['weight'];
+                            $BCpurpose = $row['BCpurpose'];
+                            //kasunduan
+                            $Bname = $row['Bname'];
+                            $Lname = $row['Lname'];
+                            $kaddress = $row['kaddress'];
+                            $Kmoney = $row['Kmoney'];
+                            $KBAL = $row['KBAL'];
+                            $KBALL = $row['KBALL'];
+                            //barc
+                            $BarcRBrgy = $row['BarcRBrgy'];
+                            $BarcALAsqm = $row['BarcALAsqm'];
+                            $BarcALAhectare = $row['BarcALAhectare'];
+                            $BarcOwner = $row['BarcOwner'];
                         }
                     }
                     else {
