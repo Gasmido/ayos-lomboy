@@ -8,7 +8,10 @@
 		Ayos Lomboy Barangay Management System
 					    <?php
 session_start();
-if (isset($_SESSION['ID'])) {
+if ($_SESSION["user_type"] == "admin") {
+ 	header("Location: home-section");	
+ } 
+elseif (isset($_SESSION['ID'])) {
 $id = $_SESSION['ID'];
 $status = $_SESSION['status'];
 $lastname = $_SESSION['lastname'];
