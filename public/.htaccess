@@ -3,4 +3,4 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^(.*)$ $1.php
 
-ErrorDocument 404 http://ayos-lomboy.com/wilson4/public/404error
+ErrorDocument 404 https://ayos-lomboy.com/public/404error
