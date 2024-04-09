@@ -51,13 +51,14 @@ if (isset($_SESSION['ID']) && $docutype != ""){
 				}
 
 				if ($docutype == "Certificate of Residency") {
+					$_SESSION['type'] = $docutype;
 					echo '
 					<h1>DOCUMENT REQUEST</h1>
 					<form action="docreqadd" method="post"">
 					<label>Document Requesting:</label>
 				<input type="text" name="docutype" class="inputt" value="'. $docutype .'" required readonly></input>
 				<label>Full Name:</label>
-				<input type="text" name="fName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z ]{4,50}" placeholder="Full name" required></input>
+				<input type="text" name="fName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
 				<label>Purok:</label>
 				<label for="item"></label>
 	    		<select id="item" name="purok" class="hehe" class="inputt" required>
@@ -87,13 +88,14 @@ if (isset($_SESSION['ID']) && $docutype != ""){
 				';
 		}
 		elseif ($docutype == "Certificate of Indigency") {
+			$_SESSION['type'] = $docutype;
 			echo '
 			<h1>DOCUMENT REQUEST</h1>
 			<form action="docreqadd" method="post" id="halo">
 					<label>Document Requesting:</label>
 				<input type="text" name="docutype" class="inputt" value="'. $docutype .'" required readonly></input>
 				<label>Full Name:</label>
-				<input type="text" name="fName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z ]{4,50}" placeholder="Full name" required></input>
+				<input type="text" name="fName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
 				<label>Reason for Indigency Request:</label>
 				<label for="item2"></label>
 	    		<select id="item2" name="reason" class="hehe" class="inputt" required>
@@ -113,13 +115,14 @@ if (isset($_SESSION['ID']) && $docutype != ""){
 				
 		}
 		elseif ($docutype == "Barangay Clearance") {
+			$_SESSION['type'] = $docutype;
 					echo '
 					<h1>DOCUMENT REQUEST</h1>
-					<form action="#" method="post"">
+					<form action="docreqadd" method="post"">
 					<label>Document Requesting:</label>
 				<input type="text" name="docutype" class="inputt" value="'. $docutype .'" required readonly></input>
 				<label>Full Name:</label>
-				<input type="text" name="fName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z ]{4,50}" placeholder="Full name" required></input>
+				<input type="text" name="fName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
 				<label>Purok:</label>
 				<label for="item"></label>
 	    		<select id="item" name="purok" class="hehe" class="inputt" required>
@@ -151,15 +154,16 @@ if (isset($_SESSION['ID']) && $docutype != ""){
 				';
 		}
 		elseif ($docutype == "Kasunduan") {
+			$_SESSION['type'] = $docutype;
 					echo '
 					<h1>DOCUMENT REQUEST</h1>
 					<form action="docreqadd" method="post"">
 					<label>Document Requesting:</label>
 				<input type="text" name="docutype" class="inputt" value="'. $docutype .'" required readonly></input>
 				<label>Borrower:</label>
-				<input type="text" name="BName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z ]{4,50}" placeholder="Full name" required></input>
+				<input type="text" name="BName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
 				<label>Lender:</label>
-				<input type="text" name="LName" class="inputt" minlength="4" maxlength="50"  pattern="[A-Za-z ]{4,50}" placeholder="Full name" required></input>
+				<input type="text" name="LName" class="inputt" minlength="4" maxlength="50"  pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
 				<label>Full Address:</label>
 				<input type="text" name="address" class="inputt" minlength="4" maxlength="50" pattern="[A-Za-z0-9 ]{4,50}" placeholder="Address" required></input>
 				<label>Money Borrowed:</label>
@@ -175,20 +179,21 @@ if (isset($_SESSION['ID']) && $docutype != ""){
 				';
 		}
 		elseif ($docutype == "BARC") {
+			$_SESSION['type'] = $docutype;
 					echo '
 					<h1>DOCUMENT REQUEST</h1>
 					<form action="docreqadd" method="post"">
 					<label>Document Requesting:</label>
 				<input type="text" name="docutype" class="inputt" value="'. $docutype .' Certification	" required readonly></input>
 				<label>Full Name:</label>
-				<input type="text" name="fName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z ]{4,50}" placeholder="Full name" required></input>
+				<input type="text" name="fName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
 				<label>Residing Barangay:</label>
 				<input type="text" name="rbrgy" class="inputt" minlength="4" maxlength="50" pattern="[A-Za-z0-9 ]{4,50}" placeholder="e.g. Cavite" required></input>
 				<label>Agricultural Land area: (sq.m. & hectares)</label>
 				<input type="text" name="sqm" class="inputt" minlength="1" maxlength="10" pattern="[0-9 ]{1,10}" placeholder="sq. m." step="0.01" title="Numbers only" style="width:49%;" required></input>
 				<input type="text" name="hectare" class="inputt" minlength="1" maxlength="10" pattern="[0-9 ]{1,10}" placeholder="Hectares" step="0.01" title="Numbers only" style="width:49%;" required></input>
 				<label>Registered Owner of Agricultural Land:</label>
-				<input type="text" name="owner" class="inputt" minlength="4" maxlength="50" pattern="[A-Za-z ]{4,50}" placeholder="Full Name" required></input>
+				<input type="text" name="owner" class="inputt" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full Name" required></input>
    			 <br />
     <section>
 				<button type="submit" name="submit5" class="docusub">Submit</button>
@@ -203,7 +208,7 @@ if (isset($_SESSION['ID']) && $docutype != ""){
 					<form action="docreqadd" method="post"">
 				<input type="text" name="docutype" class="inputt" value="'. $docutype .'" required readonly hidden></input>
 				<label>Nagreklamo:</label>
-				<input type="text" name="fName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z ]{4,50}" placeholder="Full name" required></input>
+				<input type="text" name="fName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
 				<label>Inerereklamo:</label>
 				<input type="text" name="complained" class="inputt" pattern="[A-Za-z ]{2,32}" title="Please remove any special characters! max-length(32 letters)" maxlength="100" placeholder="Full name" required></input>
 				<label>Location of Incident: (Purok)</label>

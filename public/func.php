@@ -295,6 +295,120 @@ function createdoc2($connn, $docutype, $fname, $reason, $currentDate, $id, $stat
 	header("location: doctrack?error=none");
 		exit();
 }
+function createdoc4($connn, $docutype, $fname, $purok, $dateofbirth, $placeofbirth, $height, $weight, $purpose, $currentDate, $id, $stat) {
+	$sql2 = "SELECT RequestNo FROM users WHERE user_id=$id";
+	$result = mysqli_query($connn, $sql2);
+	if ($result-> num_rows > 0) {
+		while ($row = $result->fetch_assoc()) {
+			$rqn = $row['RequestNo'];
+		}
+	}
+
+
+	$ADD = (int)$rqn + 1;
+	$sql4 = "UPDATE users SET RequestNo=?, DLRequest=? WHERE user_id=?";
+	$stmt4 = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt4, $sql4)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt4, "ssi", $ADD, $currentDate, $id);
+	mysqli_stmt_execute($stmt4);
+	mysqli_stmt_close($stmt4);
+	
+	$_SESSION['statusss'] = "Document Requested Successfully!";
+
+
+	$sql = "INSERT INTO docreq (documentType, Fullname, purok, dateOfBirth, placeOfBirth, height, weight, BCpurpose, CURDATE, user_id, Status) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "sssssssssis",  $docutype, $fname, $purok, $dateofbirth, $placeofbirth, $height, $weight, $purpose, $currentDate, $id, $stat);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+
+	
+	header("location: doctrack?error=none");
+		exit();
+}
+function createdoc5($connn, $docutype, $BName, $LName, $address, $Money, $BAL, $BALL, $currentDate, $id, $stat) {
+	$sql2 = "SELECT RequestNo FROM users WHERE user_id=$id";
+	$result = mysqli_query($connn, $sql2);
+	if ($result-> num_rows > 0) {
+		while ($row = $result->fetch_assoc()) {
+			$rqn = $row['RequestNo'];
+		}
+	}
+
+
+	$ADD = (int)$rqn + 1;
+	$sql4 = "UPDATE users SET RequestNo=?, DLRequest=? WHERE user_id=?";
+	$stmt4 = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt4, $sql4)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt4, "ssi", $ADD, $currentDate, $id);
+	mysqli_stmt_execute($stmt4);
+	mysqli_stmt_close($stmt4);
+	
+	$_SESSION['statusss'] = "Document Requested Successfully!";
+
+
+	$sql = "INSERT INTO docreq (documentType, Bname, Lname, Kaddress, Kmoney, KBAL, KBALL, CURDATE, user_id, Status) VALUES (?,?,?,?,?,?,?,?,?,?);";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "ssssssssis", $docutype, $BName, $LName, $address, $Money, $BAL, $BALL, $currentDate, $id, $stat);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+
+	
+	header("location: doctrack?error=none");
+		exit();
+}
+function createdoc6($connn, $docutype, $fName, $rbrgy, $sqm, $hectare, $owner, $currentDate, $id, $stat) {
+	$sql2 = "SELECT RequestNo FROM users WHERE user_id=$id";
+	$result = mysqli_query($connn, $sql2);
+	if ($result-> num_rows > 0) {
+		while ($row = $result->fetch_assoc()) {
+			$rqn = $row['RequestNo'];
+		}
+	}
+
+
+	$ADD = (int)$rqn + 1;
+	$sql4 = "UPDATE users SET RequestNo=?, DLRequest=? WHERE user_id=?";
+	$stmt4 = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt4, $sql4)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt4, "ssi", $ADD, $currentDate, $id);
+	mysqli_stmt_execute($stmt4);
+	mysqli_stmt_close($stmt4);
+	
+	$_SESSION['statusss'] = "Document Requested Successfully!";
+
+
+	$sql = "INSERT INTO docreq (documentType, Fullname, BarcRBrgy, BarcALAsqm, BarcALAhectare, BarcOwner, CURDATE, user_id, Status) VALUES (?,?,?,?,?,?,?,?,?);";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "sssssssis", $docutype, $fName, $rbrgy, $sqm, $hectare, $owner, $currentDate, $id, $stat);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+
+	
+	header("location: doctrack?error=none");
+		exit();
+}
 function createdoc3($connn, $fname, $purok, $complained, $phonenum, $incidenttype, $incidentdetails, $currentDate, $id, $stat) {
 
 	$sql2 = "SELECT blotreq FROM users WHERE user_id=$id";
