@@ -1481,6 +1481,7 @@ outline: none;
 	 align-items: center;
 	 justify-content: center;
 	 height: 100%;
+	 width: 100%;
 	 border-radius: 12px;	
 	box-shadow: 0 10px 25px black;
 
@@ -1795,7 +1796,8 @@ width: 100%;
 }
 @media screen and (max-width: 950px) {
 	.container {
-		width: ;
+		width: 100%;
+		align-items: center;
 	}
 }
 @media screen and (max-width: 950px) {
@@ -1822,17 +1824,44 @@ width: 100%;
 }
 @media screen and (max-width: 780px) {
 	.docbod {
-		overflow-x: auto;
+		overflow-x: scroll;
+		width: 100%;
 	}
 	.docttle {
 		font-size: 30px;
-		min-width: 100%;
+		min-width: 103%;
+	}
+	.container {
+		min-width: 103	%;
 	}
 }
 @media screen and (max-width: 600px) {
     .Home .homecontent p { 
         font-size:20px;
     }
+    .docttle {
+		font-size: 30px;
+		min-width: 110%;
+	}
+	.container {
+		min-width: 110%;
+	}
+}
+@media screen and (max-width: 550px) {
+ .docttle {
+		min-width: 130%;
+	}
+	.container {
+		min-width: 130%;
+	}
+}
+@media screen and (max-width: 470px) {
+ .docttle {
+		min-width: 137%;
+	}
+	.container {
+		min-width: 137%;
+	}
 }
 @media screen and (max-width: 430px) {
 	 .yellow a {
@@ -1889,14 +1918,23 @@ width: 100%;
     .desc p {
     	font-size: 15px;
     }
+    .docttle {
+		min-width: 155%;
+	}
+	.container {
+		min-width: 155%;
+	}
 }
 @media screen and (max-width: 375px) {
 	.docbod {
-		overflow-x: auto;
+
 	}
 	.docttle {
 		font-size: 30px;
-		min-width: 100%;
+		min-width: 200%;
+	}
+	.container {
+		min-width: 200%;
 	}
     .yellow a {
         font-size:13px;
