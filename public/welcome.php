@@ -1,11 +1,11 @@
 <?php
 session_start();
-
+        if (isset($_GET["error"])) {
 		if ($_GET["error"] == "access_denied") {
 		    header("Location: login");
 		    
 		}
-	
+        }
 
 
 
@@ -53,14 +53,14 @@ $result = mysqli_query($connn, $sql);
 
   } else {
     // user not exists
-    $sql = "INSERT INTO users (user_email, user_type, Last_name, First_name, Middle_name, Extension_name, Status, dateReg, RequestNo, verifiedEmail, token) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?);";
+    $sql = "INSERT INTO users (user_email, user_type, Last_name, First_name, Middle_name, Extension_name, Status, dateReg, RequestNo, verifiedEmail, token) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?,?);";
   $stmt = mysqli_stmt_init($connn);
   if (!mysqli_stmt_prepare($stmt, $sql)) {
     header("location: sign_up?error=stmtfailed");
     exit();
   }
 
-  mysqli_stmt_bind_param($stmt, "sssssssss", $email,$type,$lname,$fname,$exname,$miname,$status,$currentDate,$no,$ve,$token);
+  mysqli_stmt_bind_param($stmt, "sssssssssss", $email,$type,$lname,$fname,$exname,$miname,$status,$currentDate,$no,$ve,$token);
   mysqli_stmt_execute($stmt);
   mysqli_stmt_close($stmt);
 
