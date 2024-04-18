@@ -897,6 +897,13 @@ function editResident2($connn, $fname, $mname, $lname, $ename, $bday, $sex, $cit
 		exit();
 }
 function editResident3($connn, $fname, $mname, $lname, $ename, $bday, $sex, $citi, $purok, $id) {
+	$userexist = duplicateEmail($connn, $user);
+	
+	if ($userexist === false) {
+		header("location: login?error=User_not_found");
+		exit();
+	}
+	
 	$sql = "UPDATE users SET First_name=?, Middle_name=?, Last_name=?, Extension_name=?, birthdate=?, sex=?, citizenship=?, purok=? WHERE user_id=?";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -906,8 +913,11 @@ function editResident3($connn, $fname, $mname, $lname, $ename, $bday, $sex, $cit
 	mysqli_stmt_bind_param($stmt, "ssssssssi", $fname, $mname, $lname, $ename, $bday, $sex, $citi, $purok, $id);
 	mysqli_stmt_execute($stmt);
 	mysqli_stmt_close($stmt);
+	
+	
+	
 
-	header("location: Homepage");
+		header("location: welcome");
 		exit();
 }
 function addEvents($connn, $title, $desc, $newImageName, $date) {
