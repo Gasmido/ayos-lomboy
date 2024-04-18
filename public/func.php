@@ -159,7 +159,7 @@ function createUser($connn, $user, $pass, $use, $lastname, $firstname, $middlein
 		exit();
 	}
 	
-	$hashpass = password_hash($pass, PASSWORD_DEFAULT);
+	$hashpass = password_hash($pass, PASSWORD_BCRYPT);
 
 	mysqli_stmt_bind_param($stmt, "ssssssssssssss", $user, $hashpass, $use, $lastname, $firstname, $middleinitial, $extension, $status, $currentDate, $no, $birth, $sex, $purok, $citizenship);
 	mysqli_stmt_execute($stmt);
