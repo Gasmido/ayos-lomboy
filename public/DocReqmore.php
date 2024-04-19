@@ -73,7 +73,7 @@ include '../include/db_conn.php';
 
   <!-- Modal content -->
   <div class="modal-contentRr2">
-    <a href="DocReq.php">
+    <a href="DocReq">
         <span class="closer">&times;</span>
     </a>
     <h2>Document Request Information</h2>

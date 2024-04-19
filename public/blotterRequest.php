@@ -34,7 +34,7 @@ include '../include/db_conn.php';
                 unset($_SESSION['statuss']);
         }
     ?>
-    <button class="addd" onclick="document.location='Blotter.php'">BACK</button> 
+    <button class="addd" onclick="document.location='Blotter'">BACK</button> 
 
       </div> 
 

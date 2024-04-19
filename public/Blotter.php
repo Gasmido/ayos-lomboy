@@ -34,7 +34,7 @@ include '../include/db_conn.php';
                 unset($_SESSION['statuss']);
         }
     ?>
-    <button class="addd" onclick="document.location='BlotterAdd.php'">ADD BLOTTER</button> 
+    <button class="addd" onclick="document.location='BlotterAdd'">ADD BLOTTER</button> 
       </div> 
 
 <!-- The Modal -->
@@ -86,7 +86,7 @@ include '../include/db_conn.php';
       <div class="admin-blotter">
          
           <div class="admin-home-box c">
-            <a href="blotterRequest.php">
+            <a href="blotterRequest">
         <h2>
             Blotter Filing Requests
         </h2>

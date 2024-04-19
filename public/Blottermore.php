@@ -55,7 +55,7 @@ include '../include/db_conn.php';
 
   <!-- Modal content -->
   <div class="modal-contentRr2">
-    <a href="Blotter.php">
+    <a href="Blotter">
         <span class="closer">&times;</span>
     </a>
     <h2>Blotter Record Information</h2>
