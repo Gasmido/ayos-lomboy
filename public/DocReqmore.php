@@ -4,6 +4,19 @@ include '../include/topbarAdmin.php';
 include '../include/sidebar.php';
 include '../include/db_conn.php';
 
+if (isset($_SESSION['iss'])) {
+$id = $_SESSION['iss'];
+}
+elseif (!isset($_POST['submit'])) {
+    header('location: DocReq');            
+}
+elseif (isset($_POST['id'])) {
+    
+    $id = $_POST['id'];
+} 
+else {
+header('location: DocReq');
+}
                    ?>
 
 
@@ -20,7 +33,7 @@ include '../include/db_conn.php';
 	<div class="admin-home-blot">
 
         <?php
-            $sql2 = "SELECT * FROM docreq WHERE id=".$_GET['id'];
+            $sql2 = "SELECT * FROM docreq WHERE id=".$id;
                  $result2 = $connn-> query($sql2);
                  if ($result2-> num_rows > 0) {
                         while ($row = $result2-> fetch_assoc()) {
@@ -562,7 +575,7 @@ include '../include/db_conn.php';
                                     <form action='Blotterdocreq.php?row_id=".$row['id']. " ' method='POST'>
                                        
                                             <button class='editt' type='submit' name='more'>MORE</button>
-                                            <input name='ii' type='text' value='" .$_GET['id']. "' hidden>
+                                            <input name='ii' type='text' value='" .$id. "' hidden>
                                     </form>
                                     </td>
                                     </tr>";
@@ -629,7 +642,7 @@ include '../include/db_conn.php';
                                        <form action='Residentdocreq.php?row_id=".$row['id']. " ' method='POST'>
                                        
                                             <button class='editt' type='submit' name='more2'>MORE</button>
-                                            <input name='ii2' type='text' value='" .$_GET['id']. "' hidden>
+                                            <input name='ii2' type='text' value='" .$id. "' hidden>
                                     </td>
                                     </tr>";
                         }

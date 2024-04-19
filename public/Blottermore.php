@@ -4,6 +4,20 @@ include '../include/topbarAdmin.php';
 include '../include/sidebar.php';
 include '../include/db_conn.php';
 
+if (isset($_SESSION['iss'])) {
+$idd = $_SESSION['iss'];
+}
+elseif (!isset($_POST['submit'])) {
+    header('location: Blotter');            
+}
+elseif (isset($_POST['ids'])) {
+    
+    $idd = $_POST['ids'];
+} 
+else {
+header('location: Blotter');
+}
+
                    ?>
 
 
@@ -28,7 +42,7 @@ include '../include/db_conn.php';
 	<div class="admin-home-blot">
 
         <?php
-            $sql2 = "SELECT * FROM blotter WHERE id=".$_GET['row_id'];
+            $sql2 = "SELECT * FROM blotter WHERE id=". $idd;
                  $result2 = $connn-> query($sql2);
                  if ($result2-> num_rows > 0) {
                         while ($row = $result2-> fetch_assoc()) {
@@ -59,7 +73,6 @@ include '../include/db_conn.php';
         <span class="closer">&times;</span>
     </a>
     <h2>Blotter Record Information</h2>
-    
     <form method="post" action="Blottermore2.php">
     <div class="modal-inside">
         <div class="models">

@@ -4,6 +4,19 @@ include '../include/topbarAdmin.php';
 include '../include/sidebar.php';
 include '../include/db_conn.php';
 
+if (isset($_SESSION['iss'])) {
+$id = $_SESSION['iss'];
+}
+elseif (!isset($_POST['submit'])) {
+    header('location: Revenues');            
+}
+elseif (isset($_POST['id'])) {
+    
+    $id = $_POST['id'];
+} 
+else {
+header('location: Revenues');
+}
                    ?>
 
 
@@ -12,7 +25,7 @@ include '../include/db_conn.php';
 	<div class="admin-home-blot">
 
         <?php
-            $sql3 = "SELECT * FROM revenues WHERE id=".$_GET['id'];
+            $sql3 = "SELECT * FROM revenues WHERE id=".$id;
                  $result3 = $connn-> query($sql3);
                  if ($result3-> num_rows > 0) {
                         while ($row = $result3-> fetch_assoc()) {

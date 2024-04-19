@@ -31,7 +31,8 @@ if (isset($_POST['submit'])) {
 		 	if (duplicateBlot($connn, $bno) !== false) {
 			session_start();
 			$_SESSION["sta"] = "Already Exists!";
-			header("location: Blottermore.php?row_id=$id");
+			$_SESSION["iss"] = $id;
+			header("location: Blottermore");
 			exit();
 			}
 			else {

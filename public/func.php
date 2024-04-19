@@ -475,8 +475,9 @@ function editBlotter($connn, $bno, $fname, $complainant, $complained, $loc, $dof
 	mysqli_stmt_close($stmt);
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updated!";
+	$_SESSION["iss"] = $id;
 
-	header("location: Blottermore?row_id=$id");
+	header("location: Blottermore");
 		exit();
 }
 function editBlotter2($connn, $bno, $fname, $complainant, $complained, $loc, $dof, $status, $BI, $pin, $sstat,$id) {
@@ -491,8 +492,9 @@ function editBlotter2($connn, $bno, $fname, $complainant, $complained, $loc, $do
 	mysqli_stmt_close($stmt);
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updated!";
+	$_SESSION["iss"] = $id;
 
-	header("location: Blotterrequestmore?row_id=$id");
+	header("location: Blotterrequestmore");
 		exit();
 }
 function editBlotter3($connn, $sstat, $id) {
@@ -507,6 +509,7 @@ function editBlotter3($connn, $sstat, $id) {
 	mysqli_stmt_close($stmt);
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updated!";
+	$_SESSION["iss"] = $id;
 
 	header("location: BlotterRequest");
 		exit();
@@ -534,8 +537,9 @@ function editDocReq($connn, $fname, $daterequest, $dt, $purok, $BI, $dof, $dp, $
 
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updatedd!";
+	$_SESSION["iss"] = $id;
 
-	header("location: DocReqmore?id=$id");
+	header("location: DocReqmore");
 		exit();
 }
 function editDocReq11($connn, $fname, $daterequest, $dt, $purok, $BI, $dof, $status, $id)  {
@@ -551,8 +555,9 @@ function editDocReq11($connn, $fname, $daterequest, $dt, $purok, $BI, $dof, $sta
 	
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updated!";
+	$_SESSION["iss"] = $id;
 	
-	header("location: DocReqmore?id=$id");
+	header("location: DocReqmore");
 		exit();
 }
 function editDocReq2($connn, $fname, $daterequest, $dt, $BI, $dp, $ap, $status, $emaiil, $id)  {
@@ -578,8 +583,9 @@ function editDocReq2($connn, $fname, $daterequest, $dt, $BI, $dp, $ap, $status, 
 	
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updatedd!";
+	$_SESSION["iss"] = $id;
 	
-	header("location: DocReqmore?id=$id");
+	header("location: DocReqmore");
 		exit();
 }
 function editDocReq22($connn, $fname, $daterequest, $dt, $BI, $status, $id)  {
@@ -595,8 +601,9 @@ function editDocReq22($connn, $fname, $daterequest, $dt, $BI, $status, $id)  {
 	
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updated!";
+	$_SESSION["iss"] = $id;
 
-	header("location: DocReqmore?id=$id");
+	header("location: DocReqmore");
 		exit();
 }
 function editDocReq3($connn, $Bname, $Lname,$address, $money, $BAL,$BALL, $daterequest, $dt, $dp, $ap, $status, $emaiil, $id)  {
@@ -622,8 +629,9 @@ function editDocReq3($connn, $Bname, $Lname,$address, $money, $BAL,$BALL, $dater
 	
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updatedd!";
+	$_SESSION["iss"] = $id;
 	
-	header("location: DocReqmore?id=$id");
+	header("location: DocReqmore");
 		exit();
 }
 function editDocReq33($connn, $Bname, $Lname,$address, $money, $BAL,$BALL, $daterequest, $dt, $status, $id)  {
@@ -639,8 +647,9 @@ function editDocReq33($connn, $Bname, $Lname,$address, $money, $BAL,$BALL, $date
 	
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updated!";
+	$_SESSION["iss"] = $id;
 
-	header("location: DocReqmore?id=$id");
+	header("location: DocReqmore");
 		exit();
 }
 function editDocReq4($connn, $fname, $purok,$dob, $pob, $height,$weight,$purpose, $daterequest, $dt, $dp, $ap, $status, $emaiil, $id)  {
@@ -666,8 +675,9 @@ function editDocReq4($connn, $fname, $purok,$dob, $pob, $height,$weight,$purpose
 	
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updatedd!";
+	$_SESSION["iss"] = $id;
 	
-	header("location: DocReqmore?id=$id");
+	header("location: DocReqmore");
 		exit();
 }
 function editDocReq44($connn,$fname, $purok,$dob, $pob, $height,$weight,$purpose, $daterequest, $dt, $status, $id)  {
@@ -683,8 +693,9 @@ function editDocReq44($connn,$fname, $purok,$dob, $pob, $height,$weight,$purpose
 	
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updated!";
+	$_SESSION["iss"] = $id;
 
-	header("location: DocReqmore?id=$id");
+	header("location: DocReqmore");
 		exit();
 }
 function editDocReq5($connn, $fname, $rbrgy,$sqm, $hectare, $owner,$daterequest, $dt, $dp, $ap, $status, $emaiil, $id)  {
@@ -710,8 +721,9 @@ function editDocReq5($connn, $fname, $rbrgy,$sqm, $hectare, $owner,$daterequest,
 	
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updatedd!";
+	$_SESSION["iss"] = $id;
 	
-	header("location: DocReqmore?id=$id");
+	header("location: DocReqmore");
 		exit();
 }
 function editDocReq55($connn, $fname, $rbrgy,$sqm, $hectare, $owner,$daterequest, $dt, $status, $id)  {
@@ -727,8 +739,9 @@ function editDocReq55($connn, $fname, $rbrgy,$sqm, $hectare, $owner,$daterequest
 	
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updated!";
+	$_SESSION["iss"] = $id;
 
-	header("location: DocReqmore?id=$id");
+	header("location: DocReqmore");
 		exit();
 }
 function editUserAcc($connn, $status, $id)  {
@@ -744,8 +757,9 @@ function editUserAcc($connn, $status, $id)  {
 	
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updated!";
+	$_SESSION["iss"] = $id;
 
-	header("location: UserAccmore?id=$id");
+	header("location: UserAccmore");
 		exit();
 }
 function duplicateBlot($connn, $bno) {
@@ -827,8 +841,9 @@ function editStaff($connn, $name, $chairmanship, $termstart, $termend, $newImage
 	mysqli_stmt_close($stmt);
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updated!";
+	$_SESSION["iss"] = $id;
 
-	header("location: OffStaffmore?id=$id");
+	header("location: OffStaffmore");
 		exit();
 }
 function editStaff2($connn, $name, $chairmanship, $termstart, $termend, $status, $id) {
@@ -843,8 +858,9 @@ function editStaff2($connn, $name, $chairmanship, $termstart, $termend, $status,
 	mysqli_stmt_close($stmt);
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updated!";
+	$_SESSION["iss"] = $id;
 
-	header("location: OffStaffmore?id=$id");
+	header("location: OffStaffmore");
 		exit();
 }
 function addResident($connn, $fname, $mname, $lname, $ename, $birth, $sex, $citizenship, $civil, $brgy, $purok, $city, $province , $datereg) {
@@ -876,8 +892,10 @@ function editResident($connn, $fname, $mname, $lname, $ename, $birth, $sex, $cit
 	mysqli_stmt_close($stmt);
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updated!";
+	$_SESSION["iss"] = $id;
 
-	header("location: Residentmore?row_id=$id");
+
+	header("location: Residentmore");
 		exit();
 }
 function editResident2($connn, $fname, $mname, $lname, $ename, $bday, $sex, $citi, $id) {

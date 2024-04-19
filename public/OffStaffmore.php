@@ -4,8 +4,22 @@ include '../include/topbarAdmin.php';
 include '../include/sidebar.php';
 include '../include/db_conn.php';
 
-                   ?>
 
+if (isset($_SESSION['iss'])) {
+$id = $_SESSION['iss'];
+}
+elseif (!isset($_POST['submit'])) {
+    header('location: OffStaff');            
+}
+elseif (isset($_POST['id'])) {
+    
+    $id = $_POST['id'];
+} 
+else {
+header('location: OffStaff');
+}
+
+ ?>
 
 <div class="home-section">	
     <div class="adddel">
@@ -31,7 +45,7 @@ include '../include/db_conn.php';
 	<div class="admin-home-blot">
 
         <?php
-            $sql2 = "SELECT * FROM officials WHERE id=".$_GET['id'];
+            $sql2 = "SELECT * FROM officials WHERE id=".$id;
                  $result2 = $connn-> query($sql2);
                  if ($result2-> num_rows > 0) {
                         while ($row = $result2-> fetch_assoc()) {

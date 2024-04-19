@@ -3,6 +3,7 @@ include '../include/headAdmin.php';
 include '../include/topbarAdmin.php';
 include '../include/sidebar.php';
 require_once "../include/db_conn.php";
+unset($_SESSION['iss']);
 ?>
 <div class="home-section">
 <div class="admin-home-title">
@@ -54,10 +55,10 @@ require_once "../include/db_conn.php";
                             }
                             echo "<tr><td>". $row["id"] ."</td><td>"; echo $email; echo "</td><td>". $row["CURDATE"] ."</td><td>". $row["documentType"] ."</td><td>". $row["Status"] ."</td>
                                     <td>
-                                        <a href='DocReqmore.php?id=". $row['id'] ."'>
-                                            <button class='editt'>MORE</button>
-                                        </a>
-                                       
+                                        <form action='DocReqmore' method='POST'>
+                                            <input name='id' value='". $row['id'] ."' hidden>
+                                            <button class='editt' name='submit' type='submit'>MORE</button>
+                                        </form>
                                     </td>
                                     </tr>";
                         }

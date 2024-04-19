@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST['submit'])) {
-	$id=$_POST['id'];
+	$id=$_POST['ids'];
 	$fname = $_POST['fname'];
 	$mname = $_POST['mname'];
 	$lname = $_POST['lname'];
@@ -11,8 +11,7 @@ if (isset($_POST['submit'])) {
 	$citizenship = $_POST['citizenship'];
 	$civil = $_POST['civil'];
 	$brgy = $_POST['brgy'];
-	$puro = $_POST['purok'];
-	$purok = "Purok#$puro";
+	$purok = $_POST['purok'];
 	$city = $_POST['city'];
 	$province = $_POST['province'];
 
@@ -37,7 +36,8 @@ if (isset($_POST['submit'])) {
 			session_start();
 			$connn->close();
 			$_SESSION["sta"] = "Already Exists!";
-			header("location: Residentmore.php?row_id=$id");
+			$_SESSION["iss"] = $id;
+			header("location: Residentmore");
 			exit();
 			}
 			

@@ -3,6 +3,7 @@ include '../include/headAdmin.php';
 include '../include/topbarAdmin.php';
 include '../include/sidebar.php';
 require_once "../include/db_conn.php";
+unset($_SESSION['iss']);
 ?>
 <div class="home-section">
 <div class="admin-home-title">
@@ -44,10 +45,10 @@ require_once "../include/db_conn.php";
                         while ($row = $result-> fetch_assoc()) {
                             echo "<tr><td>". $row["datepick"] ."</td><td>". $row["fullname"] ."</td><td>". $row["docreq"] ."</td><td>". $row["amountpaid"] ."</td>
                                     <td>
-                                        <a href='Revenuesmore.php?id=". $row['id'] ."'>
-                                            <button class='editt'>MORE</button>
-                                        </a>
-                                        
+                                         <form action='Revenuesmore' method='POST'>
+                                            <input name='id' value='". $row['id'] ."' hidden>
+                                            <button class='editt' name='submit' type='submit'>MORE</button>
+                                        </form>
                                     </td>
                                     </tr>";
                         }

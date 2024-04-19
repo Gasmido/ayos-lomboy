@@ -4,6 +4,19 @@ include '../include/topbarAdmin.php';
 include '../include/sidebar.php';
 include '../include/db_conn.php';
 
+if (isset($_SESSION['iss'])) {
+$id = $_SESSION['iss'];
+}
+elseif (!isset($_POST['submit'])) {
+    header('location: ResidentRecord');            
+}
+elseif (isset($_POST['id'])) {
+    
+    $id = $_POST['id'];
+} 
+else {
+header('location: ResidentRecord');
+}
                    ?>
 
 
@@ -28,11 +41,11 @@ include '../include/db_conn.php';
 	<div class="admin-home-blot">
 
         <?php
-            $sql2 = "SELECT * FROM resident WHERE id=".$_GET['row_id'];
+            $sql2 = "SELECT * FROM resident WHERE id=".$id;
                  $result2 = $connn-> query($sql2);
                  if ($result2-> num_rows > 0) {
                         while ($row = $result2-> fetch_assoc()) {
-                            $id = $row['id'];
+                            $ids = $row['id'];
                             $fname = $row['firstname'];
                             $mname = $row['middlename'];
                             $lname =$row['lastname'];
@@ -60,7 +73,7 @@ include '../include/db_conn.php';
 
   <!-- Modal content -->
   <div class="modal-contentRr2">
-    <a href="ResidentRecord.php">
+    <a href="ResidentRecord">
         <span class="closer">&times;</span>
     </a>
     <h2>Resident Information</h2>
@@ -89,32 +102,32 @@ include '../include/db_conn.php';
                 <input id="1" class="inpu" type="date" name="datereg" value="<?= $datereg ?>" max="<?php echo date("Y-m-d"); ?>" min="1934-12-31" step="1" readonly><br>
                  <label>Sex:</label><br>
                 <select id="4" class="inpu" name="sex" disabled>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
+                  <option value="Male" <?php if ($sex=="Male") echo 'selected="selected"';?>>Male</option>
+                  <option value="Female" <?php if ($sex=="Female") echo 'selected="selected"';?>>Female</option>
                 </select>
                 <label>Citezenship:</label><br>
                 <select id="13" class="inpu" name="citizenship" disabled>
-                  <option <?php if ($citizenship=="Natural-Born-Citizen") echo 'selected="selected"';?>>Natural-Born-Citizen</option>
-                  <option <?php if ($citizenship=="Naturalized-Citizen") echo 'selected="selected"';?>>Naturalized-Citizen</option>
+                  <option value="Natural-Born-Citizen" <?php if ($citizenship=="Natural-Born-Citizen") echo 'selected="selected"';?>>Natural-Born-Citizen</option>
+                  <option value="Naturalized-Citizen" <?php if ($citizenship=="Naturalized-Citizen") echo 'selected="selected"';?>>Naturalized-Citizen</option>
                 </select>
                 <label>Civil Status:</label><br>
                 <select id="14" class="inpu" name="civil" disabled>
-                  <option <?php if ($civil=="Single") echo 'selected="selected"';?>>Single</option>
-                  <option <?php if ($civil=="Married") echo 'selected="selected"';?>>Married</option>
-                  <option <?php if ($civil=="Widowed") echo 'selected="selected"';?>>Widowed</option>
-                  <option <?php if ($civil=="Divorced") echo 'selected="selected"';?>>Divorced</option>
+                  <option value="Single" <?php if ($civil=="Single") echo 'selected="selected"';?>>Single</option>
+                  <option value="Married" <?php if ($civil=="Married") echo 'selected="selected"';?>>Married</option>
+                  <option value="Widowed" <?php if ($civil=="Widowed") echo 'selected="selected"';?>>Widowed</option>
+                  <option value="Divorced" <?php if ($civil=="Divorced") echo 'selected="selected"';?>>Divorced</option>
                 </select>
-               <input type="hidden" name="id" value="<?= $id ?>"/>
+               <input type="text" name="ids" value="<?= $ids ?>" hidden>
             </div>
             <div class="inputpop3">
                 <label>Street:</label><br>
                 <input id="5" class="inpu" type="text" name="brgy" value="<?= $brgy ?>" placeholder="Barangay" readonly><br>
                 <label>Purok:</label><br>
                 <select id="6" class="inpu" name="purok" required disabled>
-                  <option <?php if ($purok=="1") echo 'selected="selected"';?>>1</option>
-                  <option <?php if ($purok=="2") echo 'selected="selected"';?>>2</option>
-                  <option <?php if ($purok=="3") echo 'selected="selected"';?>>3</option>
-                  <option <?php if ($purok=="4") echo 'selected="selected"';?>>4</option>
+                  <option value="1" <?php if ($purok=="1") echo 'selected="selected"';?>>1</option>
+                  <option value="2" <?php if ($purok=="2") echo 'selected="selected"';?>>2</option>
+                  <option value="3" <?php if ($purok=="3") echo 'selected="selected"';?>>3</option>
+                  <option value="4" <?php if ($purok=="4") echo 'selected="selected"';?>>4</option>
                 </select>
                 <label>City:</label><br>
                 <input id="7" class="inpu" type="text" name="city" value="<?= $city ?>" placeholder="City" readonly><br>

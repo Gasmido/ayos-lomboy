@@ -9,7 +9,7 @@ session_start();
     }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" oncopy="return false;" oncontextmenu="return myRightClick();" oncut="return false;" onpaste="return false;">
   <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../CSS/style.css">   
@@ -21,6 +21,30 @@ session_start();
 		localStorage.removeItem("txt6")
 		localStorage.removeItem("txt00")
 	</script>
+	<script type="text/javascript">
+    function myRightClick() {
+      alert("Right click is not allowed.");
+      return false;
+    }
+
+    document.onkeydown = function(e) {
+      if(event.keyCode == 123) {
+        return false;
+      }
+      if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+        return false;
+      }
+      if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+        return false;
+      }
+      if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+        return false;
+      }
+      if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+        return false;
+      }
+    }
+  </script>
 	</head>	
 	<body class="signbod">
 		<div class="float-parent-element">
@@ -96,35 +120,35 @@ session_start();
 				<div class="inputsr">
 					<div class="inn">
 					<form action="sign_process.php" method="post">
-					<p>Email:</p>
-						<input id ="txt1" type="text" name="user" onkeyup="saveValue(this);" placeholder="Enter your email" maxlength="50"></input>
-					<p>Password:</p>
-						<input id="txt2" type="password" name="pass" onkeyup="saveValue(this);" placeholder="Enter your password" maxlength="60"></input>
-						<p>Birth Date:</p>
-						<input id="txt3" type="date" name="birthdate" onkeyup="saveValue(this);" max="<?php echo date("Y-m-d"); ?>" min="1934-12-31"></input>
-					<p>Purok:</p>
+					<p style="display:inline;">Email:</p><label style="color:red;"> *</label><br>
+						<input id ="txt1" type="text" name="user" onkeyup="saveValue(this);" placeholder="Enter your email" maxlength="50"></input><br>
+					<p style="display:inline;">Password:</p><label style="color:red;"> *</label><br>
+						<input id="txt2" type="password" name="pass" onkeyup="saveValue(this);" placeholder="Enter your password" maxlength="60"></input><br>
+						<p style="display:inline;">Birth Date:</p><label style="color:red;"> *</label><br>
+						<input id="txt3" type="date" name="birthdate" onkeyup="saveValue(this);" max="<?php echo date("Y-m-d"); ?>" min="1934-12-31"></input><br>
+					<p style="display:inline;">Purok:</p><label style="color:red;"> *</label><br>
                 <select name="purok">
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
                   <option>4</option>
-                </select>
-                <p>Sex:</p>
+                </select><br>
+                <p style="display:inline;">Sex:</p><label style="color:red;"> *</label><br>
 						<select name="sex">
                   <option>Male</option>
                   <option>Female</option>
-                </select>
+                </select><br>
 					</div>
 					<div class="inn">
-						<p>Last Name:</p>
-						<input minlength="2" maxlength="80" id ="txt4" type="text" name="lastname" pattern="[A-Za-z ]{1,32}" title="e.g. Dela Cruz" onkeyup="saveValue(this);" placeholder="Enter your last name"></input>
-						<p>First Name:</p>
-						<input minlength="2" maxlength="80" id ="txt7" type="text" name="firstname" pattern="[A-Za-z ]{1,32}" title="e.g. Christian Jao" onkeyup="saveValue(this);" placeholder="Enter your first name"></input>
+						<p style="display:inline;">Last Name:</p><label style="color:red;"> *</label>
+						<input minlength="2" maxlength="80" id ="txt4" type="text" name="lastname" pattern="[A-Za-z ]{1,80}" title="Only letters and spaces; maximum of 20" onkeyup="saveValue(this);" placeholder="Enter your last name"></input><br>
+						<p style="display:inline;">First Name:</p><label style="color:red;"> *</label>
+						<input minlength="2" maxlength="80" id ="txt7" type="text" name="firstname" pattern="[A-Za-z ]{1,80}" title="Only letters and spaces; maximum of 20" onkeyup="saveValue(this);" placeholder="Enter your first name"></input><br>
 						<p>Middle Initial: (optional)</p>
-						<input id ="txt8" maxlength="6" type="text" name="middleinitial" pattern="[A-Za-z .]{1,10}" title="e.g. A." onkeyup="saveValue(this);" placeholder="Enter your middile initial"></input>
+						<input id ="txt8" maxlength="6" type="text" name="middleinitial" pattern="[A-Za-z .]{1,6}" title="e.g. A." onkeyup="saveValue(this);" placeholder="Enter your middile initial"></input>
 						<p>Extension Name: (optional)</p>
-						<input id ="txt9" maxlength="20" type="text" name="extensionname" pattern="[A-Za-z .]{1,32}" title="e.g. Jr." onkeyup="saveValue(this);" placeholder="Enter your extension name"></input>
-						 <p>Citizenship:</p>
+						<input id ="txt9" maxlength="20" type="text" name="extensionname" pattern="[A-Za-z .]{1,20}" title="e.g. Jr." onkeyup="saveValue(this);" placeholder="Enter your extension name"></input><br>	
+						 <p style="display:inline;">Citizenship:</p><label style="color:red;"> *</label>
 						<select name="citizenship">
                   <option>Natural-Born-Citizen</option>
                   <option>Naturalized-Citizen</option>

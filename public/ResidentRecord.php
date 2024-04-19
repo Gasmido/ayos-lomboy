@@ -3,6 +3,7 @@ include '../include/headAdmin.php';
 include '../include/topbarAdmin.php';
 include '../include/sidebar.php';
 include '../include/db_conn.php';
+unset($_SESSION['iss']);
 ?>
 <script type="text/javascript">
         localStorage.removeItem("1")
@@ -36,7 +37,7 @@ include '../include/db_conn.php';
                 unset($_SESSION['statuss']);
         }
     ?>
-    <button onclick="document.location='ResidentAdd.php'" class="addd">ADD NEW RESIDENT</button> 
+    <button onclick="document.location='ResidentAdd'" class="addd">ADD NEW RESIDENT</button> 
       </div>    
 
 <!-- The Modal -->
@@ -147,10 +148,10 @@ include '../include/db_conn.php';
                             }
                             echo "<td>". $row["sex"] ."</td><td>". $row["birthdate"] ."</td><td>". $row["street"] .", ". $row["purok"] .", ". $row["city"] .", ". $row["province"] ."</td><td>". $row["datereg"] ."</td>
                                     <td>
-                                        <a href='Residentmore.php?row_id=".$row['id']. " '>
-                                            <button class='editt'>MORE</button>
-                                        </a>
-                                        
+                                         <form action='Residentmore' method='POST'>
+                                            <input name='id' value='". $row['id'] ."' hidden>
+                                            <button class='editt' name='submit' type='submit'>MORE</button>
+                                        </form>
                                     </td>
                                     </tr>";
                         }

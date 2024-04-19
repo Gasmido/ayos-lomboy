@@ -3,7 +3,7 @@ include '../include/headAdmin.php';
 include '../include/topbarAdmin.php';
 include '../include/sidebar.php';
 include '../include/db_conn.php';
-
+unset($_SESSION['iss']);
 
 ?>
 <script type="text/javascript">

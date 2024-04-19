@@ -3,7 +3,7 @@ include '../include/headAdmin.php';
 include '../include/topbarAdmin.php';
 include '../include/sidebar.php';
 include '../include/db_conn.php';
-
+unset($_SESSION['iss']);
 
 ?>
 <script type="text/javascript">
@@ -112,10 +112,10 @@ include '../include/db_conn.php';
                         while ($row = $result-> fetch_assoc()) {
                             echo "<tr><td>". $row["complainant"] ."</td><td>". $row["complained"] ."</td><td>". $row["blotter_type"] ."</td><td>". $row["dateOfFiling"] ."</td><td>". $row["Status"] ."</td>
                                     <td>
-                                        <a href='Blotterrequestmore.php?row_id=".$row['id']. " '>
-                                            <button class='editt'>MORE</button>
-                                        </a>
-                                         
+                                          <form action='Blotterrequestmore' method='POST'>
+                                            <input name='id' value='". $row['id'] ."' hidden>
+                                            <button class='editt' name='submit' type='submit'>MORE</button>
+                                        </form>
                                     </td>
                                     </tr>";
                         }
