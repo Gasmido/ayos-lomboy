@@ -38,11 +38,11 @@ include '../include/db_conn.php';
                         unset($_SESSION['desc']);
         }
     ?>
-    <button class="addd" onclick="document.location='Announcements.php'">BACK</button> 
+    <button class="addd" onclick="document.location='Announcements'">BACK</button> 
 </div>		
 <div class="admin-homes"> 
     <div class="admin-events">
-        <form class="announceform" method="post" action="Announcementsnewsadd.php" enctype="multipart/form-data">
+        <form class="announceform" method="post" action="Announcementsnewsadd" enctype="multipart/form-data">
             <label for="image">Cover Image:</label>
             <input type="file" accept=".jpg, .jpeg, .png" name="image" id="image"> <br>
             <label for="title">News' Title:</label><br>
