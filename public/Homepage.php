@@ -27,11 +27,10 @@ if ($purokss == "" && $ciiit == "") {
 			</h1>
 			<p>
 				<i class='bx bxs-time' ></i>
-				Open Hours: Monday to Saturday (7:30AM - 5PM)
+				Open Hours: Monday to Saturday (7:30AM - 5:00PM)
 			</p>
 			<p>
-				<i class='bx bxs-contact' ></i>
-				Contact: 0947 292 5406
+			
 			</p>
 			<div class="logoo">
 				<img class="logoo2" src="image/logoo.png">

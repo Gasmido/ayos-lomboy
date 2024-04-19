@@ -57,7 +57,7 @@ include '../include/db_conn.php';
 
   <!-- Modal content -->
   <div class="modal-contentRr2">
-    <a href="OffStaff.php">
+    <a href="OffStaff">
         <span class="closer">&times;</span>
     </a>
     <h2>Official Staff Information</h2>
@@ -67,8 +67,8 @@ include '../include/db_conn.php';
         <div class="models">
             <div class="inputpop">
             <label>Official Photo:</label>            
-                <img src="image/<?= $image ?>" style="width: 250px;height: 240px;">
-               <input type="file" accept=".jpg, .jpeg, .png" name="image" id="image" disabled> <br>
+                <img src="image/<?= $image ?>" style="width: 250px;height: 240px;" id="output">
+               <input type="file" accept=".jpg, .jpeg, .png" name="image" id="image" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])" disabled> <br>
             </div>
             <div class="inputpop2">
                 <label>Fullname:</label><br>

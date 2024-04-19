@@ -35,7 +35,7 @@ include '../include/db_conn.php';
 
   <!-- Modal content -->
   <div class="modal-contentRr3">
-    <a href="Revenues.php">
+    <a href="Revenues">
         <span class="closer">&times;</span>
     </a>
     <h2>Transaction Information</h2>
