@@ -9,7 +9,15 @@ function empInpSign($user, $pass, $firstname, $lastname, $birth, $sex, $purok, $
 	}
 	return $result;
 }
-
+function empInpEmail($user) {
+	$result;
+	if (empty($user)) {
+		$result = true;
+	} else {
+		$result = false;
+	}
+	return $result;
+}
 function purpose($purpose) {
 	$result;
 	if (empty($purpose)) {
@@ -178,7 +186,22 @@ function empInpLogin($user, $pass) {
 	}
 	return $result;
 }
+function passchange($connn, $pass, $user) {
+$hashpass = password_hash($pass, PASSWORD_BCRYPT);
 
+$sql = "UPDATE users SET user_password=? WHERE user_email=?";
+		$stmt = mysqli_stmt_init($connn);
+		if (!mysqli_stmt_prepare($stmt, $sql)) {
+			header("location: login?error=stmtfailed");
+			exit();
+		}
+		mysqli_stmt_bind_param($stmt, "ss", $hashpass, $user);
+		mysqli_stmt_execute($stmt);
+		mysqli_stmt_close($stmt);
+
+		header("location: login.php?error=Successp");
+		exit();
+}
 function loginUser($connn, $user, $pass, $type, $date, $time, $id2) {
 	$userexist = duplicateEmail($connn, $user);
 	

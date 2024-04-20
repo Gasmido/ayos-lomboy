@@ -1,11 +1,10 @@
 <?php
-if (isset($_SESSION['ID'])) {
+session_start();
+if (isset($_SESSION['ID']) || !isset($_SESSION['uuusss'])) {
         header("Location: Homepage");
         exit();
     }
-session_start();
-if (isset($_SESSION['otp'])) {
-
+$sdf = $_SESSION['emais'];
 
 ?>
 
@@ -18,6 +17,7 @@ if (isset($_SESSION['otp'])) {
     <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script type="text/javascript">
+     localStorage.removeItem("txt1")
     function myRightClick() {
       alert("Right click is not allowed.");
       return false;
@@ -51,7 +51,7 @@ if (isset($_SESSION['otp'])) {
     <div class="yellow">
          <nav>
   <ul>
-      <li><a class="ac" href="../public/register">Back to Register</a></li>
+      <li><a class="ac" href="../public/login">Back to Login</a></li>
    
   </ul>
 </nav>
@@ -61,16 +61,25 @@ if (isset($_SESSION['otp'])) {
 <div class="loginmain">
   <div class="login">
   <div>
-<h1 class="ttle">Email Verification</h1>
+<h1 class="ttle">Password Reset</h1>
 </div>
 <?php
 	if (isset($_GET["error"])) {
-		if ($_GET["error"] == "wrong_input") {
-			echo "<p class='example'>Wrong OTP!</p>";
+		if ($_GET["error"] == "Empty_input") {
+			echo "<p class='example'>Fill in Fields!</p>";
 		}
-		else if ($_GET["error"] == "empty_input") {
-			echo "<p class='example'>Please Enter OTP!</p>";
-		}
+		else if ($_GET["error"] == "Password_too_short") {
+      echo "<p class='example'>Password length shouldn't be less than 6</p>";
+    }
+    else if ($_GET["error"] == "Password_too_long") {
+      echo "<p class='example'>Password length shouldn't be more than 16</p>";
+    }
+    else if ($_GET["error"] == "Password_strength") {
+        echo "<p class='example'>Password should contain numbers</p>";
+    }
+     else if ($_GET["error"] == "change") {
+        echo "<p class='example2'>Please enter new password.</p>";
+    }
 		
 	/*	else if ($_GET["error"] == "none") {
 			echo "<p style='color:white; background: #8b0f0f;padding:5px;border-style:solid;border-width:2px;border-color:rgba(253, 114, 146, 1);'>Log-in successful!</p>";
@@ -79,13 +88,13 @@ if (isset($_SESSION['otp'])) {
 ?>
 
 <div class="inputs">
-  <form action="register3.php" method="post">
-  <p>Enter OTP:</p>
-  <input class="inppp" id="txt00" type="number" name="otp" onkeyup="saveValue(this);" placeholder="We have send an OTP to your email" maxlength="6" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></input>
-  <input type="text" name="send" value="<?php echo $_SESSION['otp']; ?>" hidden>
+  <form action="loginforgot2" method="post">
+  <label>Password:</label><br>
+  <input id ="txt111" type="text" name="userss" onkeyup="saveValue(this);" placeholder="Enter your new Password" maxlength="50"></input><br>
+  <input type="text" name="emails" value="<?= $sdf ?>" hidden>
   </div>
   <section class="loginbtn">
-				<button class="btnlog" type="submit" name="submitv" >VERIFY</button>
+				<button class="btnlog" type="submit" name="submitss" >SUBMIT</button>
 
 		</section>
 		<br />
@@ -93,7 +102,7 @@ if (isset($_SESSION['otp'])) {
   </div>
   </div>
    <script type="text/javascript">
-        document.getElementById("txt00").value = getSavedValue("txt00"); 
+        document.getElementById("txt111").value = getSavedValue("txt111"); 
 		
         function saveValue(e){
             var id = e.id;  
@@ -110,8 +119,3 @@ if (isset($_SESSION['otp'])) {
 </script>
 </body>
 </html>
-<?php
-} else {
-  header("location: register");
-}
-?>

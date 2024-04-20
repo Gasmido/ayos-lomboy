@@ -3,12 +3,14 @@
     require_once "config.php";
 
     session_start();
-
+    unset($_SESSION['otp']);
+     unset($_SESSION['uuusss']);
     if (isset($_SESSION['ID'])) {
         header("Location: Homepage");
         exit();
     }
     else {
+        unset($_SESSION['uuusss']);
 ?>
 <!DOCTYPE html>
 <html lang="en" oncopy="return false;" oncontextmenu="return myRightClick();" oncut="return false;" onpaste="return false;">
@@ -19,6 +21,8 @@
     <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	 <script type="text/javascript">
+        localStorage.removeItem("txt000")
+        localStorage.removeItem("txt111")
         localStorage.removeItem("txt1")
 		localStorage.removeItem("txt3")
 		localStorage.removeItem("txt2")
@@ -86,6 +90,9 @@
     else if ($_GET["error"] == "Success") {
       echo "<p id='ha' class='example2'>Registered Successfully!</p>";
     }
+     else if ($_GET["error"] == "Successp") {
+      echo "<p id='ha' class='example2'>Password Changed Successfully!</p>";
+    }
 		
 	/*	else if ($_GET["error"] == "none") {
 			echo "<p style='color:white; background: #8b0f0f;padding:5px;border-style:solid;border-width:2px;border-color:rgba(253, 114, 146, 1);'>Log-in successful!</p>";
@@ -100,6 +107,7 @@
    <p>Password:</p>
   <input id="txt6" type="password" name="pass" onkeyup="saveValue(this);" maxlength="60" placeholder="Enter password"></input>
   </div>
+  <p style="text-align: right;margin-top: 3px;"> <a href="loginforgot" style="color:#00FFFF">Forgot password?</a></p>
   <section class="loginbtn">
 				<button class="btnlog" type="submit" name="submit">LOGIN</button>
 

@@ -1,12 +1,14 @@
 <?php
-if (isset($_SESSION['ID'])) {
+session_start();
+if (isset($_SESSION['ID']) && !isset($_SESSION['uuusss'])) {
         header("Location: Homepage");
         exit();
     }
-session_start();
+
 if (isset($_SESSION['otp'])) {
 
-
+$idss = $_SESSION['uuusss'];
+ $_SESSION['emais'] = $idss;
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +53,7 @@ if (isset($_SESSION['otp'])) {
     <div class="yellow">
          <nav>
   <ul>
-      <li><a class="ac" href="../public/register">Back to Register</a></li>
+      <li><a class="ac" href="../public/login">Back to Login</a></li>
    
   </ul>
 </nav>
@@ -61,15 +63,15 @@ if (isset($_SESSION['otp'])) {
 <div class="loginmain">
   <div class="login">
   <div>
-<h1 class="ttle">Email Verification</h1>
+<h1 class="ttle">E-mail Verification</h1>
 </div>
 <?php
 	if (isset($_GET["error"])) {
-		if ($_GET["error"] == "wrong_input") {
-			echo "<p class='example'>Wrong OTP!</p>";
+		if ($_GET["error"] == "Empty_input") {
+			echo "<p class='example'>Fill in Fields!</p>";
 		}
-		else if ($_GET["error"] == "empty_input") {
-			echo "<p class='example'>Please Enter OTP!</p>";
+		else if ($_GET["error"] == "wrong_input") {
+			echo "<p class='example'>Wrong OTP!</p>";
 		}
 		
 	/*	else if ($_GET["error"] == "none") {
@@ -79,13 +81,13 @@ if (isset($_SESSION['otp'])) {
 ?>
 
 <div class="inputs">
-  <form action="register3.php" method="post">
+  <form action="loginforgot2" method="post">
   <p>Enter OTP:</p>
-  <input class="inppp" id="txt00" type="number" name="otp" onkeyup="saveValue(this);" placeholder="We have send an OTP to your email" maxlength="6" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></input>
+  <input class="inppp" id="txt000" type="number" name="otp" onkeyup="saveValue(this);" placeholder="We have send an OTP to your email" maxlength="6" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></input>
   <input type="text" name="send" value="<?php echo $_SESSION['otp']; ?>" hidden>
   </div>
   <section class="loginbtn">
-				<button class="btnlog" type="submit" name="submitv" >VERIFY</button>
+				<button class="btnlog" type="submit" name="submitvd" >VERIFY</button>
 
 		</section>
 		<br />
@@ -93,7 +95,7 @@ if (isset($_SESSION['otp'])) {
   </div>
   </div>
    <script type="text/javascript">
-        document.getElementById("txt00").value = getSavedValue("txt00"); 
+        document.getElementById("txt000").value = getSavedValue("txt000"); 
 		
         function saveValue(e){
             var id = e.id;  
@@ -112,6 +114,6 @@ if (isset($_SESSION['otp'])) {
 </html>
 <?php
 } else {
-  header("location: register");
+  header("location: login");
 }
 ?>

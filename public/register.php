@@ -1,5 +1,5 @@
 <?php
-unset($_SESSION['otp']);
+
 
 session_start();
 
@@ -7,6 +7,21 @@ session_start();
         header("Location: Homepage");
         exit();
     }
+    unset($_SESSION['otp']);
+  unset($_SESSION["email"]);
+unset($_SESSION["pass"]);
+unset($_SESSION["usertype"]);
+unset($_SESSION["lastname"]);
+unset($_SESSION["firstname"]);
+unset($_SESSION["middleinitial"]); 
+unset($_SESSION["extension"]);
+unset($_SESSION["status"]);
+unset($_SESSION["currentDate"]);
+unset($_SESSION["no"]);
+unset($_SESSION["sex"]);
+unset($_SESSION["birth"]);
+unset($_SESSION["purok"]);
+unset($_SESSION["citizenship"]);
 ?>
 <!DOCTYPE html>
 <html lang="en" oncopy="return false;" oncontextmenu="return myRightClick();" oncut="return false;" onpaste="return false;">

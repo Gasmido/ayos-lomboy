@@ -6,3 +6,6 @@ RewriteRule ^(.*)$ $1.php
 ErrorDocument 404 https://ayos-lomboy.com/public/404error
 
 ErrorDocument 500 https://ayos-lomboy.com/public/404error
+ErrorDocument 301 https://ayos-lomboy.com/public/404error
+ErrorDocument 401 https://ayos-lomboy.com/public/404error
+ErrorDocument 403 https://ayos-lomboy.com/public/404error
