@@ -15,7 +15,9 @@ if (isset($_SESSION['ID'])) {
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script type="text/javascript">
+     
+
+<!--	<script type="text/javascript">
     function myRightClick() {
       alert("Right click is not allowed.");
       return false;
@@ -39,6 +41,8 @@ if (isset($_SESSION['ID'])) {
       }
     }
   </script>
+-->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
    </head>
 <body class="loginbod">
 <div class="float-parent-element">
@@ -72,23 +76,33 @@ if (isset($_SESSION['ID'])) {
     else if ($_GET["error"] == "noE-mail") {
       echo "<p class='example'>User does not exists!</p>";
     }
+    else if ($_GET["error"] == "wrongf") {
+      echo "<p class='example'>Please verify reCAPTCHA!</p>";
+    }
+    else if ($_GET["error"] == "wrong") {
+      echo "<p class='example'>reCAPTCHA verification failed!</p>";
+    }
 		
 	/*	else if ($_GET["error"] == "none") {
 			echo "<p style='color:white; background: #8b0f0f;padding:5px;border-style:solid;border-width:2px;border-color:rgba(253, 114, 146, 1);'>Log-in successful!</p>";
 		} */
 	}
 ?>
-
+<form action="loginforgot2" method="POST">
 <div class="inputs">
-  <form action="loginforgot2" method="post">
+  
   <label>Email:</label><br>
   <input id ="txt1" type="text" name="user" onkeyup="saveValue(this);" placeholder="Enter your email" maxlength="50"></input><br>
   </div>
+    <div class="form-input" style="text-align:center;">
+        <!-- Google reCAPTCHA box -->
+        <div class="g-recaptcha" data-sitekey="6LdC5r4pAAAAAPW8GIo3MuebpQWE9RDrxO7jg-Ua" style="display: inline-block;margin-top: 20px;"></div>
+    </div>
   <section class="loginbtn">
 				<button class="btnlog" type="submit" name="submitv" >SUBMIT</button>
 
 		</section>
-		<br />
+		<br>
   </form>
   </div>
   </div>

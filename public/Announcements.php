@@ -71,9 +71,11 @@ unset($_SESSION['iss']);
                                                                         </h4>
                                                                     </div>
                                                                         <section class="boxbut2">
-                                                                           <a href="AEmore?id='.$row['id']. ' ">
-                                                                                    <button class="btnservice" type="submit" name="submit">Edit</button>
-                                                                            </a>
+                                                                          
+                                                                            <form action="AEmore" method="POST">
+                                            <input name="ids" value="'. $row["id"] .'" hidden>
+                                            <button class="btnservice" name="submit" type="submit">Edit</button>
+                                        </form>
                                                                         </section>
                                                                 </div>';
                         }
@@ -107,9 +109,10 @@ unset($_SESSION['iss']);
                                                                     </div>
                                                                         
                                                                         <section class="boxbut2">
-                                                                            <a href="ANmore?id='.$row['id']. ' ">
-                                                                                    <button class="btnservice" type="submit" name="submit">Edit</button>
-                                                                            </a>
+                                                                            <form action="ANmore" method="POST">
+                                            <input name="ids" value="'. $row["id"] .'" hidden>
+                                            <button class="btnservice" name="submit" type="submit">Edit</button>
+                                        </form>
                                                                         </section>
                                                                 
                                                                 </div>';

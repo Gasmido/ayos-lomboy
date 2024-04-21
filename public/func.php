@@ -989,8 +989,9 @@ function addEvents2($connn, $title, $desc, $date, $id) {
 	mysqli_stmt_close($stmt);
 	session_start();
 	$_SESSION["statuss"] = "Event Successfully Edited!";
+	$_SESSION["iss"] = $id;
 	
-	header("location: Announcements");
+	header("location: AEmore");
 		exit();
 }
 function addEvents3($connn, $title, $desc, $newImageName, $date, $id) {
@@ -1005,8 +1006,9 @@ function addEvents3($connn, $title, $desc, $newImageName, $date, $id) {
 	mysqli_stmt_close($stmt);
 	session_start();
 	$_SESSION["statuss"] = "Event Successfully Edited!";
+	$_SESSION["iss"] = $id;
 	
-	header("location: Announcements");
+	header("location: AEmore");
 		exit();
 }
 function addNews($connn, $title, $desc, $newImageName, $date) {
@@ -1037,8 +1039,9 @@ function addNews2($connn, $title, $desc, $date, $id) {
 	mysqli_stmt_close($stmt);
 	session_start();
 	$_SESSION["statuss"] = "News Successfully Edited!";
+	$_SESSION["iss"] = $id;
 	
-	header("location: Announcements");
+	header("location: ANmore");
 		exit();
 }
 function addNews3($connn, $title, $desc, $newImageName, $date, $id) {
@@ -1053,7 +1056,8 @@ function addNews3($connn, $title, $desc, $newImageName, $date, $id) {
 	mysqli_stmt_close($stmt);
 	session_start();
 	$_SESSION["statuss"] = "News Successfully Edited!";
+	$_SESSION["iss"] = $id;
 	
-	header("location: Announcements");
+	header("location: ANmore");
 		exit();
 }

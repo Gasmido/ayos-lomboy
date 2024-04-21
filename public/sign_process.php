@@ -13,7 +13,8 @@ if (isset($_POST['submit'])) {
 	$no = 0;
 	$extension = $_POST["extensionname"];
 	$status = "Processing";
-	
+	$secretKey = '6LdC5r4pAAAAAI57LWy8yH6YVV_ndKLzuQefGXUO'; 
+
 	include '../include/db_conn.php';
 	require_once 'func.php';
 
@@ -61,26 +62,44 @@ if (isset($_POST['submit'])) {
 		header("location: register.php?error=Extension_too_long");
 		exit();
 	}
-session_start();
-	$_SESSION["email"] =  $user; 
-	$_SESSION["pass"] =  $pass; 
-	$_SESSION["usertype"] =  $user; 
-	$_SESSION["lastname"] =  $lastname; 
-	$_SESSION["firstname"] =  $firstname; 
-	$_SESSION["middleinitial"] =  $middleinitial; 
-	$_SESSION["extension"] =  $extension; 
-	$_SESSION["status"] =  $status; 
-	$_SESSION["currentDate"] =  $currentDate; 
-	$_SESSION["no"] =  $no; 
-	$_SESSION["sex"] =  $sex;
-	$_SESSION["birth"] =  $birth;
-	$_SESSION["purok"] =  $purok;
-	$_SESSION["citizenship"] =  $citizenship;
-	header("location: sendotp.php");
-	createUser($connn, $user, $pass, $use, $lastname, $firstname, $middleinitial, $extension, $status, $currentDate, $no); 
+	if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])){ 
+		 
+		            // Verify the reCAPTCHA response 
+		            $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secretKey.'&response='.$_POST['g-recaptcha-response']); 
+		             
+		            // Decode json data 
+		            $responseData = json_decode($verifyResponse); 
+		            if($responseData->success){ 
+		            	session_start();
+						$_SESSION["email"] =  $user; 
+						$_SESSION["pass"] =  $pass; 
+						$_SESSION["usertype"] =  $user; 
+						$_SESSION["lastname"] =  $lastname; 
+						$_SESSION["firstname"] =  $firstname; 
+						$_SESSION["middleinitial"] =  $middleinitial; 
+						$_SESSION["extension"] =  $extension; 
+						$_SESSION["status"] =  $status; 
+						$_SESSION["currentDate"] =  $currentDate; 
+						$_SESSION["no"] =  $no; 
+						$_SESSION["sex"] =  $sex;
+						$_SESSION["birth"] =  $birth;
+						$_SESSION["purok"] =  $purok;
+						$_SESSION["citizenship"] =  $citizenship;
+						header("location: sendotp.php");
+				
+					} else { 
+		            header("location: register.php?error=wrong");
+					exit();
+		            } 
+		        }else { 
+		            header("location: register.php?error=wrongf");
+					exit();    
+        		}
+
+	 
 	
 } else {
-	header("location: register.php");
+	header("location: register");
 	exit();
 }
 ?>

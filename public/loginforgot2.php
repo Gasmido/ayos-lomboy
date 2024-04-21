@@ -2,26 +2,44 @@
 session_start();
 if (isset($_POST['submitv'])) {
 	$user = $_POST['user'];
-
+$secretKey = '6LdC5r4pAAAAAI57LWy8yH6YVV_ndKLzuQefGXUO'; 
 	include '../include/db_conn.php';
 	require_once 'func.php';
-
-	if (empInpEmail($user) !== false) {
-		header("location: loginforgot.php?error=Empty_input");
-		exit();
-	}
-	if (invalidUname($user) !== false) {
-		header("location: loginforgot.php?error=Invalid_E-mail");
-		exit();
-	}
-	if (duplicateEmail($connn, $user) !== false) {
-		session_start();
-		$_SESSION["email"] =  $user; 
-		header("location: loginforgot3.php");
-	} 
-	else {
-		header("location: loginforgot.php?error=noE-mail");
-		exit();
+	 if (empInpEmail($user) !== false) {
+				header("location: loginforgot.php?error=Empty_input");
+				exit();
+			}
+			if (invalidUname($user) !== false) {
+				header("location: loginforgot.php?error=Invalid_E-mail");
+				exit();
+			}
+			if (duplicateEmail($connn, $user) !== false) {
+			
+			 	if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])){ 
+		 
+		            // Verify the reCAPTCHA response 
+		            $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secretKey.'&response='.$_POST['g-recaptcha-response']); 
+		             
+		            // Decode json data 
+		            $responseData = json_decode($verifyResponse); 
+		            if($responseData->success){ 
+		            session_start();
+					$_SESSION["email"] =  $user; 
+					header("location: loginforgot3.php");
+				
+					} else { 
+		            header("location: loginforgot.php?error=wrong");
+					exit();
+		            } 
+		        }else { 
+		            header("location: loginforgot.php?error=wrongf");
+					exit();    
+        		}
+	
+}
+ else {
+	header("location: loginforgot.php?error=noE-mail");
+	exit();
 	}
 }
 elseif (isset($_POST['submitvd'])) {

@@ -4,6 +4,19 @@ include '../include/topbarAdmin.php';
 include '../include/sidebar.php';
 include '../include/db_conn.php';
 
+if (isset($_SESSION['iss'])) {
+$idd = $_SESSION['iss'];
+}
+elseif (!isset($_POST['submit'])) {
+    header('location: Announcements');            
+}
+elseif (isset($_POST['ids'])) {
+    
+    $idd = $_POST['ids'];
+} 
+else {
+header('location: Announcements');
+}
 
 ?>
 <div class="home-section">
@@ -37,7 +50,18 @@ include '../include/db_conn.php';
                         echo $_SESSION['desc']; echo "</p>";
                         unset($_SESSION['desc']);
         }
-         $sql2 = "SELECT * FROM announcements WHERE id=".$_GET['id'];
+        elseif (isset($_SESSION['statu'])) {
+                        echo "<p style='text-align:center;font-size:20px;font-weight:bold;padding-top:15px;color:red;' id='ha'>";
+                        echo $_SESSION['statu']; echo "</p>";
+                        unset($_SESSION['statu']);
+        }
+        elseif (isset($_SESSION['statuss'])) {
+                echo "<p style='text-align:center;font-size:20px;font-weight:bold;padding-top:15px;color:green;' id='ha'>";
+                echo $_SESSION['statuss']; echo "</p>";
+                unset($_SESSION['statuss']);
+        }
+        
+         $sql2 = "SELECT * FROM announcements WHERE id=".$idd;
                  $result2 = $connn-> query($sql2);
                  if ($result2-> num_rows > 0) {
                         while ($row = $result2-> fetch_assoc()) {

@@ -55,6 +55,7 @@
       }
     }
   </script>
+  <script src="https://www.google.com/recaptcha/api.js?render=6LdnvcEpAAAAAFvqWuh0P_dpTJ8QStI7HWQPUFcI"></script>
    </head>
 <body class="loginbod">
 <div class="float-parent-element">
@@ -93,6 +94,9 @@
      else if ($_GET["error"] == "Successp") {
       echo "<p id='ha' class='example2'>Password Changed Successfully!</p>";
     }
+    else if ($_GET["error"] == "robot") {
+      echo "<p id='ha' class='example'>Too Many Attempts!</p>";
+    }
 		
 	/*	else if ($_GET["error"] == "none") {
 			echo "<p style='color:white; background: #8b0f0f;padding:5px;border-style:solid;border-width:2px;border-color:rgba(253, 114, 146, 1);'>Log-in successful!</p>";
@@ -108,6 +112,7 @@
   <input id="txt6" type="password" name="pass" onkeyup="saveValue(this);" maxlength="60" placeholder="Enter password"></input>
   </div>
   <p style="text-align: right;margin-top: 3px;"> <a href="loginforgot" style="color:#00FFFF">Forgot password?</a></p>
+  <input type="hidden" id="token" name="token">
   <section class="loginbtn">
 				<button class="btnlog" type="submit" name="submit">LOGIN</button>
 
@@ -131,6 +136,14 @@
     </section>
   </div>
   </div>
+   <script>
+  grecaptcha.ready(function() {
+      grecaptcha.execute('6LdnvcEpAAAAAFvqWuh0P_dpTJ8QStI7HWQPUFcI', {action: 'homepage'}).then(function(token) {
+         // console.log(token);
+         document.getElementById("token").value = token;
+      });
+  });
+  </script>
    <script type="text/javascript">
         document.getElementById("txt5").value = getSavedValue("txt5"); 
         document.getElementById("txt6").value = getSavedValue("txt6");  

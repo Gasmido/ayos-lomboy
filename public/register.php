@@ -60,6 +60,7 @@ unset($_SESSION["citizenship"]);
       }
     }
   </script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 	</head>	
 	<body class="signbod">
 		<div class="float-parent-element">
@@ -128,20 +129,26 @@ unset($_SESSION["citizenship"]);
 									else if ($_GET["error"] == "none") {
 										echo "<p class='example'>Sign-up successful!</p>";
 									}
+									else if ($_GET["error"] == "wrongf") {
+							      echo "<p class='example'>Please verify reCAPTCHA!</p>";
+							    }
+							    else if ($_GET["error"] == "wrong") {
+							      echo "<p class='example'>reCAPTCHA verification failed!</p>";
+							    }
 								}
 							?>
 				</div>
-			
+			<form action="sign_process.php" method="POST">
 				<div class="inputsr">
 					<div class="inn">
-					<form action="sign_process.php" method="post">
+					
 					<p style="display:inline;">Email:</p><label style="color:red;"> *</label><br>
 						<input id ="txt1" type="text" name="user" onkeyup="saveValue(this);" placeholder="Enter your email" maxlength="50"></input><br>
 					<p style="display:inline;">Password:</p><label style="color:red;"> *</label><br>
 						<input id="txt2" type="password" name="pass" onkeyup="saveValue(this);" placeholder="Enter your password" maxlength="60"></input><br>
 						<p style="display:inline;">Birth Date:</p><label style="color:red;"> *</label><br>
-						<input id="txt3" type="date" name="birthdate" onkeyup="saveValue(this);" max="<?php echo date("Y-m-d"); ?>" min="1934-12-31"></input><br>
-					<p style="display:inline;">Purok:</p><label style="color:red;"> *</label><br>
+						<input id="txt3" type="date" name="birthdate" onchange="saveValue(this);" max="<?php echo date("Y-m-d"); ?>" min="1934-12-31"></input><br>
+					<p style="display:inline;">Purok:</p><label style="color:red;"> *</label><label style="color:darkgrey;display:inline;font-size: 14px;"> (Inside Ayos Lomboy)</label><br>
                 <select name="purok">
                   <option>1</option>
                   <option>2</option>
@@ -170,14 +177,18 @@ unset($_SESSION["citizenship"]);
                 </select>
 					</div>
 				</div>
+				 <div class="form-input" style="text-align:center;">
+        <!-- Google reCAPTCHA box -->
+        <div class="g-recaptcha" data-sitekey="6LdC5r4pAAAAAPW8GIo3MuebpQWE9RDrxO7jg-Ua" style="margin-bottom:20px;display: inline-block;"></div>
+    </div>
 				<section class="loginbtn">
 					<button class="btnlog" type="submit" name="submit">REGISTER</button>
 				</section>
-
+	</form>
 				<br />
 					<p style="text-align: center;color: #C7DAD4;">Already have an account? <a href="login" style="color:#00FFFF">Sign-in</a></p>
 					
-					</form>
+					
 				</div>
 			
 
