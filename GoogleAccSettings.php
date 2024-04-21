@@ -101,6 +101,6 @@ if (isset($_SESSION['ID']) && (isset($_SESSION['user_token']))){
 include '../include/footer.php';
 }
 else {
-  header('location:Homepage.php');
+  header('location: Homepage');
 }
 ?>

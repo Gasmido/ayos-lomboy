@@ -3,6 +3,7 @@ include '../include/headAdmin.php';
 include '../include/topbarAdmin.php';
 include '../include/sidebar.php';
 require_once "../include/db_conn.php";
+unset($_SESSION['iss']);
 ?>
 <div class="home-section">
 <div class="admin-home-title">
@@ -29,7 +30,7 @@ require_once "../include/db_conn.php";
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Full Name</th>
+                    <th>Requester</th>
                     <th>Date Requested</th>
                     <th>Document</th>
                     <th>Status</th>
@@ -39,17 +40,25 @@ require_once "../include/db_conn.php";
             <tbody>
 
                 <?php
-                    $sql = "SELECT id, Fullname, CURDATE, documentType, Status from docreq";
+                    $sql = "SELECT id, user_id, CURDATE, documentType, Status from docreq";
                     $result = $connn-> query($sql);
 
                     if ($result-> num_rows > 0) {
                         while ($row = $result-> fetch_assoc()) {
-                            echo "<tr><td>". $row["id"] ."</td><td>". $row["Fullname"] ."</td><td>". $row["CURDATE"] ."</td><td>". $row["documentType"] ."</td><td>". $row["Status"] ."</td>
+
+                            $sql2 = "SELECT user_email from users WHERE user_id =". $row["user_id"];
+                            $result2 = $connn-> query($sql2);
+                            if ($result2-> num_rows > 0) {
+                                while ($row2 = $result2-> fetch_assoc()) {
+                                    $email = $row2["user_email"];
+                                }
+                            }
+                            echo "<tr><td>". $row["id"] ."</td><td>"; echo $email; echo "</td><td>". $row["CURDATE"] ."</td><td>". $row["documentType"] ."</td><td>". $row["Status"] ."</td>
                                     <td>
-                                        <a href='DocReqmore.php?id=". $row['id'] ."'>
-                                            <button class='editt'>MORE</button>
-                                        </a>
-                                       
+                                        <form action='DocReqmore' method='POST'>
+                                            <input name='id' value='". $row['id'] ."' hidden>
+                                            <button class='editt' name='submit' type='submit'>MORE</button>
+                                        </form>
                                     </td>
                                     </tr>";
                         }

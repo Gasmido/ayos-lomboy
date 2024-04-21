@@ -4,6 +4,19 @@ include '../include/topbarAdmin.php';
 include '../include/sidebar.php';
 include '../include/db_conn.php';
 
+if (isset($_SESSION['iss'])) {
+$id = $_SESSION['iss'];
+}
+elseif (!isset($_POST['submit'])) {
+    header('location: BlotterRequest');            
+}
+elseif (isset($_POST['id'])) {
+    
+    $id = $_POST['id'];
+} 
+else {
+header('location: blotterRequest');
+}
                    ?>
 
 
@@ -21,7 +34,7 @@ include '../include/db_conn.php';
                         unset($_SESSION['sta']);
                     }
 
-                     $sql2 = "SELECT * FROM blotter WHERE id=".$_GET['row_id'];
+                     $sql2 = "SELECT * FROM blotter WHERE id=". $id;
                  $result2 = $connn-> query($sql2);
                  if ($result2-> num_rows > 0) {
                         while ($row = $result2-> fetch_assoc()) {
@@ -56,7 +69,7 @@ include '../include/db_conn.php';
 
   <!-- Modal content -->
   <div class="modal-contentRr2">
-    <a href="blotterRequest.php">
+    <a href="blotterRequest">
         <span class="closer">&times;</span>
     </a>
     <h2>Blotter Report Information</h2>

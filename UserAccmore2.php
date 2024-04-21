@@ -13,5 +13,5 @@ if (isset($_POST['submit'])) {
 	
 }
 else {
-	header("Location: Blotter.php");
+	header("Location: home-section");
 }

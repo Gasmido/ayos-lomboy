@@ -3,7 +3,7 @@ include '../include/headAdmin.php';
 include '../include/topbarAdmin.php';
 include '../include/sidebar.php';
 include '../include/db_conn.php';
-
+unset($_SESSION['iss']);
 
 ?>
 <script type="text/javascript">
@@ -33,8 +33,9 @@ include '../include/db_conn.php';
                 echo $_SESSION['statuss']; echo "</p>";
                 unset($_SESSION['statuss']);
         }
+        
     ?>
-    <button class="addd" onclick="document.location='BlotterAdd.php'">ADD BLOTTER</button> 
+    <button class="addd" onclick="document.location='BlotterAdd'">ADD BLOTTER</button> 
       </div> 
 
 <!-- The Modal -->
@@ -86,7 +87,7 @@ include '../include/db_conn.php';
       <div class="admin-blotter">
          
           <div class="admin-home-box c">
-            <a href="blotterRequest.php">
+            <a href="blotterRequest">
         <h2>
             Blotter Filing Requests
         </h2>
@@ -162,10 +163,11 @@ include '../include/db_conn.php';
                         while ($row = $result-> fetch_assoc()) {
                             echo "<tr><td>". $row["blotter_no"] ."</td><td>". $row["complainant"] ."</td><td>". $row["complained"] ."</td><td>". $row["dateOfFiling"] ."</td><td>". $row["personInCharge"] ."</td><td>". $row["Status"] ."</td>
                                     <td>
-                                        <a href='Blottermore.php?row_id=".$row['id']. " '>
-                                            <button class='editt'>MORE</button>
-                                        </a>
-                                         
+                                        
+                                         <form action='Blottermore' method='POST'>
+                                            <input name='ids' value='". $row['id'] ."' hidden>
+                                            <button class='editt' name='submit' type='submit'>MORE</button>
+                                        </form>
                                     </td>
                                     </tr>";
                         }

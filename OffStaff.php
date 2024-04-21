@@ -3,6 +3,7 @@ include '../include/headAdmin.php';
 include '../include/topbarAdmin.php';
 include '../include/sidebar.php';
 include '../include/db_conn.php';
+unset($_SESSION['iss']);
 ?>
 <div class="home-section">
 <div class="admin-home-title">
@@ -40,9 +41,10 @@ include '../include/db_conn.php';
                             echo "<tr><td>". $row["name"] ."</td><td>". $row["chairmanship"] ."</td><td>". $row["position"] ."</td>
                             <td>". $row["status"] ."</td>
                                     <td>
-                                        <a href='OffStaffmore.php?id=".$row['id']. " '>
-                                            <button class='editt'>MORE</button>
-                                        </a>
+                                        <form action='OffStaffmore' method='POST'>
+                                            <input name='id' value='". $row['id'] ."' hidden>
+                                            <button class='editt' name='submit' type='submit'>MORE</button>
+                                        </form>
                                     </td>
                                     </tr>";
                         }

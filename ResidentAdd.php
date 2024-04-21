@@ -16,7 +16,7 @@ include '../include/db_conn.php';
 
   <!-- Modal content -->
   <div class="modal-contentRr2">
-    <a href="ResidentRecord.php">
+    <a href="ResidentRecord">
         <span class="closer">&times;</span>
     </a>
     <h2>Add New Resident 

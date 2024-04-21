@@ -38,7 +38,7 @@ include '../include/db_conn.php';
                         unset($_SESSION['desc']);
         }
     ?>
-    <button class="addd" onclick="document.location='Announcements.php'">BACK</button> 
+    <button class="addd" onclick="document.location='Announcements'">BACK</button> 
 </div>      
 <div class="admin-homes"> 
     <div class="admin-events">

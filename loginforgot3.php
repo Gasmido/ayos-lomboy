@@ -1,27 +1,18 @@
 <?php
-
 session_start();
 if (!isset($_SESSION['email'])) {
 	header("location: homepage");
-}
+	}
+	 
 
-	$user = $_SESSION["email"]; 
-	$pass= $_SESSION["pass"]; 
-	$use= $_SESSION["usertype"]; 
-	$lastname= $_SESSION["lastname"]; 
-	$firstname= $_SESSION["firstname"]; 
-	$middleinitial= $_SESSION["middleinitial"]; 
-	$extension= $_SESSION["extension"]; 
-	$status= $_SESSION["status"]; 
-	$currentDate= $_SESSION["currentDate"]; 
-	$no= $_SESSION["no"]; 
+	
 include('smtp/PHPMailerAutoload.php');
-
+$user = $_SESSION["email"];
 $otp=rand(100000,999999);
 $receiverEmail=$_SESSION["email"];
-$subject="Email Verification";
+$subject="Forgot Password";
 $emailbody="Your 6 Digit OTP Code: ";
-
+$_SESSION['uuusss'] = $user;
 echo smtp_mailer($receiverEmail,$subject,$emailbody.$otp, $otp);
 
 function smtp_mailer($to,$subject, $msg, $otp){
@@ -49,7 +40,8 @@ function smtp_mailer($to,$subject, $msg, $otp){
 		echo $mail->ErrorInfo;
 	}else{
 		$_SESSION['otp'] = $otp;
-		header("location: register2.php");
+		
+		header("location: loginforgot4");
 	}
 }
 

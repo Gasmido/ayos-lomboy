@@ -36,7 +36,7 @@ if (isset($_POST['submitv'])) {
 	createUser($connn, $user, $pass, $use, $lastname, $firstname, $middleinitial, $extension, $status, $currentDate, $no, $birth, $sex, $purok, $citizenship); 
 	}
 } else {
-	header("location: register.php");
+	header("location: register");
 	exit();
 }
 ?>

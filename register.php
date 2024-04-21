@@ -1,5 +1,5 @@
 <?php
-unset($_SESSION['otp']);
+
 
 session_start();
 
@@ -7,9 +7,24 @@ session_start();
         header("Location: Homepage");
         exit();
     }
+    unset($_SESSION['otp']);
+  unset($_SESSION["email"]);
+unset($_SESSION["pass"]);
+unset($_SESSION["usertype"]);
+unset($_SESSION["lastname"]);
+unset($_SESSION["firstname"]);
+unset($_SESSION["middleinitial"]); 
+unset($_SESSION["extension"]);
+unset($_SESSION["status"]);
+unset($_SESSION["currentDate"]);
+unset($_SESSION["no"]);
+unset($_SESSION["sex"]);
+unset($_SESSION["birth"]);
+unset($_SESSION["purok"]);
+unset($_SESSION["citizenship"]);
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" oncopy="return false;" oncontextmenu="return myRightClick();" oncut="return false;" onpaste="return false;">
   <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../CSS/style.css">   
@@ -21,6 +36,32 @@ session_start();
 		localStorage.removeItem("txt6")
 		localStorage.removeItem("txt00")
 	</script>
+	<script type="text/javascript">
+    function myRightClick() {
+      alert("Right click is not allowed.");
+      return false;
+    }
+
+    document.onkeydown = function(e) {
+      if(event.keyCode == 123) {
+        return false;
+      }
+      if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+        return false;
+      }
+      if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+        return false;
+      }
+      if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+        return false;
+      }
+      if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+        return false;
+      }
+    }
+  </script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  	
 	</head>	
 	<body class="signbod">
 		<div class="float-parent-element">
@@ -89,62 +130,74 @@ session_start();
 									else if ($_GET["error"] == "none") {
 										echo "<p class='example'>Sign-up successful!</p>";
 									}
+									else if ($_GET["error"] == "wrongf") {
+							      echo "<p class='example'>Please verify reCAPTCHA!</p>";
+							    }
+							    else if ($_GET["error"] == "wrong") {
+							      echo "<p class='example'>reCAPTCHA verification failed!</p>";
+							    }
 								}
 							?>
 				</div>
-			
+			<form action="sign_process.php" method="POST">
 				<div class="inputsr">
 					<div class="inn">
-					<form action="sign_process.php" method="post">
-					<p>Email:</p>
-						<input id ="txt1" type="text" name="user" onkeyup="saveValue(this);" placeholder="Enter your email" maxlength="50"></input>
-					<p>Password:</p>
-						<input id="txt2" type="password" name="pass" onkeyup="saveValue(this);" placeholder="Enter your password" maxlength="60"></input>
-						<p>Birth Date:</p>
-						<input id="txt3" type="date" name="birthdate" onkeyup="saveValue(this);" max="<?php echo date("Y-m-d"); ?>" min="1934-12-31"></input>
-					<p>Purok:</p>
+					
+					<p style="display:inline;">Email:</p><label style="color:red;"> *</label><br>
+						<input id="txt1" type="text" name="user" onkeyup="saveValue(this);" placeholder="Enter your email" maxlength="50"><br>
+					<p style="display:inline;">Password:</p><label style="color:red;"> *</label><br>
+						<input id="txt2" type="password" name="pass" onkeyup="saveValue(this);" placeholder="Enter your password" maxlength="60"><br>
+						<p style="display:inline;">Birth Date:</p><label style="color:red;"> *</label><br>
+						<input id="txt3" type="date" name="birthdate" onchange="saveValue(this);" max="<?php echo date("Y-m-d"); ?>" min="1934-12-31"><br>
+					<p style="display:inline;">Purok:</p><label style="color:red;"> *</label><label style="color:darkgrey;display:inline;font-size: 14px;"> (Inside Ayos Lomboy)</label><br>
                 <select name="purok">
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
                   <option>4</option>
-                </select>
-                <p>Sex:</p>
+                </select><br>
+                <p style="display:inline;">Sex:</p><label style="color:red;"> *</label><br>
 						<select name="sex">
                   <option>Male</option>
                   <option>Female</option>
-                </select>
+                </select><br>
 					</div>
 					<div class="inn">
-						<p>Last Name:</p>
-						<input minlength="2" maxlength="80" id ="txt4" type="text" name="lastname" pattern="[A-Za-z ]{1,32}" title="e.g. Dela Cruz" onkeyup="saveValue(this);" placeholder="Enter your last name"></input>
-						<p>First Name:</p>
-						<input minlength="2" maxlength="80" id ="txt7" type="text" name="firstname" pattern="[A-Za-z ]{1,32}" title="e.g. Christian Jao" onkeyup="saveValue(this);" placeholder="Enter your first name"></input>
+						<p style="display:inline;">Last Name:</p><label style="color:red;" > *</label>
+						<input minlength="2" maxlength="80" id="txt4" type="text" name="lastname" pattern="[A-Za-z ]{1,80}" title="Only letters and spaces; maximum of 20" onkeyup="saveValue(this);" placeholder="Enter your last name"><br>
+						<p style="display:inline;">First Name:</p><label style="color:red;"> *</label>
+						<input minlength="2" maxlength="80" id="txt7" type="text" name="firstname" pattern="[A-Za-z ]{1,80}" title="Only letters and spaces; maximum of 20" onkeyup="saveValue(this);" placeholder="Enter your first name"><br>
 						<p>Middle Initial: (optional)</p>
-						<input id ="txt8" maxlength="6" type="text" name="middleinitial" pattern="[A-Za-z .]{1,10}" title="e.g. A." onkeyup="saveValue(this);" placeholder="Enter your middile initial"></input>
+						<input id="txt8" maxlength="6" type="text" name="middleinitial" pattern="[A-Za-z .]{1,6}" title="e.g. A." onkeyup="saveValue(this);" placeholder="Enter your middile initial">
 						<p>Extension Name: (optional)</p>
-						<input id ="txt9" maxlength="20" type="text" name="extensionname" pattern="[A-Za-z .]{1,32}" title="e.g. Jr." onkeyup="saveValue(this);" placeholder="Enter your extension name"></input>
-						 <p>Citizenship:</p>
+						<input id="txt9" maxlength="20" type="text" name="extensionname" pattern="[A-Za-z .]{1,20}" title="e.g. Jr." onkeyup="saveValue(this);" placeholder="Enter your extension name"><br>	
+						 <p style="display:inline;">Citizenship:</p><label style="color:red;"> *</label>
 						<select name="citizenship">
                   <option>Natural-Born-Citizen</option>
                   <option>Naturalized-Citizen</option>
                 </select>
 					</div>
 				</div>
+				 <div class="form-input" style="text-align:center;">
+        <!-- Google reCAPTCHA box -->
+        <div class="g-recaptcha" data-sitekey="6LdC5r4pAAAAAPW8GIo3MuebpQWE9RDrxO7jg-Ua" style="margin-bottom:20px;display: inline-block;"></div>
+    </div>
 				<section class="loginbtn">
 					<button class="btnlog" type="submit" name="submit">REGISTER</button>
 				</section>
-
+	</form>
 				<br />
 					<p style="text-align: center;color: #C7DAD4;">Already have an account? <a href="login" style="color:#00FFFF">Sign-in</a></p>
 					
-					</form>
+					
 				</div>
 			
 
 			</div>
-	
+			
   <script type="text/javascript">
+  	
+
         document.getElementById("txt1").value = getSavedValue("txt1");     
 				document.getElementById("txt2").value = getSavedValue("txt2");
 				document.getElementById("txt3").value = getSavedValue("txt3");
@@ -167,5 +220,36 @@ session_start();
             return localStorage.getItem(v);
         }
 </script>
+<script type="text/javascript">
+const input = document.getElementById('txt1');
+input.addEventListener('keyup', () => {
+  input.value = input.value.replace(/  +/g, ' ');
+});
+
+const input2 = document.getElementById('txt2');
+input2.addEventListener('keyup', () => {
+  input2.value = input2.value.replace(/ +/g, '');
+});
+
+const input3 = document.getElementById('txt4');
+input3.addEventListener('keyup', () => {
+  input3.value = input3.value.replace(/  +/g, ' ');
+});
+const input4 = document.getElementById('txt7');
+input4.addEventListener('keyup', () => {
+  input4.value = input4.value.replace(/  +/g, ' ');
+});
+
+const input5 = document.getElementById('txt8');
+input5.addEventListener('keyup', () => {
+  input5.value = input5.value.replace(/  +/g, ' ');
+});
+
+const input6 = document.getElementById('txt9');
+input6.addEventListener('keyup', () => {
+  input6.value = input6.value.replace(/  +/g, ' ');
+});
+
+			</script>
 </body>
 </html>

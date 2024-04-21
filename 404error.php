@@ -30,7 +30,7 @@
     <div class="yellow">
          <nav>
   <ul>
-      <li><a class="ac" href="../public/Homepage.php">Back to Home</a></li>
+      <li><a class="ac" href="../public/Homepage">Back to Home</a></li>
    
   </ul>
 </nav>

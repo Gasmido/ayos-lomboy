@@ -26,7 +26,7 @@ $sql2 = "SELECT * FROM announcements WHERE id=?";
     <div class="yellow">
          <nav>
   <ul>
-      <li><a class="ac" href="../public/news.php">Back</a></li>
+      <li><a class="ac" href="../public/news">Back</a></li>
    
   </ul>
 </nav>

@@ -75,6 +75,48 @@ elseif (isset($_POST['submit1'])) {
 	createdoc2($connn, $docutype, $fname, $reason, $currentDate, $id, $stat);
 	
 }
+elseif (isset($_POST['submit3'])) {
+	$docutype = $_POST["docutype"];
+	$fname = $_POST["fName"];
+	$purok = $_POST["purok"];
+	$dateofbirth = $_POST["dateofbirth"];
+	$placeofbirth = $_POST["placeofbirth"];
+	$height = $_POST["height"];
+	$weight = $_POST["weight"];
+	$purpose = $_POST["purpose"];
+
+
+
+	createdoc4($connn, $docutype, $fname, $purok, $dateofbirth, $placeofbirth, $height, $weight, $purpose, $currentDate, $id, $stat);
+	
+}
+elseif (isset($_POST['submit4'])) {
+	$docutype = $_POST["docutype"];
+	$BName = $_POST["BName"];
+	$LName = $_POST["LName"];
+	$address = $_POST["address"];
+	$Money = $_POST["Money"];
+	$BAL = $_POST["BAL"];
+	$BALL = $_POST["BALL"];
+
+
+
+	createdoc5($connn, $docutype, $BName, $LName, $address, $Money, $BAL, $BALL, $currentDate, $id, $stat);
+	
+}
+elseif (isset($_POST['submit5'])) {
+	$docutype = $_POST["docutype"];
+	$fName = $_POST["fName"];
+	$rbrgy = $_POST["rbrgy"];
+	$sqm = $_POST["sqm"];
+	$hectare = $_POST["hectare"];
+	$owner = $_POST["owner"];
+
+
+
+	createdoc6($connn, $docutype, $fName, $rbrgy, $sqm, $hectare, $owner, $currentDate, $id, $stat);
+	
+}
 
 
 }

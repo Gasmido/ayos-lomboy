@@ -14,12 +14,14 @@ if (isset($_POST['submit'])) {
 
 	if ($title == "") {
 		$_SESSION['title'] = "Title was removed!";
-		header("location: ANmore.php?id=".$id);
+		$_SESSION["iss"] = $id;
+		header("location: ANmore");
 		exit();
 	}
 	elseif ($desc == "") {
 		$_SESSION['desc'] = "Description was removed!";
-		header("location: ANmore.php?id=".$id);
+		$_SESSION["iss"] = $id;
+		header("location: ANmore");
 		exit();
 	}
 	elseif ($_FILES['image']['error'] === 4) {
@@ -36,12 +38,14 @@ if (isset($_POST['submit'])) {
 		if (!in_array($imageExtension, $validImageExtension)) {
 
 			$_SESSION['wrong'] = "Wrong image file type!";
-			header("location: ANmore.php?id=".$id);
+			$_SESSION["iss"] = $id;
+		header("location: ANmore");
 		exit();
 		}
 		elseif ($fileSize > 10000000) {
-			header("location: ANmore.php?id=".$id);
 			$_SESSION['big'] = "Image size is too big!";
+			$_SESSION["iss"] = $id;
+		header("location: ANmore");
 		exit();
 		}
 		else {
