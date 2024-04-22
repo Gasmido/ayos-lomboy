@@ -276,12 +276,27 @@ padding: 10px;
 	background-color: #FF5C5C;
 	font-weight: bold;	
 }
-
+.delle {
+	margin-left: 10px;
+	padding: 5px;
+	width: 100px;
+	background-color: #fa2020;
+	font-weight: bold;	
+	height: 100%;
+}
 .addd:hover {
 	background-color: #07F1F4;
 	scale: 0.95;
 }
 .addd:active {
+	background-color: lightgray;
+	scale: 0.87;
+}
+.delle:hover {
+	background-color: #fc5d5d;
+	scale: 0.95;
+}
+.delle:active {
 	background-color: lightgray;
 	scale: 0.87;
 }
@@ -794,7 +809,7 @@ td {
 	color: #C7DAD4;
 }
 .login .loginbtn {
-	padding-top: 40px;
+	padding-top: 30px;
 	text-align: center;
 	background: #2F414F;
 	color:#C7DAD4;
