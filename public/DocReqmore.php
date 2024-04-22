@@ -563,7 +563,7 @@ header('location: DocReq');
 
                  <?php
                  $_SESSION['iss'] = $idds;
-                    $sql = "SELECT id, blotter_no, complainant, complained, dateOfFiling, Status, personInCharge, blotter_status from blotter WHERE complainant = '$fullname' AND blotter_status = 'Approved' OR complained = '$fullname' AND blotter_status = 'Approved' ";
+                    $sql = "SELECT id, blotter_no, complainant, complained, dateOfFiling, Status, personInCharge, blotter_status from blotter WHERE complainant LIKE '$fullname' AND blotter_status = 'Approved' OR complained LIKE '$fullname' AND blotter_status = 'Approved' ";
  
                     $result = $connn-> query($sql);
 
@@ -626,7 +626,7 @@ header('location: DocReq');
                             $firstname = $row['First_name'];
                         }
                     }
-                    $sql = "SELECT * from resident WHERE firstname = '$firstname' OR lastname = '$lastname' ";
+                    $sql = "SELECT * from resident WHERE firstname LIKE '%$firstname%' OR lastname LIKE '%$lastname%' ";
                     $result = $connn-> query($sql);
 
                     if ($result-> num_rows > 0) {

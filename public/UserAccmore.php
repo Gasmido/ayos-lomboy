@@ -125,7 +125,7 @@ header('location: UserAcc');
 
   </div>
   <?php
-      $sql2 = "SELECT * from resident WHERE firstname = '$firstname' AND middlename = '$middlename' AND lastname = '$lastname' AND extensionname = '$extension'";
+      $sql2 = "SELECT * from resident WHERE firstname LIKE '%$firstname%' AND lastname LIKE '%$lastname%' OR middlename LIKE '$middlename' AND lastname LIKE '$lastname' AND extensionname LIKE '$extension' AND firstname LIKE '%$firstname%'";
        $result8 = mysqli_query($connn, $sql2); 
          
                         if ($result8) 
@@ -155,7 +155,7 @@ header('location: UserAcc');
             <tbody>
                  <?php
                  $_SESSION['iss'] = $idds;
-                    $sql = "SELECT * from resident WHERE firstname = '$firstname' AND middlename = '$middlename' AND lastname = '$lastname' AND extensionname = '$extension'";
+                    $sql = "SELECT * from resident WHERE firstname LIKE '%$firstname%' AND lastname LIKE '%$lastname%' OR middlename LIKE '$middlename' AND lastname LIKE '$lastname' AND extensionname LIKE '$extension' AND firstname LIKE '%$firstname%'";
                     $result = $connn-> query($sql);
 
                     if ($result-> num_rows > 0) {

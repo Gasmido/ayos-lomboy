@@ -61,17 +61,16 @@ if (isset($_SESSION['ID'])){
 					<div style="height:50px; text-align:right">
 					<button id="edi2" class="edd2" onclick="cancel()">CANCEL</button> 
 					<button id="edi" class="edd" onclick="Edit()">EDIT</button> 
-					
-    			</div>
+					</div>
 					<form action="AccSettingedit" method="post">
 					<label>First Name:</label>
-				<input id="1" type="text" minlength="2" maxlength="20" name="fname" class="inputt" value="<?= $firstnames ?>"  pattern="[A-Za-z ]{1,32}" required readonly></input>
-				<label>Middle Initial/Name:</label>
-				<input id="2" type="text" minlength="1" maxlength="10" name="mname" class="inputt" value="<?= $middlename ?>" pattern="^[a-zA-Z\.]*$" required readonly></input>
+				<input id="1" type="text" minlength="2" maxlength="20" name="fname" class="inputt" value="<?= $f2name ?>"  pattern="[A-Za-z ]{1,32}" required readonly></input>
+				<label>Middle Initial:</label>
+				<input id="2" type="text" minlength="1" maxlength="10" name="mname" class="inputt" value="<?= $m2name ?>" pattern="^[a-zA-Z\.]*$" required readonly></input>
 				<label>Last Name:</label>
-				<input id="4" type="text" minlength="2" maxlength="20" name="lname" class="inputt" value="<?= $lastname ?>" pattern="[A-Za-z ]{1,32}" required readonly></input>
+				<input id="4" type="text" minlength="2" maxlength="20" name="lname" class="inputt" value="<?= $l2name ?>" pattern="[A-Za-z ]{1,32}" required readonly></input>
 				<label>Extension Name:</label>
-				<input id="5" type="text" minlength="1" maxlength="10" name="ename" class="inputt" value="<?= $extensionname ?>" pattern="^[a-zA-Z\.]*$" required readonly></input>
+				<input id="5" type="text" minlength="1" maxlength="10" name="ename" class="inputt" value="<?= $e2name ?>" pattern="^[a-zA-Z\.]*$" required readonly></input>
 				<label>Birth Date:</label>
 				<input id="3" type="date" name="bday" class="inputt" value="<?= $bday ?>" max="<?php echo date("Y-m-d"); ?>" min="1934-12-31" required readonly></input>
 				<label>Sex:</label>
@@ -100,6 +99,28 @@ if (isset($_SESSION['ID'])){
 
 	</div>
 </div>
+ <script type="text/javascript">
+                const input = document.getElementById("1");
+                input.addEventListener("keyup", () => {
+                  input.value = input.value.replace(/  +/g, " ");
+                });
+
+                const input2 = document.getElementById("2");
+                input2.addEventListener("keyup", () => {
+                  input2.value = input2.value.replace(/ +/g, "");
+                });
+
+                const input4 = document.getElementById("5");
+                input4.addEventListener("keyup", () => {
+                  input4.value = input4.value.replace(/ +/g, "");
+                });
+
+                const input5 = document.getElementById("4");
+                input5.addEventListener("keyup", () => {
+                  input5.value = input5.value.replace(/  +/g, " ");
+                });
+
+            </script>
 <script type="text/javascript">
     function Edit(){
       let bno = document.getElementById("1");
@@ -123,7 +144,7 @@ if (isset($_SESSION['ID'])){
             cpa.removeAttribute("readonly");
             editsub.removeAttribute("hidden");
                document.getElementById("edi").style.display = "none";
-                document.getElementById("edi2").style.display = "block";
+                document.getElementById("edi2").style.display = "inline-block";
     }
     function cancel() {
         location.reload();
