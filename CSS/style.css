@@ -1269,23 +1269,26 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   transform: translateY(4px);
 }
 .Map {
-	min-height:600px;
+	min-height:200px;
 	height: 100%;
+	align-items: center;
+	text-align: center;
 	padding-bottom: 10px;
 	background-color: #ffffff;
 	background-color: #2F414F;
+	flex:3;
+
 	}
-.Map iframe {
-	margin-top: 20px;
-	height: 350px;
-	width: 400px;
-}
+	.Map iframe {
+		height: 300px;
+		width: 350px;
+		margin-bottom: 40px;
+	}
 .mapdiv {
 	display:flex;
 	flex-wrap: wrap;
 	flex-grow: 1;
-	margin-left: 200px;
-	margin-right: 200px;
+	
 	justify-content: center;
 }
 .condiv {
@@ -1305,9 +1308,37 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 	background-color: lightgray;
 }
 .conimg {
-	display: block;
+	display: flex;
+	width: 100%;
+	flex-direction: row;
+  align-items: stretch;
+
+}
+.contactus {
+	margin-top: 30px;
+	width: 100%;
 	align-items: center;
 	justify-content: center;
+	flex:3;
+
+}
+.contactus input {
+	width: 60%;
+	height: 28px;
+	margin-bottom: 20px;
+}
+.contactus textarea {
+	width: 60%;
+	height: 80px;
+	margin-bottom: 20px;
+}
+.contactus label {
+	font-size: 20px;
+	margin-bottom: 5px;
+}
+.contactus h2 {
+	text-align: center;
+	margin-bottom: 25px;
 }
 /* Homepage ----------------------------------------------------------------------->*/
 
@@ -1807,7 +1838,10 @@ width: 100%;
 		padding-top: 5px;
 		font-size: 26px;
 	}
-	 
+	 .Map iframe {
+	 	width: 230px;
+	 	height: 180px;
+	 }
 }
 @media screen and (max-width: 950px) {
 	.container {
@@ -1836,6 +1870,16 @@ width: 100%;
    .inputsr {
    	display: block;
    }
+   .conimg img {
+   	width: 140px;
+   	height: 140px;
+   }
+   .conimg h1 {
+   	font-size: 25px;
+   }
+   .conimg h3 {
+   	font-size: 18px;
+   }
 }
 @media screen and (max-width: 780px) {
 	.docbod {
@@ -1848,7 +1892,11 @@ width: 100%;
 	}
 	.container {
 		min-width: 103	%;
+
 	}
+	.conimg {
+	display: block;
+}	
 }
 @media screen and (max-width: 600px) {
     .Home .homecontent p { 
@@ -1859,8 +1907,9 @@ width: 100%;
 		min-width: 110%;
 	}
 	.container {
-		min-width: 110%;
+		min-width: 100%;
 	}
+
 }
 @media screen and (max-width: 550px) {
  .docttle {
@@ -1870,6 +1919,7 @@ width: 100%;
 		min-width: 130%;
 	}
 }
+
 @media screen and (max-width: 470px) {
  .docttle {
 		min-width: 137%;
@@ -1891,9 +1941,9 @@ width: 100%;
 			height: 40px;
 		}
     .Map {
-    	width: 430px;
-    	margin-bottom: 100px;
-    	min-height: 400px;
+    	
+    	margin-bottom: 30px;
+    	
     }
     .Map iframe {
     	height: 200px;
@@ -1968,9 +2018,7 @@ width: 100%;
     	margin-bottom: 10px;
     	min-height: 300px;
     }
-    .foot {
-    	height: 700px;
-    }
+   
     .Map iframe {
     	height: 200px;
     	width: 270px;
