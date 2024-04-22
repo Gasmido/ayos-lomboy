@@ -5,14 +5,14 @@ include '../include/sidebar.php';
 include '../include/db_conn.php';
 
 if (isset($_SESSION['iss'])) {
-$id = $_SESSION['iss'];
+$idds = $_SESSION['iss'];
 }
 elseif (!isset($_POST['submit'])) {
     header('location: DocReq');            
 }
 elseif (isset($_POST['id'])) {
     
-    $id = $_POST['id'];
+    $idds = $_POST['id'];
 } 
 else {
 header('location: DocReq');
@@ -33,7 +33,7 @@ header('location: DocReq');
 	<div class="admin-home-blot">
 
         <?php
-            $sql2 = "SELECT * FROM docreq WHERE id=".$id;
+            $sql2 = "SELECT * FROM docreq WHERE id=".$idds;
                  $result2 = $connn-> query($sql2);
                  if ($result2-> num_rows > 0) {
                         while ($row = $result2-> fetch_assoc()) {
@@ -562,6 +562,7 @@ header('location: DocReq');
             <tbody>
 
                  <?php
+                 $_SESSION['iss'] = $idds;
                     $sql = "SELECT id, blotter_no, complainant, complained, dateOfFiling, Status, personInCharge, blotter_status from blotter WHERE complainant = '$fullname' AND blotter_status = 'Approved' OR complained = '$fullname' AND blotter_status = 'Approved' ";
  
                     $result = $connn-> query($sql);
@@ -572,11 +573,12 @@ header('location: DocReq');
                             
                             echo "<tr><td>". $row["blotter_no"] ."</td><td>". $row["complainant"] ."</td><td>". $row["complained"] ."</td><td>". $row["dateOfFiling"] ."</td><td>". $row["personInCharge"] ."</td><td>". $row["Status"] ."</td>
                                     <td>
-                                    <form action='Blotterdocreq.php?row_id=".$row['id']. " ' method='POST'>
-                                       
-                                            <button class='editt' type='submit' name='more'>MORE</button>
-                                            <input name='ii' type='text' value='" .$id. "' hidden>
-                                    </form>
+                                       <form action='Blotterdocreq' method='POST'>
+                                            <input name='isss' value='". $id ."' hidden>
+                                            <input name='ii' value='". $row['id'] ."' hidden>
+                                            <button class='editt' name='more' type='submit'>MORE</button>
+                                        </form>
+                                            
                                     </td>
                                     </tr>";
                         }
@@ -639,10 +641,11 @@ header('location: DocReq');
                             }
                             echo "<td>". $row["sex"] ."</td><td>". $row["birthdate"] ."</td><td>". $row["street"] .", ". $row["purok"] .", ". $row["city"] .", ". $row["province"] ."</td><td>". $row["datereg"] ."</td>
                                     <td>
-                                       <form action='Residentdocreq.php?row_id=".$row['id']. " ' method='POST'>
-                                       
-                                            <button class='editt' type='submit' name='more2'>MORE</button>
-                                            <input name='ii2' type='text' value='" .$id. "' hidden>
+                                             <form action='Residentdocreq' method='POST'>
+                                            <input name='isss' value='". $id ."' hidden>
+                                            <input name='ii2' value='". $row['id'] ."' hidden>
+                                            <button class='editt' name='more2' type='submit'>MORE</button>
+                                        </form>
                                     </td>
                                     </tr>";
                         }

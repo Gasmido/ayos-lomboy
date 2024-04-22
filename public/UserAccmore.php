@@ -5,14 +5,14 @@ include '../include/sidebar.php';
 include '../include/db_conn.php';
 
 if (isset($_SESSION['iss'])) {
-$id = $_SESSION['iss'];
+$idds = $_SESSION['iss'];
 }
 elseif (!isset($_POST['submit'])) {
     header('location: UserAcc');            
 }
 elseif (isset($_POST['id'])) {
     
-    $id = $_POST['id'];
+    $idds = $_POST['id'];
 } 
 else {
 header('location: UserAcc');
@@ -37,7 +37,7 @@ header('location: UserAcc');
 	<div class="admin-home-blot">
 
         <?php
-            $sql2 = "SELECT * FROM users WHERE user_id=".$id;
+            $sql2 = "SELECT * FROM users WHERE user_id=".$idds;
                  $result2 = $connn-> query($sql2);
                  if ($result2-> num_rows > 0) {
                         while ($row = $result2-> fetch_assoc()) {
@@ -154,6 +154,7 @@ header('location: UserAcc');
             </thead>
             <tbody>
                  <?php
+                 $_SESSION['iss'] = $idds;
                     $sql = "SELECT * from resident WHERE firstname = '$firstname' AND middlename = '$middlename' AND lastname = '$lastname' AND extensionname = '$extension'";
                     $result = $connn-> query($sql);
 
@@ -169,10 +170,10 @@ header('location: UserAcc');
                             }
                             echo "<td>". $row["sex"] ."</td><td>". $row["birthdate"] ."</td><td>". $row["street"] .", ". $row["purok"] .", ". $row["city"] .", ". $row["province"] ."</td><td>". $row["datereg"] ."</td>
                                     <td>
-                                       <form action='Residentuser.php?row_id=".$row['id']. " ' method='POST'>
-                                       
-                                            <button class='editt' type='submit' name='more'>MORE</button>
-                                            <input name='ii' type='text' value='" .$id. "' hidden>
+                                             <form action='Residentuser' method='POST'>
+                                            <input name='ii' value='". $row['id'] ."' hidden>
+                                            <button class='editt' name='more' type='submit'>MORE</button>
+                                        </form>
                                     </td>
                                     </tr>";
                         }

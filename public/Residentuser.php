@@ -4,6 +4,10 @@ include '../include/topbarAdmin.php';
 include '../include/sidebar.php';
 include '../include/db_conn.php';
 
+if (!isset($_SESSION['iss'])) {
+header('location: DocReq');
+}
+
                    ?>
 
 
@@ -29,7 +33,8 @@ include '../include/db_conn.php';
 	<div class="admin-home-blot">
 
         <?php
-            $sql2 = "SELECT * FROM resident WHERE id=".$_GET['row_id'];
+        
+            $sql2 = "SELECT * FROM resident WHERE id=".$idd;
                  $result2 = $connn-> query($sql2);
                  if ($result2-> num_rows > 0) {
                         while ($row = $result2-> fetch_assoc()) {
@@ -61,7 +66,7 @@ include '../include/db_conn.php';
 
   <!-- Modal content -->
   <div class="modal-contentRr2">
-    <a href="UserAccmore.php?id=<?= $idd ?>">
+    <a href="UserAccmore">
         <span class="closer">&times;</span>
     </a>
     <h2>Resident Information</h2>
