@@ -27,8 +27,6 @@ if (isset($_GET['code'])) {
     'verifiedEmail' => $google_account_info['verifiedEmail'],
     'token' => $google_account_info['id']
   ];
-}
-
 
 // duplicate database
     date_default_timezone_set('Asia/Manila');
@@ -48,27 +46,9 @@ if (isset($_GET['code'])) {
 $sql = "SELECT * FROM users WHERE user_email = '{$userinfo['email']}'";
 $result = mysqli_query($connn, $sql);
   if (mysqli_num_rows($result) > 0) {
+      
     //user exists
-    $userdata = mysqli_fetch_assoc($result);
-
-  } else {
-    // user not exists
-    $sql = "INSERT INTO users (user_email, user_type, Last_name, First_name, Middle_name, Extension_name, Status, dateReg, RequestNo, verifiedEmail, token) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?,?);";
-  $stmt = mysqli_stmt_init($connn);
-  if (!mysqli_stmt_prepare($stmt, $sql)) {
-    header("location: sign_up?error=stmtfailed");
-    exit();
-  }
-
-  mysqli_stmt_bind_param($stmt, "sssssssssss", $email,$type,$lname,$fname,$exname,$miname,$status,$currentDate,$no,$ve,$token);
-  mysqli_stmt_execute($stmt);
-  mysqli_stmt_close($stmt);
-
-  }
-
-
-//SESSION
- $sql2 = "SELECT * FROM users WHERE user_email=?";
+     $sql2 = "SELECT * FROM users WHERE user_email=?";
         $stmt = $connn->prepare($sql2); 
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -97,12 +77,69 @@ $result = mysqli_query($connn, $sql);
 
 
 if ($purok == "" && $citizenship == "") {
-  header("Location: GoogleAccSettings");
+  header("Location: GoogleAccSettings.php");
   exit();
 }
 else {
-  header("Location: Homepage");
+  header("Location: Homepage.php");
+  exit();
 }
+
+  } else {
+    // user not exists
+    $sql = "INSERT INTO users (user_email, user_type, Last_name, First_name, Middle_name, Extension_name, Status, dateReg, RequestNo, verifiedEmail, token) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?,?);";
+  $stmt = mysqli_stmt_init($connn);
+  if (!mysqli_stmt_prepare($stmt, $sql)) {
+    header("location: sign_up?error=stmtfailed");
+    exit();
+  }
+
+  mysqli_stmt_bind_param($stmt, "sssssssssss", $email,$type,$lname,$fname,$exname,$miname,$status,$currentDate,$no,$ve,$token);
+  mysqli_stmt_execute($stmt);
+  mysqli_stmt_close($stmt);
+
+  }
+   $sql2 = "SELECT * FROM users WHERE user_email=?";
+        $stmt = $connn->prepare($sql2); 
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        while ($row = $result->fetch_assoc()) {
+            $id2 = $row['user_id'];
+            $type = $row['user_type'];
+            $stata = $row['Status'];
+            $firstname = $row['First_name'];
+            $lastname = $row['Last_name'];
+			$mname = $row['Middle_name'];
+			$ename = $row['Extension_name'];
+            $purok = $row['purok'];
+            $citizenship = $row['citizenship'];
+        }
+  $_SESSION['user_token'] = $userinfo['token'];
+  $_SESSION['ID'] = $id2;
+  $_SESSION['user_type'] = $type;
+  $_SESSION['status'] = $stata;
+  $_SESSION['lastname'] = $lastname;
+  $_SESSION['firstname'] = $firstname;
+  $_SESSION['extensionname'] = $ename;
+  $_SESSION['middlename'] = $mname;
+  $_SESSION['purok'] = $purok;
+  $_SESSION['citizenship'] = $citizenship;
+
+
+if ($purok == "" && $citizenship == "") {
+  header("Location: GoogleAccSettings.php");
+  exit();
+}
+else {
+  header("Location: Homepage.php");
+  exit;
+}
+}
+
+
+//SESSION
+
 
   // now you can use this profile info to create account in your website and make user logged in.
 

@@ -101,6 +101,13 @@ $sdf = $_SESSION['emais'];
   </form>
   </div>
   </div>
+  <script type="text/javascript">
+                const input = document.getElementById("txt111");
+                input.addEventListener("keyup", () => {
+                  input.value = input.value.replace(/ +/g, "");
+                });
+
+    </script>
    <script type="text/javascript">
         document.getElementById("txt111").value = getSavedValue("txt111"); 
 		

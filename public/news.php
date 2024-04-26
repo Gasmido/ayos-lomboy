@@ -6,12 +6,13 @@ if ($purokss == "" && $ciiit == "") {
 	exit();
 }
 }
+$csstime = date ("Y-m-d\TH-i", filemtime($_SERVER["DOCUMENT_ROOT"] . '/CSS/style.css'));
 ?>
 <!DOCTYPE html>
 <html lang="en" oncopy="return false;" oncontextmenu="return myRightClick();" oncut="return false;" onpaste="return false;">
   <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../CSS/style.css">   
+    <link rel="stylesheet" href="../CSS/style.css<?='?'.$csstime ?>">   
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -70,7 +71,7 @@ if ($purokss == "" && $ciiit == "") {
 		</div>
 		<div class="servicescontent hidden">
 			 <?php
-                    $sql = "SELECT id, newsTitle, newsDesc, newsPic from announcements where newsTitle != ''";
+                    $sql = "SELECT id, newsTitle, newsDesc, newsPic from announcements where newsTitle != '' && removed IS NULL";
                     $result = $connn-> query($sql);
 
                     if ($result-> num_rows > 0) {

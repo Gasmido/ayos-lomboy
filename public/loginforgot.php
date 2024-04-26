@@ -106,6 +106,13 @@ if (isset($_SESSION['ID'])) {
   </form>
   </div>
   </div>
+  <script type="text/javascript">
+                const input = document.getElementById("txt1");
+                input.addEventListener("keyup", () => {
+                  input.value = input.value.replace(/ +/g, "");
+                });
+
+    </script>
    <script type="text/javascript">
         document.getElementById("txt1").value = getSavedValue("txt1"); 
 		

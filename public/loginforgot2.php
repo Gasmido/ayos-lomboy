@@ -33,8 +33,9 @@ $secretKey = '6LdC5r4pAAAAAI57LWy8yH6YVV_ndKLzuQefGXUO';
 		            } 
 		        }else { 
 		            header("location: loginforgot.php?error=wrongf");
-					exit();    
-        		}
+					exit();
+		       
+        }
 	
 }
  else {

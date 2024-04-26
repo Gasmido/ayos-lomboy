@@ -11,12 +11,13 @@
     }
     else {
         unset($_SESSION['uuusss']);
+        $csstime = date ("Y-m-d\TH-i", filemtime($_SERVER["DOCUMENT_ROOT"] . '/CSS/style.css'));
 ?>
 <!DOCTYPE html>
 <html lang="en" oncopy="return false;" oncontextmenu="return myRightClick();" oncut="return false;" onpaste="return false;">
   <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../CSS/style.css">   
+    <link rel="stylesheet" href="../CSS/style.css<?='?'.$csstime ?>">   
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,7 +56,7 @@
       }
     }
   </script>
-  <script src="https://www.google.com/recaptcha/api.js?render=6LdnvcEpAAAAAFvqWuh0P_dpTJ8QStI7HWQPUFcI"></script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
    </head>
 <body class="loginbod">
 <div class="float-parent-element">
@@ -75,7 +76,7 @@
   </div>
 </div>
 <div class="loginmain">
-  <div class="login">
+  <div class="login" style="margin-bottom: 50px;">
   <div>
 <h1 class="ttle">LOGIN</h1>
 </div>
@@ -97,6 +98,12 @@
     else if ($_GET["error"] == "robot") {
       echo "<p id='ha' class='example'>Too Many Attempts!</p>";
     }
+    else if ($_GET["error"] == "wrongf") {
+      echo "<p class='example'>Please verify reCAPTCHA!</p>";
+    }
+    else if ($_GET["error"] == "wrong") {
+      echo "<p class='example'>reCAPTCHA verification failed!</p>";
+    }
 		
 	/*	else if ($_GET["error"] == "none") {
 			echo "<p style='color:white; background: #8b0f0f;padding:5px;border-style:solid;border-width:2px;border-color:rgba(253, 114, 146, 1);'>Log-in successful!</p>";
@@ -104,17 +111,24 @@
 	}
 ?>
 </div>
+<form action="login_process" method="post">
 <div class="inputs">
-  <form action="login_process" method="post">
+  
   <p>E-mail:</p>
   <input id="txt5" type="text" name="user1" onkeyup="saveValue(this);" placeholder="Enter E-mail"></input>
    <p>Password:</p>
-  <input id="txt6" type="password" name="pass" onkeyup="saveValue(this);" maxlength="60" placeholder="Enter password"></input>
-  </div>
+  <input id="txt6" type="password" name="pass" onkeyup="saveValue(this);" maxlength="60" placeholder="Enter password" pattern="[a-zA-Z0-9_]{1,60}" title="Only letters(A-z), underscore(_), and numbers(0-9)."></input><br>
+    <input type="checkbox" onclick="myFunctions()" style="width:13px;margin-left:10px">  Show Password
   <p style="text-align: right;margin-top: 3px;"> <a href="loginforgot" style="color:#00FFFF">Forgot password?</a></p>
+
   <input type="hidden" id="token" name="token">
+  <div class="form-input" style="text-align:center;">
+        <!-- Google reCAPTCHA box -->
+        <div class="g-recaptcha" data-sitekey="6LdC5r4pAAAAAPW8GIo3MuebpQWE9RDrxO7jg-Ua" style="display: inline-block;margin-top: 20px;"></div>
+    </div>
+    </div>
   <section class="loginbtn">
-				<button class="btnlog" type="submit" name="submit">LOGIN</button>
+				<button class="btnlog" type="submit" name="submit" style="margin-top: 0px;">LOGIN</button>
 
 		</section>
 		<br />
@@ -134,16 +148,29 @@
         <input type="submit" name="google" value="Login with Google" class=btnlog2>
         </a>
     </section>
-  </div>
-  </div>
-   <script>
-  grecaptcha.ready(function() {
-      grecaptcha.execute('6LdnvcEpAAAAAFvqWuh0P_dpTJ8QStI7HWQPUFcI', {action: 'homepage'}).then(function(token) {
-         // console.log(token);
-         document.getElementById("token").value = token;
-      });
-  });
-  </script>
+</div>
+</div>
+<script>
+    function myFunctions() {
+  var x = document.getElementById("txt6");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
+  <script type="text/javascript">
+                const input = document.getElementById("txt5");
+                input.addEventListener("keyup", () => {
+                  input.value = input.value.replace(/ +/g, "");
+                });
+
+                const input2 = document.getElementById("txt6");
+                input2.addEventListener("keyup", () => {
+                  input2.value = input2.value.replace(/ +/g, "");
+                });
+    </script>
    <script type="text/javascript">
         document.getElementById("txt5").value = getSavedValue("txt5"); 
         document.getElementById("txt6").value = getSavedValue("txt6");  

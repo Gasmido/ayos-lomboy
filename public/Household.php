@@ -2,45 +2,115 @@
 include '../include/headAdmin.php';
 include '../include/topbarAdmin.php';
 include '../include/sidebar.php';
+include '../include/db_conn.php';
+unset($_SESSION['iss']);
 ?>
+<script type="text/javascript">
+        localStorage.removeItem("1")
+        localStorage.removeItem("2")
+        localStorage.removeItem("5")
+        localStorage.removeItem("6")
+        localStorage.removeItem("7")
+        localStorage.removeItem("8")
+        localStorage.removeItem("9")
+        localStorage.removeItem("10")
+        localStorage.removeItem("11")
+        localStorage.removeItem("12")
+    </script>
 <div class="home-section">
 <div class="admin-home-title">
         <h1>
-            HOUSEHOLD PAGE
+            HOUSEHOLD RECORDS PAGE
         </h1>
-    </div>
- <div class="admin-home">   
+    </div>		 
+<div class="admin-home">    
     <div class="adddel">
-    <button id="myBtn2" class="addd">ADD NEW HOUSEHOLD</button> 
-      </div>     
+         <?php
+        if (isset($_SESSION['statu'])) {
+                        echo "<p style='text-align:center;font-size:20px;font-weight:bold;padding-top:15px;color:red;' id='ha'>";
+                        echo $_SESSION['statu']; echo "</p>";
+                        unset($_SESSION['statu']);
+        }
+        elseif (isset($_SESSION['statuss'])) {
+                echo "<p style='text-align:center;font-size:20px;font-weight:bold;padding-top:15px;color:green;' id='ha'>";
+                echo $_SESSION['statuss']; echo "</p>";
+                unset($_SESSION['statuss']);
+        }
+    ?>
+    <button onclick="document.location='Householdadd'" class="addd">ADD NEW HOUSEHOLD</button> 
+      </div>    
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
 
   <!-- Modal content -->
-  <div class="modal-content">
+  <div class="modal-contentRr">
     <span class="closer">&times;</span>
-    <h2>Add New Household</h2>
-
+    <h2>Add New Resident</h2>
     <div class="modal-inside">
         <div class="models">
-           
+            <div class="img">
+                <div class="imgs">
+                    <center>img</center>
+                </div>
+                <div class="choose">
+                    <input type="file" name="image"></input>
+                </div>
+                <br>
+                <label>Date Registered:</label>
+                <input class="" type="date" name="datee" placeholder="Date"><br>
+                <label>Phone Number:</label>
+                <input type="text" name="fName" class="inpu" pattern="[09][0-9]{10}" title="ex. 09111111111" placeholder="(e.g. 09123456789)" required></input>
+            </div> 
             <div class="inputpop">            
-                <label>Full Name:</label><br>
-                <input class="inpu" type="text" name="name" placeholder="Enter Fullname"><br>
-                <label>Chairmansip:</label><br>
-                <input class="inpu" type="text" name="chairmansip" placeholder="Enter Chairmanship"><br>
-                <label>Position:</label><br>
-                <input class="inpu" type="text" name="position" placeholder="Enter Position"><br>
-                <label>Term Start:</label><br>
-                <input class="inpu" type="date" name="tstart" placeholder="Enter Date"><br>
-                <label>Term End:</label><br>
-                <input class="inpu" type="date" name="tend" placeholder="Enter Date"><br>
-                <label>Status:</label><br>
-                <input class="inpu" type="text" name="status" placeholder="Enter Status"><br> 
+                <label>First Name:</label><br>
+                <input class="inpu" type="text" name="name" placeholder="First Name"><br>
+                <label>Middle Name:</label><br>
+                <input class="inpu" type="text" name="name" placeholder="Middle Name"><br>
+                <label>Last Name:</label><br>
+                <input class="inpu" type="text" name="name" placeholder="Last Name"><br>
+                <label>Extension Name:</label><br>
+                <input class="inpu" type="text" name="name" placeholder="Extension Name"><br>
+                <label>Civil Status:</label><br>
+                <select class="inpu">
+                  <option>Single</option>
+                  <option>Married</option>
+                  <option>Widowed</option>
+                  <option>Divorced</option>
+                </select>
+                <label>Citezenship:</label><br>
+                <select class="inpu">
+                  <option>Natural-Born Citizen</option>
+                  <option>Naturalized-Citizen</option>
+                </select>
             </div>
-
+            <div class="inputpop2">
+                <label>Sex:</label><br>
+                <select class="inpu">
+                  <option>Male</option>
+                  <option>Female</option>
+                </select>
+                <label>Religion:</label><br>
+                <input class="inpu" type="text" name="chairmansip" placeholder="Religion"><br>
+                <label>Birthdate:</label><br>
+                <input class="inpu" type="date" name="position" placeholder="Date"><br>
+                <label>Birth Place:</label><br>
+                <input class="inpu" type="text" name="tstart" placeholder="Birth Place"><br>
+                <label>Profession/Occupation:</label><br>
+                <input class="inpu" type="text" name="tstart" placeholder="Profession/Occupation"><br>
+                
                
+            </div>
+            <div class="inputpop3">
+                <label>Street:</label><br>
+                <input class="inpu" type="text" name="chairmansip" placeholder="Street"><br>
+                <label>Barangay:</label><br>
+                <input class="inpu" type="text" name="position" placeholder="Barangay"><br>
+                <label>City:</label><br>
+                <input class="inpu" type="text" name="tstart" placeholder="City"><br>
+                <label>Province:</label><br>
+                <input class="inpu" type="text" name="tend" placeholder="Province"><br>
+            </div>
         </div>  
 
          <button class="btndocu wer">Submit</button>    
@@ -48,60 +118,47 @@ include '../include/sidebar.php';
   </div>
 </div>
 
-
+<div style="height: 20px;width: 100%;"></div>
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
-             <thead>
+            <thead>
                 <tr>
-                    <th>Household No.</th>
+                    <th>House No.</th>
                     <th>Full Address</th>
+                    <th>Date Registered</th>
                     <th>No. of Inhabitants</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>234-23423</td>
-                    <td>2323,fwe st.,purok 2, Guimba</td>
-                    <td>2</td>
-                    <td>
-                        <button class="editt">EDIT</button>
-                        <button class="moree">MORE</button>
-                         <button class="dell">DELETE</button>
-                    </td>
-                </tr>
-               <tr>
-                    <td>53452</td>
-                    <td>2323,fwe st.,purok 2, Guimb</td>
-                    <td>3</td>
-                   <td>
-                        <button class="editt">EDIT</button>
-                        <button class="moree">MORE</button>
-                         <button class="dell">DELETE</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>123443</td>
-                    <td>2323,fwe st.,purok 2, Guimb</td>
-                    <td>4</td>
-                   <td>
-                        <button class="editt">EDIT</button>
-                        <button class="moree">MORE</button>
-                         <button class="dell">DELETE</button>
-                    </td>
-                </tr><tr>
-                    <td>234122134</td>
-                    <td>2323,fwe st.,purok 2, Guimb</td>
-                    <td>5</td>
-                   <td>
-                        <button class="editt">EDIT</button>
-                        <button class="moree">MORE</button>
-                         <button class="dell">DELETE</button>
-                    </td>
-                </tr>
-            </tfoot>
+                 <?php
+                    $sql = "SELECT * from household";
+                    $result = $connn-> query($sql);
+
+                    if ($result-> num_rows > 0) {
+                        while ($row = $result-> fetch_assoc()) {
+                             $sql2= "SELECT * FROM household2 WHERE houseID =". $row['HouseNo'];
+                                $result2 = mysqli_query($connn, $sql2);
+                                $num_rows = mysqli_num_rows($result2);
+                                
+                                echo "<td>". $row["HouseNo"] ."</td><td>". $row["Street"] .", ". $row["Purok"] .", ". $row["Barangay"] .", ". $row["Municipality"] .", ". $row["Province"] ."</td><td>". $row["Datereg"] ."</td><td>". $num_rows ."</td>
+                                        <td>
+                                             <form action='Householdmore' method='POST'>
+                                                <input name='id' value='". $row['id'] ."' hidden>
+                                                <button class='editt' name='submit' type='submit'>MORE</button>
+                                            </form>
+                                        </td>
+                                        </tr>";
+                        }
+                    }
+                    else {
+                        echo "<p style='text-align:center;font-size:25px;padding-bottom:15px;'>There are currently no Residents at the moment</p>";
+                    }
+                    $connn-> close();
+                   ?>
+
         </tbody>
         </table>
                 </div>
@@ -109,13 +166,12 @@ include '../include/sidebar.php';
         </div>
     </div>
 </div>
-</div>
 
 <script type="text/javascript">// Get the modal
 var modal = document.getElementById("myModal");
 
 // Get the button that opens the modal
-var btn = document.getElementById("myBtn2");
+var btn = document.getElementById("myBtn1");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("closer")[0];

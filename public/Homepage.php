@@ -14,6 +14,19 @@ if ($purokss == "" && $ciiit == "") {
 	exit();
 }
 }
+if (isset($status)) {
+                include_once "../include/db_conn.php";
+                $sql = "SELECT Status FROM users WHERE user_id=?"; // SQL with parameters
+                $stmt = $connn->prepare($sql); 
+                $stmt->bind_param("i", $id);
+                $stmt->execute();
+                $result = $stmt->get_result(); // get the mysqli result
+                while ($row = $result->fetch_assoc()) {
+                   $status = $row['Status'];
+                }
+                unset($_SESSION['status']);
+                $_SESSION['status'] = $status;
+}
 ?>
 <div class="homepage" style="">
 	<div id="h" class="Home">
@@ -27,7 +40,7 @@ if ($purokss == "" && $ciiit == "") {
 			</h1>
 			<p>
 				<i class='bx bxs-time' ></i>
-				Open Hours: Monday to Saturday (7:30AM - 5:00PM)
+				Open Hours: Daily (7:30AM - 5:00PM)
 			</p>
 			<p>
 			
@@ -419,6 +432,12 @@ if ($purokss == "" && $ciiit == "") {
 				</div>
 			</div>
 			</div>
+			<section style="margin-bottom:50px">
+			<a href="Commitee">
+			    
+			   <h2>More Commitee Information</h2>
+			    </a>
+			    </section>
 
 		</div>
 	</div>
@@ -447,10 +466,11 @@ if ($purokss == "" && $ciiit == "") {
 					<section class="boxbut">
 						<input type="text" name="cor" value="Certificate of Residency" hidden></input>
 						<?php
+						//<a href="#" style="font-size:32px;margin-left:10px" title="Print"><i class="bx bxs-printer serviceprint"></i></a>
+						
 							if (isset($_SESSION['ID'])) {
 								if ($status == "Approved") {
-									echo '<button class="btnservice" type="submit" name="submit">Request</button>
-									<a href="#" style="font-size:32px;margin-left:10px" title="Print"><i class="bx bxs-printer serviceprint"></i></a>';
+									echo '<button class="btnservice" type="submit" name="submit">Request</button>';
 								} elseif ($status == "Denied") {
 									echo '<p class="boxreq">Sorry but your account have been denied to access this service.</p>';
 								} elseif ($status == "Processing") {
@@ -482,8 +502,7 @@ if ($purokss == "" && $ciiit == "") {
 						<?php
 							if (isset($_SESSION['ID'])) {
 								if ($status == "Approved") {
-									echo '<button class="btnservice" type="submit" name="submit2">Request</button>
-									<a href="#" style="font-size:32px;margin-left:10px" title="Print"><i class="bx bxs-printer serviceprint"></i></a>';
+									echo '<button class="btnservice" type="submit" name="submit2">Request</button>';
 								} elseif ($status == "Denied") {
 									echo '<p class="boxreq">Sorry but your account have been denied to access this service.</p>';
 								} elseif ($status == "Processing") {
@@ -514,8 +533,7 @@ if ($purokss == "" && $ciiit == "") {
 						<?php
 							if (isset($_SESSION['ID'])) {
 								if ($status == "Approved") {
-									echo '<button class="btnservice" type="submit" name="submit4">Request</button>
-									<a href="#" style="font-size:32px;margin-left:10px" title="Print"><i class="bx bxs-printer serviceprint"></i></a>';
+									echo '<button class="btnservice" type="submit" name="submit4">Request</button>';
 								} elseif ($status == "Denied") {
 									echo '<p class="boxreq">Sorry but your account have been denied to access this service.</p>';
 								} elseif ($status == "Processing") {
@@ -546,8 +564,7 @@ if ($purokss == "" && $ciiit == "") {
 						<?php
 							if (isset($_SESSION['ID'])) {
 								if ($status == "Approved") {
-									echo '<button class="btnservice" type="submit" name="submit5">Request</button>
-									<a href="#" style="font-size:32px;margin-left:10px" title="Print"><i class="bx bxs-printer serviceprint"></i></a>';
+									echo '<button class="btnservice" type="submit" name="submit5">Request</button>';
 								} elseif ($status == "Denied") {
 									echo '<p class="boxreq">Sorry but your account have been denied to access this service.</p>';
 								} elseif ($status == "Processing") {
@@ -578,8 +595,7 @@ if ($purokss == "" && $ciiit == "") {
 						<?php
 							if (isset($_SESSION['ID'])) {
 								if ($status == "Approved") {
-									echo '<button class="btnservice" type="submit" name="submit6">Request</button>
-									<a href="#" style="font-size:32px;margin-left:10px" title="Print"><i class="bx bxs-printer serviceprint"></i></a>';
+									echo '<button class="btnservice" type="submit" name="submit6">Request</button>';
 								} elseif ($status == "Denied") {
 									echo '<p class="boxreq">Sorry but your account have been denied to access this service.</p>';
 								} elseif ($status == "Processing") {

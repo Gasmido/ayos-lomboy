@@ -1,24 +1,23 @@
 <?php
 if (isset($_POST['submit'])) {
 	$currentDate = gmdate('Y-m-d');
-	$user = $_POST["user"];
-	$pass = $_POST["pass"];
+	$user = preg_replace('/\s+/', ' ',trim($_POST["user"]));
+	$pass = preg_replace('/\s+/', ' ',trim($_POST["pass"]));
 	$birth = $_POST['birthdate'];
 	$sex = $_POST['sex'];
 	$purok = $_POST['purok'];
 	$citizenship = $_POST['citizenship'];
-	$firstname = $_POST["firstname"];
-	$middleinitial = $_POST["middleinitial"];
-	$lastname = $_POST["lastname"];
+	$firstname = preg_replace('/\s+/', ' ',trim($_POST["firstname"]));
+	$middleinitial = preg_replace('/\s+/', ' ',trim($_POST["middleinitial"]));
+	$lastname = preg_replace('/\s+/', ' ',trim($_POST["lastname"]));
 	$no = 0;
-	$extension = $_POST["extensionname"];
+	$extension = preg_replace('/\s+/', ' ',trim($_POST["extensionname"]));
 	$status = "Processing";
 	$secretKey = '6LdC5r4pAAAAAI57LWy8yH6YVV_ndKLzuQefGXUO'; 
 
 	include '../include/db_conn.php';
 	require_once 'func.php';
 
-	
 	if (empInpSign($user, $pass, $firstname, $lastname, $birth, $sex, $purok, $citizenship) !== false) {
 		header("location: register.php?error=Empty_input");
 		exit();
