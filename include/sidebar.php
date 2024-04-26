@@ -29,15 +29,12 @@
             <span class="links_name">&nbsp;Announcements</span>
           </a>
         </li>
-        <!--  
         <li>
-          <a href="../public/BrgyCertificates">
-            <i class='bx bx-paperclip' ></i>
-            <span class="links_name">&nbsp;Barangay Certificates</span>
+          <a href="../public/Household">
+           <i class='bx bx-building-house'></i>
+            <span class="links_name">&nbsp;Household</span>
           </a>
         </li>
-
-      -->
          <li>
           <a href="../public/Blotter">
             <i class='bx bxs-polygon'></i>

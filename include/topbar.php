@@ -1,5 +1,5 @@
 
-<body>
+<body style="background-color: #f5f5f5;">
 
 
 
@@ -18,6 +18,13 @@
     <ul style="min-width:140x;transform: translateX(-23px);">
       <li><a class='ac' href="../public/news">News</a></li>
       <li><a class='ac' href="../public/events">Events</a></li>
+       <?php 
+          if (isset($_SESSION['ID'])) {
+              echo "
+      <li><a class='ac' href='../public/doctrack'>Requests</a></li>
+      ";
+          }
+          ?>
     </ul>
     </li>
     <li><a><i class='bx bx-cog'></i></a>
@@ -26,11 +33,11 @@
        <?php 
           if (isset($_SESSION['ID'])) {
             echo "<li><a class='ac' href='../public/AccSetting'>Setting</a></li>";
-            echo "<li><a class='ac' href='../public/doctrack'>Requests</a></li>";
             echo "<li><a class='ac' href='../public/logout'>Log-Out</a></li>";
           }
           else {
             echo "<li><a class='ac' href='../public/login'>Log-In</a></li>";
+            echo "<li><a class='ac' href='../public/register'>Sign-Up</a></li>";
           }
        ?>
         
