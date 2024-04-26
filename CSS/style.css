@@ -575,6 +575,7 @@ td {
 	border: 2px solid black;
 	box-shadow: 0 10px 10px lightgray;
 }
+
 .admin-home .document .servicesBox .boxtitle {
 	background-color:#C7DAD4;
 	color: black;
@@ -777,7 +778,7 @@ td {
 	 padding:30px;
 	 border-radius: 12px;
 	
-	box-shadow: 0 15px 10px black;
+	box-shadow: 0 5px 10px grey;
  }
  .signin {
 	  display: grid;
@@ -949,7 +950,7 @@ td {
 	text-align: left;
 	width: 70%;
 	min-width:490px;
-
+	background-color: #f5f5f5;
 	min-height:100%;
 
 }
@@ -994,7 +995,7 @@ background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #389
 	max-width:90%;
 	min-height:80%;
 	border:1px solid black;
-	background-image: linear-gradient(0deg, #C7DAD4, white);
+	background-color: #f5f5f5;
 }
 .aboutg {
 	display: flex;
@@ -1004,6 +1005,7 @@ background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #389
 	margin-bottom: 60px;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
+	background-color: #f5f5f5;
 }
 .aboutgg {
 	margin-top: 50px;
@@ -1029,10 +1031,19 @@ background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #389
   align-items: center;
   justify-content: center;
 }
+.committeecontent {
+	display: flex;
+	flex-wrap: wrap;
+	
+ 	width: 90%;
+  background-color: whitesmoke;
+  align-items: center;
+  justify-content: center;
+}
 .gallery {
 	flex-grow: 1;
   margin: 20px;
-  border: solid 2px black;
+  border: solid 1px black;
   float: left;
   min-width: 300px;
   max-width: 300px;
@@ -1040,8 +1051,8 @@ background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #389
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  box-shadow: 0 10px 15px black;
 }
+
 .aboutgg h1 {
 	box-shadow: 0 20px 10px black;
 	padding: 3px;
@@ -1055,7 +1066,7 @@ background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #389
 	margin-top: 10px;
 	max-height: 250px;
   max-width: 250px;
-  border: solid 2px black;
+  border: solid 1px black;
 }
 
 div.desc {
@@ -1065,9 +1076,14 @@ div.desc {
 .Services {
 	min-height:620px;
 	padding-bottom: 60px;
-	background-color: #ffffff;
-background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%232f414f' fill-opacity='1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
-	}
+	background-color: #f5f5f5;
+}
+	.Committee {
+	min-height:620px;
+	padding-bottom: 60px;
+background-color: #f5f5f5;
+}
+
 .servtitle {
 	position: relative;
 	z-index: 10;
@@ -1091,6 +1107,17 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 	align-items: center;
 
 }
+ .Committee .committeecontent {
+	margin-left:auto;
+	margin-right:auto;
+	margin-top: 10px;
+	padding:10px;
+	height:80%;
+	max-width:100%;
+	justify-content: center;
+	align-items: center;
+
+}
 .Services .servicescontent .servicesBox {
 	width:300px;
 	height:300px;
@@ -1101,8 +1128,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 	background-image: linear-gradient(0deg, #C7DAD4, white);
 	border-radius: 12px;
 	color:white;
-	border: 2px solid black;
-	box-shadow: 0 10px 10px black;
+	border: 1px solid black;
 }
 .Services .servicescontent .announceBox {
 	width:370px;
@@ -1114,8 +1140,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 	background-color: whitesmoke;
 	border-radius: 12px;
 	color:white;
-	border: 2px solid black;
-	box-shadow: 0 10px 10px black;
+	border: 1px solid black;
 	text-overflow: ellipsis;
 }
 .boximg {
@@ -1240,8 +1265,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 	width: 80%;
 	padding: 10px;
 	align-items: center;
-	border: 2px solid black;
-	box-shadow: 0 10px 5px black;
+	border: 1px solid black;
 }
 
 .btnservice {
@@ -1812,6 +1836,10 @@ width: 100%;
 .errr h3 {
 	font-size: 30px;
 }
+.comt {
+	font-size: 20px;
+	color: black;
+}
 /* Modal -------------------------------------------------------->*/
 @media screen and (max-width: 1300px) {
  .logoo2 {
@@ -1891,12 +1919,15 @@ width: 100%;
 		min-width: 103%;
 	}
 	.container {
-		min-width: 103	%;
-
+		min-width: 100%;
 	}
 	.conimg {
 	display: block;
-}	
+    }	
+    .asdfff {
+	    height:120px;
+	    padding-bottom:20px;
+	}
 }
 @media screen and (max-width: 600px) {
     .Home .homecontent p { 
@@ -1918,6 +1949,10 @@ width: 100%;
 	.container {
 		min-width: 130%;
 	}
+	.asdfff {
+	    height:150px;
+	    padding-bottom:30px;
+	}
 }
 
 @media screen and (max-width: 470px) {
@@ -1933,7 +1968,7 @@ width: 100%;
         font-size:16px;
     }
     .yellow a:active {
-		height:42px;
+        height:42px;
 	  background-color: #3e8e41;
 	  box-shadow: 0 5px #666;
 		}
