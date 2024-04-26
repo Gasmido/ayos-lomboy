@@ -14,10 +14,10 @@
 		mysqli_stmt_execute($stmt);
 		mysqli_stmt_close($stmt);
 		$_SESSION['statusss'] = "Blotter Report Cancelled Successfully!";
-        header("Location: doctrackbotter.php");
+        header("Location: doctrackblotter");
     
     $connn->close();
 
 
-
+?>
 

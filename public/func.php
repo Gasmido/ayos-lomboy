@@ -537,6 +537,40 @@ function editBlotter3($connn, $sstat, $id) {
 	header("location: BlotterRequest");
 		exit();
 }
+function editBlotterA($connn, $bno, $fname, $complainant, $complained, $loc, $dof, $status, $BI, $pin, $id) {
+	$sql = "UPDATE blotter SET blotter_no=?, blotter_type=?, complainant=?, complained=?, locationOfIncident=?, dateOfFiling=?, Status=?, blotter_info=?, personInCharge=? WHERE id=?";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "sssssssssi", $bno, $fname, $complainant, $complained, $loc, $dof, $status, $BI, $pin, $id);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	session_start();
+	$_SESSION["statu"] = "Data Successfully Updated!";
+	$_SESSION["iss"] = $id;
+
+	header("location: BlottermoreA");
+		exit();
+}
+function editBlotterS($connn, $bno, $fname, $complainant, $complained, $loc, $dof, $status, $BI, $pin, $id) {
+	$sql = "UPDATE blotter SET blotter_no=?, blotter_type=?, complainant=?, complained=?, locationOfIncident=?, dateOfFiling=?, Status=?, blotter_info=?, personInCharge=? WHERE id=?";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "sssssssssi", $bno, $fname, $complainant, $complained, $loc, $dof, $status, $BI, $pin, $id);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	session_start();
+	$_SESSION["statu"] = "Data Successfully Updated!";
+	$_SESSION["iss"] = $id;
+
+	header("location: BlottermoreS");
+		exit();
+}
 function editDocReq($connn, $fname, $daterequest, $dt, $purok, $BI, $dof, $dp, $ap, $status, $emaiil, $id)  {
 	$sql = "UPDATE docreq SET Fullname=?, CURDATE=?, documentType=?, purok=?, CORPurpose=?, DateofResidence=?, datePickedup=?, amountpaid=?, Status=? WHERE id=?";
 	$stmt = mysqli_stmt_init($connn);
@@ -938,12 +972,6 @@ function editResident2($connn, $fname, $mname, $lname, $ename, $bday, $sex, $cit
 		exit();
 }
 function editResident3($connn, $fname, $mname, $lname, $ename, $bday, $sex, $citi, $purok, $id) {
-	$userexist = duplicateEmail($connn, $user);
-	
-	if ($userexist === false) {
-		header("location: login?error=User_not_found");
-		exit();
-	}
 	
 	$sql = "UPDATE users SET First_name=?, Middle_name=?, Last_name=?, Extension_name=?, birthdate=?, sex=?, citizenship=?, purok=? WHERE user_id=?";
 	$stmt = mysqli_stmt_init($connn);
@@ -954,11 +982,9 @@ function editResident3($connn, $fname, $mname, $lname, $ename, $bday, $sex, $cit
 	mysqli_stmt_bind_param($stmt, "ssssssssi", $fname, $mname, $lname, $ename, $bday, $sex, $citi, $purok, $id);
 	mysqli_stmt_execute($stmt);
 	mysqli_stmt_close($stmt);
-	
-	
-	
+        $_SESSION['emaill'] = $id;
 
-		header("location: welcome");
+		header("location: welcome2");
 		exit();
 }
 function addEvents($connn, $title, $desc, $newImageName, $date) {
@@ -1005,6 +1031,44 @@ function addEvents3($connn, $title, $desc, $newImageName, $date, $id) {
 	mysqli_stmt_execute($stmt);
 	mysqli_stmt_close($stmt);
 	session_start();
+	$_SESSION["statuss"] = "Event Successfully Edited!";
+	$_SESSION["iss"] = $id;
+	
+	header("location: AEmore");
+		exit();
+}
+function addEvents22($connn, $title, $desc, $date, $id) {
+	$r = NULL;
+	$sql = "UPDATE announcements SET eventTitle=?, eventDesc=?, updateddate=?, removed=? WHERE id=?;";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "ssssi", $title, $desc, $date,$r, $id);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	session_start();
+	unset($_SESSION['dele']);
+	$_SESSION["statuss"] = "Event Successfully Edited!";
+	$_SESSION["iss"] = $id;
+	
+	header("location: AEmore");
+		exit();
+}
+function addEvents33($connn, $title, $desc, $newImageName, $date, $id) {
+	$r = NULL;
+	$sql = "UPDATE announcements SET eventTitle=?, eventDesc=?, eventPic=?, updateddate=?, removed=? WHERE id=?;";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "sssssi", $title, $desc, $newImageName, $date, $r, $id);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	session_start();
+	unset($_SESSION['dele']);
 	$_SESSION["statuss"] = "Event Successfully Edited!";
 	$_SESSION["iss"] = $id;
 	
@@ -1060,4 +1124,140 @@ function addNews3($connn, $title, $desc, $newImageName, $date, $id) {
 	
 	header("location: ANmore");
 		exit();
+}
+function addNews22($connn, $title, $desc, $date, $id) {
+	$r = NULL;
+	$sql = "UPDATE announcements SET newsTitle=?, newsDesc=?, updateddate=?, removed=? WHERE id=?;";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "ssssi", $title, $desc, $date, $r, $id);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	session_start();
+	unset($_SESSION['dele']);
+	$_SESSION["statuss"] = "News Successfully Edited!";
+	$_SESSION["iss"] = $id;
+	
+	header("location: ANmore");
+		exit();
+}
+function addNews33($connn, $title, $desc, $newImageName, $date, $id) {
+	$r = NULL;
+	$sql = "UPDATE announcements SET newsTitle=?, newsDesc=?, newsPic=?, updateddate=?, removed=? WHERE id=?;";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "sssssi", $title, $desc, $newImageName, $date, $r, $id);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	session_start();
+	unset($_SESSION['dele']);
+	$_SESSION["statuss"] = "News Successfully Edited!";
+	$_SESSION["iss"] = $id;
+	
+	header("location: ANmore");
+		exit();
+}
+function removeAnnounceEvents($connn, $id) {
+	$r = 1;
+	$sql = "UPDATE announcements SET removed=? WHERE id=?;";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "si", $r, $id);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	session_start();
+	$_SESSION["statuss"] = "Event Removed from public!";
+	$_SESSION["iss"] = $id;
+	$_SESSION["dele"] = "nono";
+	
+	header("location: AEdeleted");
+		exit();
+}
+function removeAnnounceNews($connn, $id) {
+	$r = 1;
+	$sql = "UPDATE announcements SET removed=? WHERE id=?;";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "si", $r, $id);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	session_start();
+	$_SESSION["statuss"] = "News Removed from public!";
+	$_SESSION["iss"] = $id;
+	$_SESSION["dele"] = "nono";
+
+	
+	header("location: ANdeleted");
+		exit();
+}
+function duplicatehouseno($connn, $houseno) {
+	$sql = "SELECT * FROM household WHERE houseno = ?;";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	
+	mysqli_stmt_bind_param($stmt, "s", $houseno);
+	mysqli_stmt_execute($stmt);
+	
+	$resultdata = mysqli_stmt_get_result($stmt);
+	
+	if ($row = mysqli_fetch_assoc($resultdata)) {
+		return $row;
+	} else {
+		$result = false;
+		return $result;
+	}
+	
+	mysqli_stmt_close($stmt);
+}
+function addHousehold($connn,$houseno,$st,$prk,$datereg,$Munici,$brgy,$prv,$inhNo,$inh) {
+    
+ //   foreach($inh as $as) {
+	$sql = "INSERT INTO household (HouseNo,Street,Purok,Datereg,Municipality,Barangay,Province) VALUES (?,?,?,?,?,?,?);";
+	$stmt = mysqli_stmt_init($connn);
+	mysqli_stmt_prepare($stmt, $sql);
+	
+	mysqli_stmt_bind_param($stmt, "sssssss",$houseno,$st,$prk,$datereg,$Munici,$brgy,$prv);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+//}
+	
+/*	foreach ($inh as $i) {
+        $inh=$i;
+	$sql = "INSERT INTO household SET HouseNo='$houseno',Street='$st',Purok='$prk',Datereg='$datereg',Inhabitants='$inh',Municipality='$Munici',Barangay='$brgy',Province='$prv'";
+	mysqli_query($connn,$sql);
+    }
+    */
+    househod($connn,$houseno,$inhNo,$inh);
+	session_start();
+	$_SESSION["statuss"] = "Household Successfully Added!";
+	
+	header("location: Household");
+		exit();
+}
+function househod($connn,$houseno,$inhNo,$inh) {
+	foreach($inh as $as) {
+	$sql2 = "INSERT INTO household2 (houseID,Inhabitants,InhabitantsNo) VALUES (?,?,?);";
+	$stmt = mysqli_stmt_init($connn);
+	mysqli_stmt_prepare($stmt, $sql2);
+	
+	mysqli_stmt_bind_param($stmt, "isi",$houseno,$as,$inhNo);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	}
+	return;
 }

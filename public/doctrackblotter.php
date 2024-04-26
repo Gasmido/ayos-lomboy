@@ -79,7 +79,6 @@ if (isset($_SESSION['ID'])){
                     <th>Date Requested</th>
                     <th>Incident Type</th>
                     <th>Status</th>
-                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -90,10 +89,10 @@ if (isset($_SESSION['ID'])){
                     if ($result-> num_rows > 0) {
                         while ($row = $result-> fetch_assoc()) {
                             echo "<tr><td>". $row["complained"] ."</td><td>". $row["dateOfFiling"] ."</td><td>". $row["blotter_type"] ."</td><td>". $row["Status"] ."</td>
-                                    <td>
+                                    
                                    ";
 
-                                   if ($row['Status'] == 'Active') {
+                                 /*  if ($row['Status'] == 'Active') {
                                         echo "
                                         </a>
                                         <a>
@@ -114,13 +113,12 @@ if (isset($_SESSION['ID'])){
                                     }
 
                                     else {
-                                        echo "
-                                    
-                                    <a href='docblottercancel?id=". $row['id'] ."'>";
+                                        
                                     echo "
-                                        <button class='dell'>CANCEL</button>
+                                        <button class='donee'></button>
                                             ";
                                     } 
+                                    */
                                         echo"
                                         </a>
                                         </td>

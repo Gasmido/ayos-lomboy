@@ -33,9 +33,9 @@ unset($_SESSION['iss']);
                 echo $_SESSION['statuss']; echo "</p>";
                 unset($_SESSION['statuss']);
         }
-        
     ?>
-    <button class="addd" onclick="document.location='BlotterAdd'">ADD BLOTTER</button> 
+    <button class="addd" onclick="document.location='Blotter'">BACK</button> 
+
       </div> 
 
 <!-- The Modal -->
@@ -86,62 +86,8 @@ unset($_SESSION['iss']);
 
       <div class="admin-blotter">
          
-          <div class="admin-home-box c">
-            <a href="blotterRequest">
-        <h2>
-            Blotter Filing Requests
-        </h2>
-        <p style="height:120px;">
-            <?php
-                $sql= "SELECT Status FROM blotter WHERE Status ='Processing'";
-                $result = mysqli_query($connn, $sql);
-
-                $num_rows = mysqli_num_rows($result);
-
-                echo $num_rows;
-            ?>
-        </p>
-        </a>
-    </div>
-     
-    <div class="admin-home-box a">
-        <a href="blotterActive">
-        <h2>
-            Active Cases
-        </h2>
-        <p style="height:120px;">
-            <?php
-                $sql= "SELECT Status FROM blotter WHERE Status='Active'";
-                $result = mysqli_query($connn, $sql);
-
-                $num_rows = mysqli_num_rows($result);
-
-                echo $num_rows;
-
-
-            ?>
-        </p>
-        </a>
-    </div>
-    <div class="admin-home-box b">
-        <a href="blotterSettled">
-        <h2>
-            Settled Cases
-        </h2>
-        <p style="height:120px;">
-            <?php
-                $sql2= "SELECT Status FROM blotter WHERE Status='Settled'";
-                $result2 = mysqli_query($connn, $sql2);
-
-                $num_rows2 = mysqli_num_rows($result2);
-
-                echo $num_rows2;
-            ?>
-        </p>
-        </a>
-    </div>
 </div>       
-<h1 style="padding-left: 30px;padding-bottom: 20px;">Blotter Records</h1>
+<h1 style="padding-left: 30px;padding-bottom: 20px;">Settled Blotters</h1>
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
@@ -151,16 +97,16 @@ unset($_SESSION['iss']);
                     <th>Blotter No.</th>
                     <th>Complainant</th>
                     <th>Complained</th>
+                    <th>Incident Type</th>
                     <th>Date of Filing</th>
-                    <th>Person in Charge</th>
-                    <th>Status</th>
+                    <th>Report Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
 
                  <?php
-                    $sql = "SELECT id, blotter_no, complainant, complained, dateOfFiling, Status, personInCharge from blotter where Status = 'Active' OR Status = 'Settled' ";
+                  $sql = "SELECT id, blotter_no, complainant, complained, dateOfFiling, Status, personInCharge from blotter where Status = 'Settled'";
                     $result = $connn-> query($sql);
 
                     if ($result-> num_rows > 0) {
@@ -168,8 +114,8 @@ unset($_SESSION['iss']);
                             echo "<tr><td>". $row["blotter_no"] ."</td><td>". $row["complainant"] ."</td><td>". $row["complained"] ."</td><td>". $row["dateOfFiling"] ."</td><td>". $row["personInCharge"] ."</td><td>". $row["Status"] ."</td>
                                     <td>
                                         
-                                         <form action='Blottermore' method='POST'>
-                                            <input name='ids' value='". $row['id'] ."' hidden>
+                                          <form action='BlottermoreS' method='POST'>
+                                            <input name='id' value='". $row['id'] ."' hidden>
                                             <button class='editt' name='submit' type='submit'>MORE</button>
                                         </form>
                                     </td>
@@ -177,9 +123,9 @@ unset($_SESSION['iss']);
                         }
                     }
                     else {
-                        echo "<p style='text-align:center;font-size:25px;padding-bottom:15px;'>There are currently no blotter records at the moment</p>";
+                        echo "<p style='text-align:center;font-size:25px;padding-bottom:15px;'>There are currently no blotter filing records at the moment</p>";
                     }
-                    $connn-> close();
+                   
                    ?>
 
               
@@ -188,6 +134,55 @@ unset($_SESSION['iss']);
                 </div>
             </div>
         </div>
+<!--
+<h1 style="padding-left: 30px;padding-bottom: 20px; padding-top: 30px;">Cancelled/Denied Blotter Request</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <table class="table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Complainant</th>
+                    <th>Complained</th>
+                    <th>Incident Type</th>
+                    <th>Date of Filing</th>
+                    <th>Report Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                 <?php
+                    $sql = "SELECT id, blotter_type, complainant, complained, dateOfFiling, blotter_status from blotter where blotter_status = 'Denied' OR blotter_status = 'Cancelled' ";
+                    $result = $connn-> query($sql);
+
+                    if ($result-> num_rows > 0) {
+                        while ($row = $result-> fetch_assoc()) {
+                            echo "<tr><td>". $row["complainant"] ."</td><td>". $row["blotter_type"] ."</td><td>". $row["complained"] ."</td><td>". $row["dateOfFiling"] ."</td><td>". $row["blotter_status"] ."</td>
+                                    <td>
+                                        <a href='Blotterrequestmore.php?row_id=".$row['id']. " '>
+                                            <button class='editt'>MORE</button>
+                                        </a>
+                                         
+                                    </td>
+                                    </tr>";
+                        }
+                    }
+                    else {
+                        echo "<p style='text-align:center;font-size:25px;padding-bottom:15px;'>There are currently no cancelled/denied blotter reports at the moment</p>";
+                    }
+                   
+                   ?>
+
+              
+        </tbody>
+        </table>
+                </div>
+            </div>
+        </div>
+      
+-->
+      
     </div>
 </div>
 <script type="text/javascript">

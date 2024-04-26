@@ -3,7 +3,7 @@ include '../include/head.php';
 require_once "../include/db_conn.php";
 
 if (isset($_SESSION['ID']) && (isset($_SESSION['user_token']))){
-
+$iddd = $_SESSION['ID'];
 ?>
 <div class="float-parent-element">
   <div class="float-child-element asdffd">
@@ -32,7 +32,7 @@ if (isset($_SESSION['ID']) && (isset($_SESSION['user_token']))){
         
         
         <?php
-          $sql1 = "SELECT * FROM users WHERE user_id=". $id;
+          $sql1 = "SELECT * FROM users WHERE user_id=". $iddd;
                   $result1 = $connn-> query($sql1);
                   if ($result1-> num_rows > 0) {
                         while ($row = $result1-> fetch_assoc()) {
@@ -43,6 +43,7 @@ if (isset($_SESSION['ID']) && (isset($_SESSION['user_token']))){
                             $bday = $row['birthdate'];
                             $sex = $row['sex'];
                             $citi = $row['citizenship'];
+                            $purokss = $row['purok'];
                         }
                     }   
         ?>
@@ -53,13 +54,13 @@ if (isset($_SESSION['ID']) && (isset($_SESSION['user_token']))){
           </div>
           <form action="AccSettingedit2.php" method="post">
           <label>First Name:</label><label style="color:red;font-size: 18px;font-weight: 500;"> *</label>
-        <input id="1" type="text" minlength="2" maxlength="20" name="fname" class="inputt" value="<?= $firstnames ?>"  pattern="[A-Za-z ]{1,32}" title="Only letters" placeholder="e.g. Juan" required></input>
+        <input id="1" type="text" minlength="2" maxlength="20" name="fname" class="inputt" value="<?= $f2name ?>"  pattern="[A-Za-z ]{1,32}" title="Only letters" placeholder="e.g. Juan" required></input>
         <label>Middle Initial/Name:</label>
-        <input id="2" type="text" minlength="1" maxlength="10" name="mname" class="inputt" value="<?= $middlename ?>" pattern="^[a-zA-Z\.]*$" title="Only letters and periods" placeholder="e.g. S. or Santiago"></input>
+        <input id="2" type="text" minlength="1" maxlength="10" name="mname" class="inputt" value="<?= $m2name ?>" pattern="^[a-zA-Z\.]*$" title="Only letters and periods" placeholder="e.g. S. or Santiago"></input>
         <label>Last Name:</label><label style="color:red;font-size: 18px;font-weight: 500;"> *</label>
-        <input id="4" type="text" minlength="2" maxlength="20" name="lname" class="inputt" value="<?= $lastname ?>" pattern="[A-Za-z ]{1,32}" title="Only letters" placeholder="e.g. Natividad" required></input>
+        <input id="4" type="text" minlength="2" maxlength="20" name="lname" class="inputt" value="<?= $l2name ?>" pattern="[A-Za-z ]{1,32}" title="Only letters" placeholder="e.g. Natividad" required></input>
         <label>Extension Name:</label>
-        <input id="5" type="text" minlength="1" maxlength="10" name="ename" class="inputt" value="<?= $extensionname ?>" pattern="^[a-zA-Z\.]*$" title="Only letters" placeholder="e.g. Jr."></input>
+        <input id="5" type="text" minlength="1" maxlength="10" name="ename" class="inputt" value="<?= $e2name ?>" pattern="^[a-zA-Z\.]*$" title="Only letters" placeholder="e.g. Jr."></input>
         <label>Birth Date:</label><label style="color:red;font-size: 18px;font-weight: 500;"> *</label>
         <input id="3" type="date" name="bday" class="inputt" value="<?= $bday ?>" max="<?php echo date("Y-m-d"); ?>" min="1934-12-31" required></input>
         <label>Sex:</label><label style="color:red;font-size: 18px;font-weight: 500;"> *</label>
@@ -79,7 +80,7 @@ if (isset($_SESSION['ID']) && (isset($_SESSION['user_token']))){
                   <option <?php if ($purokss=="3") echo 'selected="selected"';?>>3</option>
                   <option <?php if ($purokss=="4") echo 'selected="selected"';?>>4</option>
                 </select>
-               <input type="text" name="idd" value="<?= $id ?>" hidden></input>
+               <input type="text" name="idd" value="<?= $iddd ?>" hidden></input>
         <section>
           
     </section>

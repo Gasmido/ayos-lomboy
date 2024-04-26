@@ -58,7 +58,7 @@ if (isset($_SESSION['ID']) && $docutype != ""){
 					<label>Document Requesting:</label>
 				<input type="text" name="docutype" class="inputt" value="'. $docutype .'" required readonly></input>
 				<label>Full Name:</label>
-				<input type="text" name="fName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
+				<input id="q1" type="text" name="fName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
 				<label>Purok:</label>
 				<label for="item"></label>
 	    		<select id="item" name="purok" class="hehe" class="inputt" required>
@@ -85,6 +85,19 @@ if (isset($_SESSION['ID']) && $docutype != ""){
 				<button type="submit" name="submit" class="docusub">Submit</button>
 			</section>
 			</form>
+
+			<script type="text/javascript">
+				const input = document.getElementById("q1");
+				input.addEventListener("keyup", () => {
+				  input.value = input.value.replace(/  +/g, " ");
+				});
+
+				const input2 = document.getElementById("otex");
+				input2.addEventListener("keyup", () => {
+				  input2.value = input2.value.replace(/  +/g, " ");
+				});
+
+			</script>
 				';
 		}
 		elseif ($docutype == "Certificate of Indigency") {
@@ -95,7 +108,7 @@ if (isset($_SESSION['ID']) && $docutype != ""){
 					<label>Document Requesting:</label>
 				<input type="text" name="docutype" class="inputt" value="'. $docutype .'" required readonly></input>
 				<label>Full Name:</label>
-				<input type="text" name="fName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
+				<input id="w1" type="text" name="fName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
 				<label>Reason for Indigency Request:</label>
 				<label for="item2"></label>
 	    		<select id="item2" name="reason" class="hehe" class="inputt" required>
@@ -111,6 +124,18 @@ if (isset($_SESSION['ID']) && $docutype != ""){
 				<button type="submit" name="submit1" class="docusub">Submit</button>
 			</section>
 			</form>
+			<script type="text/javascript">
+				const input = document.getElementById("w1");
+				input.addEventListener("keyup", () => {
+				  input.value = input.value.replace(/  +/g, " ");
+				});
+
+				const input2 = document.getElementById("otex2");
+				input2.addEventListener("keyup", () => {
+				  input2.value = input2.value.replace(/  +/g, " ");
+				});
+
+			</script>
 				';
 				
 		}
@@ -122,7 +147,7 @@ if (isset($_SESSION['ID']) && $docutype != ""){
 					<label>Document Requesting:</label>
 				<input type="text" name="docutype" class="inputt" value="'. $docutype .'" required readonly></input>
 				<label>Full Name:</label>
-				<input type="text" name="fName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
+				<input id="e1" type="text" name="fName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
 				<label>Purok:</label>
 				<label for="item"></label>
 	    		<select id="item" name="purok" class="hehe" class="inputt" required>
@@ -135,11 +160,11 @@ if (isset($_SESSION['ID']) && $docutype != ""){
     		<label>Date of Birth:</label>
 				<input type="date" name="dateofbirth" class="inputt" max="'; echo date("Y-m-d"); echo '" min="1934-12-31" step="1" required></input>
 				<label>Place of Birth:</label>
-				<input type="text" name="placeofbirth" class="inputt" minlength="4" maxlength="50" pattern="[A-Za-z0-9 ]{4,50}" placeholder="Address" required></input>
+				<input id="e2" type="text" name="placeofbirth" class="inputt" minlength="4" maxlength="50" pattern="[A-Za-z0-9 ]{4,50}" placeholder="Address" required></input>
 				<label>Height: (cm)</label>
-				<input type="text" name="height" class="inputt" minlength="1" maxlength="3" pattern="[0-9 ]{1,3}" placeholder="Please use the Centimeters" step="0.01" title="Numbers only" required></input>
+				<input id="e3" type="text" name="height" class="inputt" minlength="1" maxlength="3" pattern="[0-9 ]{1,3}" placeholder="Please use the Centimeters" step="0.01" title="Numbers only" required></input>
 				<label>Weight: (Kg)</label>
-				<input type="text" name="weight" class="inputt" minlength="1" maxlength="3" pattern="[0-9 ]{1,3}" placeholder="Please use the Kilograms" title="Numbers only"  step="0.01" required></input>
+				<input id="e4" type="text" name="weight" class="inputt" minlength="1" maxlength="3" pattern="[0-9 ]{1,3}" placeholder="Please use the Kilograms" title="Numbers only"  step="0.01" required></input>
 				<label>Purpose:</label><br />		
 				<label for="items"></label>
 			    <select id="items" name="purpose" class="hehe" class="inputt" required>
@@ -151,6 +176,28 @@ if (isset($_SESSION['ID']) && $docutype != ""){
 				<button type="submit" name="submit3" class="docusub">Submit</button>
 			</section>
 			</form>
+			<script type="text/javascript">
+				const input = document.getElementById("e1");
+				input.addEventListener("keyup", () => {
+				  input.value = input.value.replace(/  +/g, " ");
+				});
+
+				const input2 = document.getElementById("e2");
+				input2.addEventListener("keyup", () => {
+				  input2.value = input2.value.replace(/  +/g, " ");
+				});
+
+				const input3 = document.getElementById("e3");
+				input3.addEventListener("keyup", () => {
+				  input3.value = input3.value.replace(/ +/g, "");
+				});
+
+				const input4 = document.getElementById("e4");
+				input4.addEventListener("keyup", () => {
+				  input4.value = input4.value.replace(/ +/g, "");
+				});
+
+			</script>
 				';
 		}
 		elseif ($docutype == "Kasunduan") {
@@ -161,21 +208,53 @@ if (isset($_SESSION['ID']) && $docutype != ""){
 					<label>Document Requesting:</label>
 				<input type="text" name="docutype" class="inputt" value="'. $docutype .'" required readonly></input>
 				<label>Borrower:</label>
-				<input type="text" name="BName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
+				<input id="r1" type="text" name="BName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
 				<label>Lender:</label>
-				<input type="text" name="LName" class="inputt" minlength="4" maxlength="50"  pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
+				<input id="r2" type="text" name="LName" class="inputt" minlength="4" maxlength="50"  pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
 				<label>Full Address:</label>
-				<input type="text" name="address" class="inputt" minlength="4" maxlength="50" pattern="[A-Za-z0-9 ]{4,50}" placeholder="Address" required></input>
+				<input id="r3" type="text" name="address" class="inputt" minlength="4" maxlength="50" pattern="[A-Za-z0-9 ]{4,50}" placeholder="Address" required></input>
 				<label>Money Borrowed:</label>
-				<input type="text" name="Money" class="inputt" minlength="1" maxlength="9" pattern="[0-9 ]{1,9}" placeholder="Php" title="Numbers only" required></input>
+				<input id="r4" type="text" name="Money" class="inputt" minlength="1" maxlength="9" pattern="[0-9 ]{1,9}" placeholder="Php" title="Numbers only" required></input>
 				<label>Borrower'; echo"'"; echo 's Agricultural Land Size: (Hectares)</label>
-				<input type="text" name="BAL" class="inputt" minlength="4" maxlength="50" pattern="[0-9. ]{4,50}" placeholder="Land you will lent to the Lender" step="0.001" required></input>
+				<input id="r5" type="text" name="BAL" class="inputt" minlength="4" maxlength="50" pattern="[0-9. ]{4,50}" placeholder="Land you will lent to the Lender" step="0.001" required></input>
 				<label>Borrower'; echo"'"; echo 's Agricultural Land Location:</label>
-				<input type="text" name="BALL" class="inputt" minlength="4" maxlength="50" placeholder="Address" required></input>    		
+				<input id="r6" type="text" name="BALL" class="inputt" minlength="4" maxlength="50" placeholder="Address" required></input>    		
     <section>
 				<button type="submit" name="submit4" class="docusub">Submit</button>
 			</section>
 			</form>
+			<script type="text/javascript">
+				const input = document.getElementById("r1");
+				input.addEventListener("keyup", () => {
+				  input.value = input.value.replace(/  +/g, " ");
+				});
+
+				const input2 = document.getElementById("r2");
+				input2.addEventListener("keyup", () => {
+				  input2.value = input2.value.replace(/  +/g, " ");
+				});
+
+				const input3 = document.getElementById("r3");
+				input3.addEventListener("keyup", () => {
+				  input3.value = input3.value.replace(/  +/g, " ");
+				});
+
+				const input4 = document.getElementById("r4");
+				input4.addEventListener("keyup", () => {
+				  input4.value = input4.value.replace(/ +/g, "");
+				});
+
+				const input5 = document.getElementById("r5");
+				input5.addEventListener("keyup", () => {
+				  input5.value = input5.value.replace(/ +/g, "");
+				});
+
+				const input6 = document.getElementById("r6");
+				input6.addEventListener("keyup", () => {
+				  input6.value = input6.value.replace(/  +/g, " ");
+				});
+
+			</script>
 				';
 		}
 		elseif ($docutype == "BARC") {
@@ -186,19 +265,46 @@ if (isset($_SESSION['ID']) && $docutype != ""){
 					<label>Document Requesting:</label>
 				<input type="text" name="docutype" class="inputt" value="'. $docutype .' Certification	" required readonly></input>
 				<label>Full Name:</label>
-				<input type="text" name="fName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
+				<input id="t1" type="text" name="fName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
 				<label>Residing Barangay:</label>
-				<input type="text" name="rbrgy" class="inputt" minlength="4" maxlength="50" pattern="[A-Za-z0-9 ]{4,50}" placeholder="e.g. Cavite" required></input>
+				<input id="t2" type="text" name="rbrgy" class="inputt" minlength="4" maxlength="50" pattern="[A-Za-z0-9 ]{4,50}" placeholder="e.g. Cavite" required></input>
 				<label>Agricultural Land area: (sq.m. & hectares)</label><br>
-				<input type="text" name="sqm" class="inputt" minlength="1" maxlength="10" pattern="[0-9 ]{1,10}" placeholder="sq. m." step="0.01" title="Numbers only" style="width:49%;" required></input>
-				<input type="text" name="hectare" class="inputt" minlength="1" maxlength="10" pattern="[0-9 ]{1,10}" placeholder="Hectares" step="0.01" title="Numbers only" style="width:49%;" required></input><br>
+				<input id="t3" type="text" name="sqm" class="inputt" minlength="1" maxlength="10" pattern="[0-9 ]{1,10}" placeholder="sq. m." step="0.01" title="Numbers only" style="width:49%;" required></input>
+				<input id="t4" type="text" name="hectare" class="inputt" minlength="1" maxlength="10" pattern="[0-9 ]{1,10}" placeholder="Hectares" step="0.01" title="Numbers only" style="width:49%;" required></input><br>
 				<label>Registered Owner of Agricultural Land:</label>
-				<input type="text" name="owner" class="inputt" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full Name" required></input>
+				<input id="t5" type="text" name="owner" class="inputt" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full Name" required></input>
    			 <br />
     <section>
 				<button type="submit" name="submit5" class="docusub">Submit</button>
 			</section>
 			</form>
+			<script type="text/javascript">
+				const input = document.getElementById("t1");
+				input.addEventListener("keyup", () => {
+				  input.value = input.value.replace(/  +/g, " ");
+				});
+
+				const input2 = document.getElementById("t2");
+				input2.addEventListener("keyup", () => {
+				  input2.value = input2.value.replace(/  +/g, " ");
+				});
+
+				const input4 = document.getElementById("t3");
+				input4.addEventListener("keyup", () => {
+				  input4.value = input4.value.replace(/ +/g, "");
+				});
+
+				const input5 = document.getElementById("t4");
+				input5.addEventListener("keyup", () => {
+				  input5.value = input5.value.replace(/ +/g, "");
+				});
+
+				const input6 = document.getElementById("t5");
+				input6.addEventListener("keyup", () => {
+				  input6.value = input6.value.replace(/  +/g, " ");
+				});
+
+			</script>
 				';
 		}
 		elseif ($docutype == "Blotter") {
@@ -208,9 +314,9 @@ if (isset($_SESSION['ID']) && $docutype != ""){
 					<form action="docreqadd" method="post"">
 				<input type="text" name="docutype" class="inputt" value="'. $docutype .'" required readonly hidden></input>
 				<label>Nagreklamo:</label>
-				<input type="text" name="fName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
+				<input id="y1" type="text" name="fName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
 				<label>Inerereklamo:</label>
-				<input type="text" name="complained" class="inputt" pattern="[A-Za-z ]{2,32}" title="Please remove any special characters! max-length(32 letters)" maxlength="100" placeholder="Full name" required></input>
+				<input id="y2" type="text" name="complained" class="inputt" pattern="[A-Za-z ]{2,32}" title="Please remove any special characters! max-length(32 letters)" maxlength="100" placeholder="Full name" required></input>
 				<label>Location of Incident: (Purok)</label>
 				<label for="item"></label>
 	    		<select id="item" name="purok" class="hehe" class="inputt" required>
@@ -223,11 +329,11 @@ if (isset($_SESSION['ID']) && $docutype != ""){
     		
 				
 				<label>Phone Number:</label>
-				<input type="text" minlength="11" name="phonenum" class="inputt" pattern="\d*" title="Please Enter numbers only!" maxlength="11" placeholder="e.g. 09999999999" required></input>
+				<input id="y3" type="text" minlength="11" name="phonenum" class="inputt" pattern="\d*" title="Please Enter numbers only!" maxlength="11" placeholder="e.g. 09999999999" required></input>
 				<label>Incident Type:</label>
-				<input type="text" name="incidenttype" class="inputt" pattern="[A-Za-z ]{2,64}" title="Please remove any special characters!" maxlength="100" placeholder="e.g. Assault" required></input>
+				<input id="y4" type="text" name="incidenttype" class="inputt" pattern="[A-Za-z ]{2,64}" title="Please remove any special characters!" maxlength="100" placeholder="e.g. Assault" required></input>
 				<label>Incident Details:</label>
-				<textarea rows="4" cols="50" type="text" name="incidentdetails" class="inputt" pattern="[A-Za-z ]{1,300}" title="Please remove any special characters!" maxlength="300" placeholder="Explain what happened (max. 300 letters)" required></textarea>
+				<textarea id="y5" rows="4" cols="50" type="text" name="incidentdetails" class="inputt" pattern="[A-Za-z ]{1,300}" title="Please remove any special characters!" maxlength="300" placeholder="Explain what happened (max. 300 letters)" required></textarea>
 
 
 
@@ -235,6 +341,33 @@ if (isset($_SESSION['ID']) && $docutype != ""){
 				<button type="submit" name="submit2" class="docusub">Submit</button>
 			</section>
 			</form>
+			<script type="text/javascript">
+				const input = document.getElementById("y1");
+				input.addEventListener("keyup", () => {
+				  input.value = input.value.replace(/  +/g, " ");
+				});
+
+				const input2 = document.getElementById("y2");
+				input2.addEventListener("keyup", () => {
+				  input2.value = input2.value.replace(/  +/g, " ");
+				});
+
+				const input4 = document.getElementById("y3");
+				input4.addEventListener("keyup", () => {
+				  input4.value = input4.value.replace(/ +/g, "");
+				});
+
+				const input5 = document.getElementById("y4");
+				input5.addEventListener("keyup", () => {
+				  input5.value = input5.value.replace(/  +/g, " ");
+				});
+
+				const input6 = document.getElementById("y5");
+				input6.addEventListener("keyup", () => {
+				  input6.value = input6.value.replace(/  +/g, " ");
+				});
+
+			</script>
 				';
 		}
 		else {
