@@ -16,10 +16,11 @@ if (isset($_POST['submits'])) {
 	require_once 'func.php';
   
       editResident3($connn, $fname, $mname, $lname, $ename, $bday, $sex, $citi, $purok, $id); 
-		
+
 
 }
 else {
 	header("Location: Homepage.php");
 
 }
+?>

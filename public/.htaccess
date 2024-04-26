@@ -1,11 +1,21 @@
 RewriteEngine on
+
+RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?ayos-lomboy.com/.*$      [NC]
+RewriteRule .*\.(.*|jpg|jpeg|gif|png|bmp|tiff|avi|mpeg|mpg|wma|mov|zip|rar|exe|mp3|pdf|swf|psd|txt|html|htm|php)$ https://ayos-lomboy.com [R,NC]
+
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule ^(.*)$ $1.php
+RewriteRule ^(.*)$ $1.php [NC, L]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^/?(.*)/+$ /$1 [R=302,L,QSA]
 
 ErrorDocument 404 https://ayos-lomboy.com/public/404error
 
 ErrorDocument 500 https://ayos-lomboy.com/public/404error
-ErrorDocument 301 https://ayos-lomboy.com/public/404error
+
+ErrorDocument 302 https://ayos-lomboy.com/public/404error
+
 ErrorDocument 401 https://ayos-lomboy.com/public/404error
+
 ErrorDocument 403 https://ayos-lomboy.com/public/404error

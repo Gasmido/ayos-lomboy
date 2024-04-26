@@ -37,9 +37,11 @@
     </div>
   </div>
 </div>
-<div class="loginmain">
+<div class="loginmain" style="text-align:center">
+    <i class='bx bxs-dizzy' style="font-size:120px"></i>
 	<div class="errr" style="margin-bottom: 0px;">
-		<h1>ERROR 404</h1>
+	    
+		<h1 style="display:inline-flex">404</h1>
 	</div>
 	<div class="errr" style="margin-top:10px">
  		<h3>Page Not Found</h3>

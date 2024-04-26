@@ -64,13 +64,13 @@ if (isset($_SESSION['ID'])){
 					</div>
 					<form action="AccSettingedit" method="post">
 					<label>First Name:</label>
-				<input id="1" type="text" minlength="2" maxlength="20" name="fname" class="inputt" value="<?= $f2name ?>"  pattern="[A-Za-z ]{1,32}" required readonly></input>
+				<input id="1" type="text" minlength="2" maxlength="20" name="fname" class="inputt" value="<?= $f2name ?>"  pattern="[A-Za-z ]{1,32}" title="Only Letters and spaces." required readonly></input>
 				<label>Middle Initial:</label>
-				<input id="2" type="text" minlength="1" maxlength="10" name="mname" class="inputt" value="<?= $m2name ?>" pattern="^[a-zA-Z\.]*$" required readonly></input>
+				<input id="2" type="text" minlength="1" maxlength="10" name="mname" class="inputt" value="<?= $m2name ?>" pattern="^[a-zA-Z\.]*$" title="Only Letters, periods(.), and spaces." readonly></input>
 				<label>Last Name:</label>
-				<input id="4" type="text" minlength="2" maxlength="20" name="lname" class="inputt" value="<?= $l2name ?>" pattern="[A-Za-z ]{1,32}" required readonly></input>
+				<input id="4" type="text" minlength="2" maxlength="20" name="lname" class="inputt" value="<?= $l2name ?>" pattern="[A-Za-z ]{1,32}" title="Only Letters and spaces." required readonly></input>
 				<label>Extension Name:</label>
-				<input id="5" type="text" minlength="1" maxlength="10" name="ename" class="inputt" value="<?= $e2name ?>" pattern="^[a-zA-Z\.]*$" required readonly></input>
+				<input id="5" type="text" minlength="1" maxlength="10" name="ename" class="inputt" value="<?= $e2name ?>" pattern="^[a-zA-Z\.]*$" title="Only Letters, periods(.), and spaces." readonly></input>
 				<label>Birth Date:</label>
 				<input id="3" type="date" name="bday" class="inputt" value="<?= $bday ?>" max="<?php echo date("Y-m-d"); ?>" min="1934-12-31" required readonly></input>
 				<label>Sex:</label>

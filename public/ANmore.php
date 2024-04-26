@@ -1,10 +1,13 @@
 <?php
 include '../include/headAdmin.php';
 include '../include/topbarAdmin.php';
-include '../include/sidebar.php';
-include '../include/db_conn.php';
 
-if (isset($_SESSION['iss'])) {
+
+if (isset($_SESSION['dele'])) {
+    header("location: ANdeleted");
+    exit();
+}
+elseif (isset($_SESSION['iss'])) {
 $idd = $_SESSION['iss'];
 }
 elseif (!isset($_POST['submit'])) {
@@ -16,11 +19,14 @@ elseif (isset($_POST['ids'])) {
 } 
 else {
 header('location: Announcements');
+exit();
 }
-
+include '../include/sidebar.php';
+include '../include/db_conn.php';
 ?>
 <div class="home-section">
 <div class="adddel">
+
      <?php
         if (isset($_SESSION['statu'])) {
                         echo "<p style='text-align:center;font-size:20px;font-weight:bold;padding-top:15px;color:green;' id='ha'>";
@@ -79,6 +85,10 @@ header('location: Announcements');
                 $connn-> close();
     ?>
     <button class="addd" onclick="document.location='Announcements'">BACK</button> 
+    <form action="Announcementremove" method="post" style="height:100%">
+         <input type="text" name="id" value="<?= $id ?>" hidden>
+        <button class="delle" type="submit" name="lokokas">REMOVE</button> 
+    </form>
 </div>      
 <div class="admin-homes"> 
     <div class="admin-events">
@@ -104,13 +114,13 @@ header('location: Announcements');
 </div>
 <script type="text/javascript">
     window.onload = function() {
-        timedHide(document.getElementById('ha'),3);
+        timedHide(document.getElementById('ha'),5);
     }
     function timedHide(element, seconds) {
         if (element) {
             setTimeout(function() {
                 element.style.display = 'none';
-            }, seconds*1000);
+            }, seconds*3000);
         }
     }
 </script>

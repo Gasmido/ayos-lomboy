@@ -4,6 +4,9 @@ include '../include/topbarAdmin.php';
 include '../include/sidebar.php';
 include '../include/db_conn.php';
 unset($_SESSION['iss']);
+unset($_SESSION['dele']);
+unset($_SESSION['statuss']);
+unset($_SESSION['statusss']);
 
 ?>
 <script type="text/javascript">
@@ -56,7 +59,7 @@ unset($_SESSION['iss']);
     <div class="Services2">
     <div class="servicescontent2">
              <?php
-                    $sql = "SELECT id, eventTitle, eventDesc, eventPic from announcements where eventTitle != ''";
+                    $sql = "SELECT id, eventTitle, eventDesc, eventPic from announcements where eventTitle != '' && removed IS NULL";
                     $result = $connn-> query($sql);
 
                     if ($result-> num_rows > 0) {
@@ -81,7 +84,7 @@ unset($_SESSION['iss']);
                         }
                     }
                     else {
-                        echo "<p style='text-align:center;font-size:25px;padding:10px;background-color:white;'>There are currently no Events at the moment</p>";
+                        echo "<p style='margin-bottom:50px;text-align:center;font-size:25px;padding:10px;background-color:white;'>There are currently no Events at the moment</p>";
                     }
              
                    ?>   
@@ -93,7 +96,7 @@ unset($_SESSION['iss']);
     <div class="Services2">
     <div class="servicescontent2">
               <?php
-                    $sql2 = "SELECT id, newsTitle, newsDesc, newsPic from announcements where newsTitle != ''";
+                    $sql2 = "SELECT id, newsTitle, newsDesc, newsPic from announcements where newsTitle != '' && removed IS NULL";
                     $result2 = $connn-> query($sql2);
 
                     if ($result2-> num_rows > 0) {
@@ -119,7 +122,82 @@ unset($_SESSION['iss']);
                         }
                     }
                     else {
-                        echo "<p style='text-align:center;font-size:25px;padding:10px;background-color:white;'>There are currently no News at the moment</p>";
+                        echo "<p style='margin-bottom:50px;text-align:center;font-size:25px;padding:10px;background-color:white;'>There are currently no News at the moment</p>";
+                    }
+                    
+                   ?>         
+            
+        </div>
+        </div>
+        <hr>
+        <h1 style="margin-top: 30px;color:darkred;">Removed Events</h1>
+    <div class="Services2">
+    <div class="servicescontent2">
+              <?php
+                    $sql2 = "SELECT * from announcements where eventTitle != '' && removed = 1";
+                    $result2 = $connn-> query($sql2);
+
+                    if ($result2-> num_rows > 0) {
+                        while ($row = $result2-> fetch_assoc()) {
+                            echo '<div class="announceBox 1">
+                                                                    <div class="boximg2">
+                                                                        <img width="160" height="130" src="image/'. $row['eventPic'] .'">
+                                                                    </div>
+                                                                    <div class="evedesc2">
+                                                                        <h4>
+                                                                            '. $row['eventTitle'] .'
+                                                                        </h4>
+                                                                    </div>
+                                                                        
+                                                                        <section class="boxbut2">
+                                                                            <form action="AEdeleted" method="POST">
+                                            <input name="ids" value="'. $row["id"] .'" hidden>
+                                            <button class="btnservice" name="submit" type="submit">Edit</button>
+                                        </form>
+                                                                        </section>
+                                                                
+                                                                </div>';
+                        }
+                    }
+                    else {
+                        echo "<p style='margin-bottom:50px;text-align:center;font-size:25px;padding:10px;background-color:white;'>There are currently no deleted Events at the moment</p>";
+                    }
+                   ?>         
+            
+        </div>
+        </div>
+        <hr>
+        <h1 style="margin-top: 30px;color:darkred;">Removed News</h1>
+    <div class="Services2">
+    <div class="servicescontent2">
+              <?php
+                    $sql2 = "SELECT * from announcements where newsTitle != '' && removed = 1";
+                    $result2 = $connn-> query($sql2);
+
+                    if ($result2-> num_rows > 0) {
+                        while ($row = $result2-> fetch_assoc()) {
+                            echo '<div class="announceBox 1">
+                                                                    <div class="boximg2">
+                                                                        <img width="160" height="130" src="image/'. $row['newsPic'] .'">
+                                                                    </div>
+                                                                    <div class="evedesc2">
+                                                                        <h4>
+                                                                            '. $row['newsTitle'] .'
+                                                                        </h4>
+                                                                    </div>
+                                                                        
+                                                                        <section class="boxbut2">
+                                                                            <form action="ANdeleted" method="POST">
+                                            <input name="ids" value="'. $row["id"] .'" hidden>
+                                            <button class="btnservice" name="submit" type="submit">Edit</button>
+                                        </form>
+                                                                        </section>
+                                                                
+                                                                </div>';
+                        }
+                    }
+                    else {
+                        echo "<p style='text-align:center;font-size:25px;padding:10px;background-color:white;'>There are currently no deleted News at the moment</p>";
                     }
                     $connn-> close();
                    ?>         

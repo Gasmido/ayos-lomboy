@@ -1,13 +1,11 @@
 <?php
 include '../include/headAdmin.php';
 include '../include/topbarAdmin.php';
+include '../include/sidebar.php';
+include '../include/db_conn.php';
 
-
-if (isset($_SESSION['dele'])) {
-    header("location: AEdeleted");
-     exit();
-}
-elseif (isset($_SESSION['iss'])) {
+$_SESSION['dele'] = "nono";
+if (isset($_SESSION['iss'])) {
 $idd = $_SESSION['iss'];
 }
 elseif (!isset($_POST['submit'])) {
@@ -19,10 +17,8 @@ elseif (isset($_POST['ids'])) {
 } 
 else {
 header('location: Announcements');
-exit();
 }
-include '../include/sidebar.php';
-include '../include/db_conn.php';
+
 ?>
 <div class="home-section">
 <div class="adddel">
@@ -84,10 +80,7 @@ include '../include/db_conn.php';
                 $connn-> close();
     ?>
     <button class="addd" onclick="document.location='Announcements'">BACK</button> 
-    <form action="Announcementremove.php" method="post" style="height:100%">
-         <input type="text" name="id" value="<?= $id ?>" hidden>
-        <button class="delle" type="submit" name="lokoka">REMOVE</button> 
-    </form>
+
 </div>      
 <div class="admin-homes"> 
     <div class="admin-events">
@@ -105,8 +98,8 @@ include '../include/db_conn.php';
             
             <section style="text-align:right">
                 <button class="btndocu wer" name="submit" type="submit">Edit</button>
+                <button class="btndocu wer" type="submit" name="jojo">Edit & Republish</button>
             </section>  
-
         </form>
     </div> 
       
