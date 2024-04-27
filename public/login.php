@@ -17,6 +17,7 @@
 <html lang="en" oncopy="return false;" oncontextmenu="return myRightClick();" oncut="return false;" onpaste="return false;">
   <head>
     <meta charset="UTF-8">
+     <link rel="icon" href="image/logoo.png" type="image/icon type">
     <link rel="stylesheet" href="../CSS/style.css<?='?'.$csstime ?>">   
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
@@ -104,6 +105,9 @@
     else if ($_GET["error"] == "wrong") {
       echo "<p class='example'>reCAPTCHA verification failed!</p>";
     }
+    else if ($_GET["error"] == "Email_alreadytaken") {
+      echo "<p class='example'>Email is already registered!</p>";
+    }
 		
 	/*	else if ($_GET["error"] == "none") {
 			echo "<p style='color:white; background: #8b0f0f;padding:5px;border-style:solid;border-width:2px;border-color:rgba(253, 114, 146, 1);'>Log-in successful!</p>";
@@ -143,9 +147,9 @@
 </div>
  <section style="text-align:center;margin-top: 10px;">
     <?php
-     echo "<a href='".$client->createAuthUrl()."'>";
+     echo "<a href='".$client->createAuthUrl()."' onclick='return callValidation();'>";
      ?>
-        <input type="submit" name="google" value="Login with Google" class=btnlog2>
+        <input type="submit" name="google" value="Login with Google" class="btnlog2">
         </a>
     </section>
 </div>
@@ -159,6 +163,23 @@
     x.type = "password";
   }
 }
+</script>
+<script type="text/javascript">
+
+    function callValidation(){
+
+            if(grecaptcha.getResponse().length == 0){
+
+            window.location.replace("https://ayos-lomboy.com/public/login.php?error=wrongf");
+
+            return false;
+
+        }
+
+        return true;
+
+    }
+
 </script>
   <script type="text/javascript">
                 const input = document.getElementById("txt5");

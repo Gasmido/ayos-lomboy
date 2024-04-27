@@ -34,7 +34,9 @@ if (isset($_GET['code'])) {
     $no = 0;
     $status = "Processing";
     $type = "user";
-
+    date_default_timezone_set('Asia/Manila');
+    $date = date('Y-m-d');  
+    $time = date('H:i:s');  
     $email = $userinfo['email'];
     $fname = $userinfo['first_name'];
     $lname = $userinfo['last_name'];
@@ -42,7 +44,10 @@ if (isset($_GET['code'])) {
     $token = $userinfo['token'];
 	$exname = "";
 	$miname = "";
-
+  if (duplicateEmail2($connn, $email) !== false) {
+    header("location: login.php?error=Email_alreadytaken");
+    exit();
+  }
 $sql = "SELECT * FROM users WHERE user_email = '{$userinfo['email']}'";
 $result = mysqli_query($connn, $sql);
   if (mysqli_num_rows($result) > 0) {
@@ -64,6 +69,17 @@ $result = mysqli_query($connn, $sql);
             $purok = $row['purok'];
             $citizenship = $row['citizenship'];
         }
+
+        $sql = "UPDATE users SET logdate=?, logtime=? WHERE user_id=?";
+        $stmt = mysqli_stmt_init($connn);
+        if (!mysqli_stmt_prepare($stmt, $sql)) {
+          header("location: login?error=stmtfailed");
+          exit();
+        }
+        mysqli_stmt_bind_param($stmt, "ssi", $date, $time, $id2);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+
   $_SESSION['user_token'] = $userinfo['token'];
   $_SESSION['ID'] = $id2;
   $_SESSION['user_type'] = $type;
@@ -77,11 +93,11 @@ $result = mysqli_query($connn, $sql);
 
 
 if ($purok == "" && $citizenship == "") {
-  header("Location: GoogleAccSettings.php");
+  header("Location: GoogleAccSettings");
   exit();
 }
 else {
-  header("Location: Homepage.php");
+  header("Location: Homepage");
   exit();
 }
 
@@ -115,6 +131,15 @@ else {
             $purok = $row['purok'];
             $citizenship = $row['citizenship'];
         }
+        $sql = "UPDATE users SET logdate=?, logtime=? WHERE user_id=?";
+        $stmt = mysqli_stmt_init($connn);
+        if (!mysqli_stmt_prepare($stmt, $sql)) {
+          header("location: login?error=stmtfailed");
+          exit();
+        }
+        mysqli_stmt_bind_param($stmt, "ssi", $date, $time, $id2);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
   $_SESSION['user_token'] = $userinfo['token'];
   $_SESSION['ID'] = $id2;
   $_SESSION['user_type'] = $type;
@@ -128,11 +153,11 @@ else {
 
 
 if ($purok == "" && $citizenship == "") {
-  header("Location: GoogleAccSettings.php");
+  header("Location: GoogleAccSettings");
   exit();
 }
 else {
-  header("Location: Homepage.php");
+  header("Location: Homepage");
   exit;
 }
 }

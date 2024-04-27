@@ -1,23 +1,27 @@
 <?php
 include '../include/headAdmin.php';
 include '../include/topbarAdmin.php';
-include '../include/sidebar.php';
-include '../include/db_conn.php';
+
 
 
 if (isset($_SESSION['iss'])) {
-$id = $_SESSION['iss'];
+$ids = $_SESSION['iss'];
 }
 elseif (!isset($_POST['submit'])) {
     header('location: OffStaff');            
 }
 elseif (isset($_POST['id'])) {
     
-    $id = $_POST['id'];
+    $ids = $_POST['id'];
+    if (!isset($_SESSION['iss'])) {
+    $_SESSION['iss'] = $_POST['id'];
+    }
 } 
 else {
 header('location: OffStaff');
 }
+include '../include/sidebar.php';
+include '../include/db_conn.php';
 
  ?>
 
@@ -45,7 +49,7 @@ header('location: OffStaff');
 	<div class="admin-home-blot">
 
         <?php
-            $sql2 = "SELECT * FROM officials WHERE id=".$id;
+            $sql2 = "SELECT * FROM officials WHERE id=".$ids;
                  $result2 = $connn-> query($sql2);
                  if ($result2-> num_rows > 0) {
                         while ($row = $result2-> fetch_assoc()) {

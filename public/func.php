@@ -136,6 +136,25 @@ function duplicateEmail($connn, $user) {
 	
 	mysqli_stmt_close($stmt);
 }
+function duplicateEmail2($connn, $email) {
+	$sql2 = "SELECT user_password FROM users WHERE user_email=?";
+						$stmt = $connn->prepare($sql2); 
+						$stmt->bind_param("s", $email);
+						$stmt->execute();
+						$result = $stmt->get_result();
+							while ($row = $result->fetch_assoc()) {
+							    $pass = $row['user_password'];
+							}
+	
+	if ($pass != NULL) {
+		return $email;
+	} else {
+		$result = false;
+		return $result;
+	}
+	
+	mysqli_stmt_close($stmt);
+}
 function duplicateName($connn, $firstname, $lastname, $citizenship, $sex) {
 	$sql = "SELECT * FROM resident WHERE firstname = ? AND lastname = ? AND citizenship = ? AND sex = ?;";
 	$stmt = mysqli_stmt_init($connn);

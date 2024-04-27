@@ -1,8 +1,7 @@
 <?php
 include '../include/headAdmin.php';
 include '../include/topbarAdmin.php';
-include '../include/sidebar.php';
-include '../include/db_conn.php';
+
 
 $_SESSION['dele'] = "nono";
 if (isset($_SESSION['iss'])) {
@@ -14,11 +13,15 @@ elseif (!isset($_POST['submit'])) {
 elseif (isset($_POST['ids'])) {
     
     $idd = $_POST['ids'];
+    if (!isset($_SESSION['iss'])) {
+    $_SESSION['iss'] = $_POST['ids'];
+    }
 } 
 else {
 header('location: Announcements');
 }
-
+include '../include/sidebar.php';
+include '../include/db_conn.php';
 ?>
 <div class="home-section">
 <div class="adddel">

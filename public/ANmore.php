@@ -16,6 +16,9 @@ elseif (!isset($_POST['submit'])) {
 elseif (isset($_POST['ids'])) {
     
     $idd = $_POST['ids'];
+    if (!isset($_SESSION['iss'])) {
+    $_SESSION['iss'] = $_POST['ids'];
+    }
 } 
 else {
 header('location: Announcements');

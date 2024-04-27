@@ -1,22 +1,26 @@
 <?php
 include '../include/headAdmin.php';
 include '../include/topbarAdmin.php';
-include '../include/sidebar.php';
-include '../include/db_conn.php';
+
 
 if (isset($_SESSION['iss'])) {
-$id = $_SESSION['iss'];
+$idd = $_SESSION['iss'];
 }
 elseif (!isset($_POST['submit'])) {
     header('location: BlotterRequest');            
 }
 elseif (isset($_POST['id'])) {
     
-    $id = $_POST['id'];
+    $idd = $_POST['id'];
+    if (!isset($_SESSION['iss'])) {
+    $_SESSION['iss'] = $_POST['id'];
+    }
 } 
 else {
 header('location: blotterRequest');
 }
+include '../include/sidebar.php';
+include '../include/db_conn.php';
                    ?>
 
 
@@ -34,7 +38,7 @@ header('location: blotterRequest');
                         unset($_SESSION['sta']);
                     }
 
-                     $sql2 = "SELECT * FROM blotter WHERE id=". $id;
+                     $sql2 = "SELECT * FROM blotter WHERE id=". $idd;
                  $result2 = $connn-> query($sql2);
                  if ($result2-> num_rows > 0) {
                         while ($row = $result2-> fetch_assoc()) {

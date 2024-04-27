@@ -16,7 +16,7 @@ require '../include/db_conn.php';
 // init configuration
 $clientID = '52777509574-3ffpbgmvqr0qvual0file3i3armqajun.apps.googleusercontent.com';
 $clientSecret = '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';
-$redirectUri = 'https://ayos-lomboy.com/public/welcome.php';
+$redirectUri = 'https://ayos-lomboy.com/public/welcome';
 
 // create Client Request to access Google API
 $client = new Google_Client();
