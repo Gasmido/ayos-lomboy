@@ -25,16 +25,21 @@ header('location: Household');
 	
     <div class="adddel">
         <?php
-        if (isset($_SESSION['statu'])) {
-                        echo "<p style='text-align:center;font-size:20px;font-weight:bold;padding-top:15px;color:green;' id='ha'>";
+       if (isset($_SESSION['statu'])) {
+                        echo "<p style='text-align:center;font-size:20px;font-weight:bold;padding-top:15px;color:red;' id='ha'>";
                         echo $_SESSION['statu']; echo "</p>";
                         unset($_SESSION['statu']);
-                    }
-                    elseif (isset($_SESSION['sta'])) {
-                         echo "<p style='text-align:center;font-size:20px;font-weight:bold;padding-top:15px;color:red;' id='ha'>Blotter number ";
-                        echo $_SESSION['sta']; echo "</p>";
-                        unset($_SESSION['sta']);
-                    }
+        }
+        elseif (isset($_SESSION['statuss'])) {
+                echo "<p style='text-align:center;font-size:20px;font-weight:bold;padding-top:15px;color:green;' id='ha'>";
+                echo $_SESSION['statuss']; echo "</p>";
+                unset($_SESSION['statuss']);
+        }
+        elseif (isset($_SESSION['sta'])) {
+                echo "<p style='text-align:center;font-size:20px;font-weight:bold;padding-top:15px;color:red;' id='ha'>";
+                echo $_SESSION['sta']; echo "</p>";
+                unset($_SESSION['sta']);
+        }
     ?>
     <button id="edi" class="edd" onclick="Edit()">EDIT HOUSEHOLD</button> 
 
@@ -70,7 +75,7 @@ header('location: Household');
     <a href="Household">
         <span class="closer">&times;</span>
     </a>
-    <h2>Blotter Record Information</h2>
+    <h2>Household Record Information</h2>
     <form method="post" action="Householdmore2.php">
     <div class="modal-inside">
         <div class="models">
@@ -87,7 +92,7 @@ header('location: Household');
                     <option value="4" <?php if ($Purok=="4") echo 'selected="selected"';?>>4</option>
                 </select>
                 <label>Date Registered:</label><br>
-                <input id="12" class="inpu" type="date" name="datereg" onkeyup="saveValue(this);" disabled><br>
+                <input id="12" class="inpu" type="date" name="datereg" value="<?= $Datereg ?>" onkeyup="saveValue(this);" disabled><br>
                 
             </div>
             <div class="inputpop2">
@@ -123,7 +128,6 @@ header('location: Household');
                 
                 ?>
                 </select>
-               <textarea><?php echo $inhabitss; ?></textarea>
                 <br>
                <input type="hidden" name="id" value="<?= $id ?>"/>
             </div>

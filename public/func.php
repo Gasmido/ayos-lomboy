@@ -1261,3 +1261,51 @@ function househod($connn,$houseno,$inhNo,$inh) {
 	}
 	return;
 }
+function editHousehold($connn,$houseno,$st,$prk,$datereg,$Munici,$brgy,$prv,$inhNo,$inh,$id) {
+    
+ //   foreach($inh as $as) {
+	$sql = "UPDATE household SET HouseNo=?,Street=?,Purok=?,Datereg=?,Municipality=?,Barangay=?,Province=? WHERE id=?";
+	$stmt = mysqli_stmt_init($connn);
+	mysqli_stmt_prepare($stmt, $sql);
+	
+	mysqli_stmt_bind_param($stmt, "sssssssi",$houseno,$st,$prk,$datereg,$Munici,$brgy,$prv,$id);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+//}
+	
+/*	foreach ($inh as $i) {
+        $inh=$i;
+	$sql = "INSERT INTO household SET HouseNo='$houseno',Street='$st',Purok='$prk',Datereg='$datereg',Inhabitants='$inh',Municipality='$Munici',Barangay='$brgy',Province='$prv'";
+	mysqli_query($connn,$sql);
+    }
+    */
+    househod2($connn,$houseno,$inhNo,$inh);
+	session_start();
+	$_SESSION["statuss"] = "Household Successfully Edited!";
+	$_SESSION["iss"] = $id;
+	header("location: Householdmore");
+		exit();
+}
+function househod2($connn,$houseno,$inhNo,$inh) {
+	$sql3 = "DELETE FROM household2 WHERE houseID = '". $houseno ."'";
+	if (mysqli_query($connn, $sql3)) {
+	foreach($inh as $as) {
+	$sql2 = "INSERT INTO household2 (houseID,Inhabitants,InhabitantsNo) VALUES (?,?,?);";
+	$stmt = mysqli_stmt_init($connn);
+	mysqli_stmt_prepare($stmt, $sql2);
+	
+	mysqli_stmt_bind_param($stmt, "isi",$houseno,$as,$inhNo);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	}
+	
+	return;
+	} else {
+	$_SESSION["statuss"] = "Household Failed to be Edited!";
+	$_SESSION["iss"] = $id;
+	header("location: Householdmore");
+		exit();
+	}
+
+	
+}

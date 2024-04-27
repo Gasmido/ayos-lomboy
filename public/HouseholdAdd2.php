@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
 
 	if (duplicatehouseno($connn, $houseno) !== false) {
 		session_start();
-		$_SESSION["sta"] = "Already Exists!";
+		$_SESSION["sta"] = "House No. Already Exists!";
 		header("location: Householdadd");
 		exit();
 	}

@@ -16,6 +16,8 @@ unset($_SESSION['iss']);
         localStorage.removeItem("10")
         localStorage.removeItem("11")
         localStorage.removeItem("12")
+        localStorage.removeItem("selectedtem")
+        localStorage.removeItem("selectedtem1")
     </script>
 <div class="home-section">
 <div class="admin-home-title">
@@ -143,7 +145,7 @@ unset($_SESSION['iss']);
                                 $result2 = mysqli_query($connn, $sql2);
                                 $num_rows = mysqli_num_rows($result2);
                                 
-                                echo "<td>". $row["HouseNo"] ."</td><td>". $row["Street"] .", ". $row["Purok"] .", ". $row["Barangay"] .", ". $row["Municipality"] .", ". $row["Province"] ."</td><td>". $row["Datereg"] ."</td><td>". $num_rows ."</td>
+                                echo "<td>". $row["HouseNo"] ."</td><td>". $row["Street"] .", Purok#". $row["Purok"] .", ". $row["Barangay"] .", ". $row["Municipality"] .", ". $row["Province"] ."</td><td>". $row["Datereg"] ."</td><td>". $num_rows ."</td>
                                         <td>
                                              <form action='Householdmore' method='POST'>
                                                 <input name='id' value='". $row['id'] ."' hidden>
@@ -192,6 +194,18 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+</script>
+<script type="text/javascript">
+    window.onload = function() {
+        timedHide(document.getElementById('ha'),3);
+    }
+    function timedHide(element, seconds) {
+        if (element) {
+            setTimeout(function() {
+                element.style.display = 'none';
+            }, seconds*1000);
+        }
+    }
 </script>
 <script src="../DataTables/js/jquery.js"></script>
 <script src="../DataTables/js/jquery.dataTables.js"></script>
