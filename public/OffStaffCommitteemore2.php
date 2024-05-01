@@ -4,7 +4,6 @@ session_start();
 if (isset($_POST['submit'])) {
 	$id = $_POST['id'];
     $name = $_POST['name'];
-    $chairmanship = $_POST['chairmanship'];
     $termstart = $_POST['termstart'];
     $termend = $_POST['termend'];
     $status = $_POST['status'];
@@ -13,7 +12,7 @@ if (isset($_POST['submit'])) {
 	require_once 'func.php';
 
 	if ($_FILES['image']['error'] === 4) {
-		editStaff2($connn, $name, $chairmanship, $termstart, $termend, $status, $id);
+		editCom2($connn, $name, $termstart, $termend, $status, $id);
 	}
 	else {
 		$fileName = $_FILES["image"]["name"];
@@ -26,11 +25,11 @@ if (isset($_POST['submit'])) {
 		if (!in_array($imageExtension, $validImageExtension)) {
 
 			$_SESSION['wrong'] = "Wrong image file type!";
-			header("location: OffStaffmore");
+			header("location: OffStaffmore.php?id=$id");
 		exit();
 		}
 		elseif ($fileSize > 10000000) {
-			header("location: OffStaffmore");
+			header("location: OffStaffmore.php?id=$id");
 			$_SESSION['big'] = "Image size is too big!";
 		exit();
 		}
@@ -40,11 +39,11 @@ if (isset($_POST['submit'])) {
 
 			move_uploaded_file($tmpName, 'image/' . $newImageName);
 			
-			editStaff($connn, $name, $chairmanship, $termstart, $termend, $newImageName, $status, $id);
+			editCom($connn, $name, $termstart, $termend, $newImageName, $status, $id);
 		}
 	}
 
 }
 else {
-	header("Location: OffStaff.php");
+	header("Location: OffStaff");
 }

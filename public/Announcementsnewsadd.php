@@ -13,18 +13,18 @@ if (isset($_POST['submit'])) {
 
 	if ($title == "") {
 		$_SESSION['title'] = "Please Add Title!";
-		header("location: Announcementsnews.php");
+		header("location: Announcementsnews");
 		exit();
 	}
 	elseif ($desc == "") {
 		$_SESSION['desc'] = "Please Add Description!";
-		header("location: Announcementsnews.php");
+		header("location: Announcementsnews");
 		exit();
 	}
 
 	elseif ($_FILES['image']['error'] === 4) {
 		$_SESSION['wrongs'] = "Please Add Image!";
-		header("location: Announcementsnews.php");
+		header("location: Announcementsnews");
 		exit();
 	}
 	else {
@@ -58,6 +58,6 @@ if (isset($_POST['submit'])) {
 	
 }
 else {
-	header("Location: Announcementsnews.php");
+	header("Location: Announcementsnews");
 	exit();
 }

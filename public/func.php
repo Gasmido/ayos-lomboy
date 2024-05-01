@@ -1328,3 +1328,103 @@ function househod2($connn,$houseno,$inhNo,$inh) {
 
 	
 }
+function addTanod($connn, $newImageName, $fname, $position, $termstart, $termend,$ss,$com) {
+	$sql = "INSERT INTO officials (name,position,termstart,termend,image,status,committee) VALUES (?,?,?,?,?,?,?);";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "sssssss", $fname,$position,$termstart, $termend,$newImageName,$ss,$com);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	session_start();
+	$_SESSION["statuss"] = "Tanod Successfully Added!";
+	
+	header("location: OffStaff");
+		exit();
+}
+function editTanod($connn, $name, $termstart, $termend, $newImageName, $status, $id) {
+	$sql = "UPDATE officials SET name=?, termstart=?, termend=?, image=?, status=? WHERE id=?";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: OffStaff?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "sssssi", $name, $termstart, $termend, $newImageName, $status, $id);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	session_start();
+	$_SESSION["statu"] = "Data Successfully Updated!";
+	$_SESSION["iss"] = $id;
+
+	header("location: TanodStaffmore");
+		exit();
+}
+function editTanod2($connn, $name, $termstart, $termend, $status, $id) {
+	$sql = "UPDATE officials SET name=?, termstart=?, termend=?, status=? WHERE id=?";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: OffStaff?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "ssssi", $name, $termstart, $termend, $status, $id);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	session_start();
+	$_SESSION["statu"] = "Data Successfully Updated!";
+	$_SESSION["iss"] = $id;
+
+	header("location: TanodStaffmore");
+		exit();
+}
+function addCom($connn, $newImageName, $fname, $position, $termstart, $termend,$ss,$com) {
+	$sql = "INSERT INTO officials (name,position,termstart,termend,image,status,committee) VALUES (?,?,?,?,?,?,?);";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "sssssss", $fname,$position,$termstart, $termend,$newImageName,$ss,$com);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	session_start();
+	$_SESSION["statuss"] = "Staff Successfully Added!";
+	
+	header("location: OffStaffCommittee");
+		exit();
+}
+function editCom($connn, $name, $termstart, $termend, $newImageName, $status, $id) {
+	$sql = "UPDATE officials SET name=?, termstart=?, termend=?, image=?, status=? WHERE id=?";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: OffStaff?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "sssssi", $name, $termstart, $termend, $newImageName, $status, $id);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	session_start();
+	$_SESSION["statu"] = "Data Successfully Updated!";
+	$_SESSION["iss"] = $id;
+
+	header("location: OffStaffCommitteemore");
+		exit();
+}
+function editCom2($connn, $name, $termstart, $termend, $status, $id) {
+	$sql = "UPDATE officials SET name=?, termstart=?, termend=?, status=? WHERE id=?";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: OffStaff?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "ssssi", $name, $termstart, $termend, $status, $id);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	session_start();
+	$_SESSION["statu"] = "Data Successfully Updated!";
+	$_SESSION["iss"] = $id;
+
+	header("location: OffStaffCommitteemore");
+		exit();
+}

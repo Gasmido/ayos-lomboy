@@ -5,6 +5,11 @@ include '../include/sidebar.php';
 include '../include/db_conn.php';
 unset($_SESSION['iss']);
 ?>
+<script type="text/javascript">
+        localStorage.removeItem("bt")
+        localStorage.removeItem("loi")
+        localStorage.removeItem("dof")
+    </script>
 <div class="home-section">
 <div class="admin-home-title">
         <h1>
@@ -13,10 +18,27 @@ unset($_SESSION['iss']);
     </div>
     <div class="admin-home">	
      <div class="adddel">
-
+<?php
+        if (isset($_SESSION['statu'])) {
+                        echo "<p style='text-align:center;font-size:20px;font-weight:bold;padding-top:15px;color:red;' id='ha'>";
+                        echo $_SESSION['statu']; echo "</p>";
+                        unset($_SESSION['statu']);
+        }
+        elseif (isset($_SESSION['statuss'])) {
+                echo "<p style='text-align:center;font-size:20px;font-weight:bold;padding-top:15px;color:green;' id='ha'>";
+                echo $_SESSION['statuss']; echo "</p>";
+                unset($_SESSION['statuss']);
+        }
+        
+    ?>
       </div> 
 
-<div style="height: 20px;width: 100%;"></div>
+<div style="height: 70px;width: 100%;padding:10px;padding-left:20px">
+    <h1>
+        Barangay Officials
+    </h1>
+    
+</div>
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
@@ -33,7 +55,7 @@ unset($_SESSION['iss']);
             <tbody>
 
                  <?php
-                    $sql = "SELECT * from officials";
+                    $sql = "SELECT * from officials WHERE committee = 'Official'";
                     $result = $connn-> query($sql);
 
                     if ($result-> num_rows > 0) {
@@ -52,7 +74,7 @@ unset($_SESSION['iss']);
                     else {
                         echo "<p style='text-align:center;font-size:25px;padding-bottom:15px;'>There are currently no officials data at the moment</p>";
                     }
-                    $connn-> close();
+
                    ?>
 
             
@@ -60,10 +82,74 @@ unset($_SESSION['iss']);
         </table>
                 </div>
             </div>
+             <hr style="margin-top:50px">
+             <div style="height: 70px;width: 100%;padding:10px;padding-left:20px;display:flex;margin-bottom:20px">
+                <h1 style="width:50%">
+                    Barangay Tanod
+                </h1>
+                <div style="display:;width:50%; text-align:right;height:60px;float:right;" >
+                    <button class="addd" onclick="document.location='TanodAdd'" style="height:100%">ADD TANOD</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <table id="example" class="table table-striped table-bordered" style="width:100%">
+             <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                 <?php
+                    $sql = "SELECT * from officials WHERE position = 'Tanod'";
+                    $result = $connn-> query($sql);
+
+                    if ($result-> num_rows > 0) {
+                        while ($row = $result-> fetch_assoc()) {
+                            echo "<tr><td>". $row["name"] ."</td><td>". $row["position"] ."</td>
+                            <td>". $row["status"] ."</td>
+                                    <td>
+                                        <form action='TanodStaffmore' method='POST'>
+                                            <input name='id' value='". $row['id'] ."' hidden>
+                                            <button class='editt' name='submit' type='submit'>MORE</button>
+                                        </form>
+                                    </td>
+                                    </tr>";
+                        }
+                    }
+                    else {
+                        echo "<p style='text-align:center;font-size:25px;padding-bottom:15px;'>There are currently no tanod information at the moment</p>";
+                    }
+                    $connn-> close();
+                   ?>
+
+            
+        </tbody>
+        </table>
+                </div>
+            </div>  
         </div>
+       
+        
     </div>
 </div>
 </div>
+<script type="text/javascript">
+    window.onload = function() {
+        timedHide(document.getElementById('ha'),3);
+    }
+    function timedHide(element, seconds) {
+        if (element) {
+            setTimeout(function() {
+                element.style.display = 'none';
+            }, seconds*1000);
+        }
+    }
+</script>
 <script type="text/javascript">// Get the modal
 var modal = document.getElementById("myModal");
 var modal1 = document.getElementById("myModal1");
@@ -114,8 +200,3 @@ window.onclick = function(event) {
   }
 }
 </script>
-<script src="../DataTables/js/jquery.js"></script>
-<script src="../DataTables/js/jquery.dataTables.js"></script>
-<script src="../DataTables/js/bootstrap.js"></script>
-<script src="../DataTables/js/dataTables.bootstrap.js"></script>
-<script src="../DataTables/js/script.js"></script>
