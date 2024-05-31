@@ -1,0 +1,9 @@
+new DataTable('#example');
+new DataTable('#example1');
+new DataTable('#example2');
+new DataTable('#example3');
+new DataTable('#example4');
+new DataTable('#example5');
+new DataTable('#example6');
+new DataTable('#example7');
+new DataTable('#example8');
