@@ -27,7 +27,34 @@ include 'sidebar.php';
 include 'db_conn.php';
                    ?>
 
-
+<script type="text/javascript">
+    localStorage.removeItem("bt")
+    localStorage.removeItem("datereq")
+    localStorage.removeItem("docreq")
+    localStorage.removeItem("dof")
+    localStorage.removeItem("porok")
+    localStorage.removeItem("fnme")
+    localStorage.removeItem("prkk")
+    localStorage.removeItem("dobb")
+    localStorage.removeItem("pobb")
+    localStorage.removeItem("he")
+    localStorage.removeItem("we")
+    localStorage.removeItem("dreq")
+    localStorage.removeItem("por")
+    localStorage.removeItem("1a")
+    localStorage.removeItem("2a")
+    localStorage.removeItem("3a")
+    localStorage.removeItem("4a")
+    localStorage.removeItem("5a")
+    localStorage.removeItem("6a")
+    localStorage.removeItem("dtrq")
+    localStorage.removeItem("cpd")
+    localStorage.removeItem("1q")
+    localStorage.removeItem("2q")
+    localStorage.removeItem("3q")
+    localStorage.removeItem("4q")
+    localStorage.removeItem("5q")
+</script>
 <div class="home-section">	
 <div class="adddel">
         <?php
@@ -64,6 +91,7 @@ include 'db_conn.php';
                             $height = $row['height'];
                             $weight = $row['weight'];
                             $BCpurpose = $row['BCpurpose'];
+                            $BCcstatus = $row['COR_civilStatus'];
                             //kasunduan
                             $Bname = $row['Bname'];
                             $Lname = $row['Lname'];
@@ -109,16 +137,17 @@ include 'db_conn.php';
                  <label>Full Name:</label><br>
                 <input id="bt" class="inpu" type="text" name="name" value="<?= $fullname ?>" readonly placeholder="Enter Blotter Type" required><br>
                 <label>Date Requested:</label><br>
-                <input id="cp" class="inpu" type="text" name="daterequest" value="<?= $Curdate ?>" readonly placeholder="Enter Complainant" required><br>
+                <input id="datereq" class="inpu" type="text" name="daterequest" value="<?= $Curdate ?>" readonly placeholder="Enter Complainant" required><br>
                 <label>Document Requested:</label><br>
-                <input id="cpd" class="inpu" type="text" name="Docutype" value="<?= $documenttype ?>" readonly placeholder="Enter Complained" required><br>
+                <input id="docreq" class="inpu" type="text" name="Docutype" value="<?= $documenttype ?>" readonly placeholder="Enter Complained" required><br>
                 <label>Date of Residence:</label><br>
                             <input id="dof" class="inpu" type="text" name="dof" value="<?= $dateOfResidence ?>" readonly placeholder="Enter Date" required><br>
+                         
                   <?php
                     if ($documenttype == "Certificate of Residency") {
                         echo '
                             <label>Purok:</label><br>
-                            <input id="dof" class="inpu" type="text" name="purok" value="'. $purok .'" readonly placeholder="Enter Date" required><br>
+                            <input id="porok" class="inpu" type="text" name="purok" value="'. $purok .'" readonly placeholder="Enter Date" required><br>
                            
                         ';
                     }
@@ -128,7 +157,7 @@ include 'db_conn.php';
             </div>
             <div class="inputpop2">
                 <label for="blotterin">Purpose:</label><br>
-                <textarea class="inpuer" id="blotterin" name="BI" rows="35" cols="5" readonly required><?php if ($documenttype == "Certificate of Residency") {echo $CORPurpose; } 
+                <textarea class="inpuer" id="repur" name="BI" rows="35" cols="5" readonly required><?php if ($documenttype == "Certificate of Residency") {echo $CORPurpose; } 
                     else {
                         echo $COIReason;
                     }?></textarea>
@@ -179,9 +208,9 @@ include 'db_conn.php';
                                <option value="Picked-up" <?php if ($Status=="Picked-up") echo 'selected="selected"';?>>Picked-up</option>
                             </select>
                             <br /> 
-
-                           <a href="asdf.htm" style="font-size: 40px;margin-left: 50px; padding-top: 15px;"><i class='bx bx-printer'></i></a>
-                            <button id="editsub" class="btndocu wer" name="submit" type="submit" >Update</button>
+                            
+                           <a href="COR.htm" style="font-size: 40px;margin-left: 50px; margin-top: 15px;border: 1px solid black" onclick="saveInputValue();"><i class='bx bx-printer'></i></a>
+                            <button id="editsub" class="btndocu wer" name="submit" type="submit">Update</button>
                              
                         <?php 
                             }
@@ -195,10 +224,6 @@ include 'db_conn.php';
       
     </div>
 </form>
-<form method="post" action="asdf.htm">
-    <input type="text" name="id" value="<?= $id ?>" hidden>
-<button style="font-size: 40px;margin-left: 50px; padding-top: 15px;" type="submit" name="sub"><i class='bx bx-printer'></i></button> 
-</form>
 <?php 
     } elseif ($documenttype == "Certificate of Indigency") {
 ?>
@@ -208,7 +233,7 @@ include 'db_conn.php';
             <div class="inputpop">   
             <input type="text" name="email" value="<?= $useremail ?>" hidden>         
                  <label>Full Name:</label><br>
-                <input id="bt" class="inpu" type="text" name="name2" value="<?= $fullname ?>" readonly placeholder="Enter Blotter Type" required><br>
+                <input id="bt2" class="inpu" type="text" name="name2" value="<?= $fullname ?>" readonly placeholder="Enter Blotter Type" required><br>
                 <label>Date Requested:</label><br>
                 <input id="cp" class="inpu" type="text" name="daterequest2" value="<?= $Curdate ?>" readonly placeholder="Enter Complainant" required><br>
                 <label>Document Requested:</label><br>
@@ -257,7 +282,7 @@ include 'db_conn.php';
                                <option value="Picked-up" <?php if ($Status=="Picked-up") echo 'selected="selected"';?>>Picked-up</option>
                             </select>
                             <br />  
-                       <!--     <a href="asdfff.htm" style="font-size: 40px;margin-left: 50px; padding-top: 15px;"><i class='bx bx-printer'></i></a>    -->
+                       <a href="Indigency.htm" style="font-size: 40px;margin-left: 50px; margin-top: 15px;border: 1px solid black" onclick="saveInputValueI();"><i class='bx bx-printer'></i></a>
                     <button id="editsub" class="btndocu wer" name="submit2" type="submit" >Update</button>
                             <?php
                                 }
@@ -281,23 +306,23 @@ include 'db_conn.php';
         <div class="models">
             <div class="inputpop">            
                 <label>Borrower:</label><br>
-                <input  class="inpu" type="text" name="Bname" value="<?= $Bname ?>" readonly placeholder="Enter Blotter Type" required><br>
+                <input id="1a" class="inpu" type="text" name="Bname" value="<?= $Bname ?>" readonly placeholder="Enter Blotter Type" required><br>
                 <label>Lender:</label><br>
-                <input  class="inpu" type="text" name="Lname" value="<?= $Lname ?>" readonly placeholder="Enter Blotter Type" required><br>
+                <input id="4a" class="inpu" type="text" name="Lname" value="<?= $Lname ?>" readonly placeholder="Enter Blotter Type" required><br>
                 <label>Full Address:</label><br>
-                <input  class="inpu" type="text" name="address" value="<?= $kaddress ?>" readonly placeholder="Enter Blotter Type" required><br>
+                <input id="2a" class="inpu" type="text" name="address" value="<?= $kaddress ?>" readonly placeholder="Enter Blotter Type" required><br>
                  <label>Money Borrowed (Total Amount):</label><br>
-                <input  class="inpu" type="text" name="money" value="<?= $Kmoney ?>" readonly placeholder="Enter Blotter Type" required><br>
+                <input id="3a" class="inpu" type="text" name="money" value="<?= $Kmoney ?>" readonly placeholder="Enter Blotter Type" required><br>
                 
 
             </div>
             <div class="inputpop2">
                 <label>Borrower's Agricultural Land Size: (Hectares)</label><br>
-                <input  class="inpu" type="text" name="BAL" value="<?= $KBAL ?>" readonly placeholder="Enter Blotter Type" required><br>
+                <input id="5a" class="inpu" type="text" name="BAL" value="<?= $KBAL ?>" readonly placeholder="Enter Blotter Type" required><br>
                  <label>Borrower's Agricultural Land Location:</label><br>
-                <input  class="inpu" type="text" name="BALL" value="<?= $KBALL ?>" readonly placeholder="Enter Blotter Type" required><br>
+                <input id="6a" class="inpu" type="text" name="BALL" value="<?= $KBALL ?>" readonly placeholder="Enter Blotter Type" required><br>
                 <label>Date Requested:</label><br>
-                <input id="cp" class="inpu" type="text" name="daterequest2" value="<?= $Curdate ?>" readonly placeholder="Enter Complainant" required><br>
+                <input id="dtrq" class="inpu" type="text" name="daterequest2" value="<?= $Curdate ?>" readonly placeholder="Enter Complainant" required><br>
                 <label>Document Requested:</label><br>
                 <input id="cpd" class="inpu" type="text" name="Docutype2" value="<?= $documenttype ?>" readonly placeholder="Enter Complained" required><br>
                 <br> 
@@ -339,7 +364,7 @@ include 'db_conn.php';
                                <option value="Picked-up" <?php if ($Status=="Picked-up") echo 'selected="selected"';?>>Picked-up</option>
                             </select>
                             <br />  
-                       <!--     <a href="asdfff.htm" style="font-size: 40px;margin-left: 50px; padding-top: 15px;"><i class='bx bx-printer'></i></a>    -->
+                        <a href="Kasunduan.htm" style="font-size: 40px;margin-left: 50px; margin-top: 15px;border: 1px solid black" onclick="saveInputValueK();"><i class='bx bx-printer'></i></a>
                     <button id="editsub" class="btndocu wer" name="submit3" type="submit" >Update</button>
                             <?php
                                 }
@@ -363,29 +388,38 @@ include 'db_conn.php';
             <div class="inputpop">    
                 <input type="text" name="email" value="<?= $useremail ?>" hidden>
              <label>Document Requested:</label><br>
-                <input id="cpd" class="inpu" type="text" name="Docutype2" value="<?= $documenttype ?>" readonly placeholder="Enter Complained" required><br>        
+                <input id="dr" class="inpu" type="text" name="Docutype2" value="<?= $documenttype ?>" readonly placeholder="Enter Complained" required><br>        
                 <label>Full Name:</label><br>
-                <input  class="inpu" type="text" name="fname" value="<?= $fullname ?>" readonly placeholder="Enter Blotter Type" required><br>
+                <input id="fnme" class="inpu" type="text" name="fname" value="<?= $fullname ?>" readonly placeholder="Enter Blotter Type" required><br>
                 <label>Purok:</label><br>
-                <input  class="inpu" type="text" name="purok" value="<?= $purok ?>" readonly placeholder="Enter Blotter Type" required><br>
+                <input id="prkk" class="inpu" type="text" name="purok" value="<?= $purok ?>" readonly placeholder="Enter Blotter Type" required><br>
                 <label>Date of Birth:</label><br>
-                <input  class="inpu" type="text" name="dob" value="<?= $dateofBirth ?>" readonly placeholder="Enter Blotter Type" required><br>
+                <input id="dobb" class="inpu" type="text" name="dob" value="<?= $dateofBirth ?>" readonly placeholder="Enter Blotter Type" required><br>
                  <label>Place of Birth:</label><br>
-                <input  class="inpu" type="text" name="pob" value="<?= $placeOfBirth ?>" readonly placeholder="Enter Blotter Type" required><br>
+                <input id="pobb" class="inpu" type="text" name="pob" value="<?= $placeOfBirth ?>" readonly placeholder="Enter Blotter Type" required><br>
                 
                 
 
             </div>
             <div class="inputpop2">
                 <label>Height: (cm)</label><br>
-                <input  class="inpu" type="text" name="height" value="<?= $height ?>" readonly placeholder="Enter Blotter Type" required><br>
+                <input id="he" class="inpu" type="text" name="height" value="<?= $height ?>" readonly placeholder="Enter Blotter Type" required><br>
                  <label>Weight: (kg)</label><br>
-                <input  class="inpu" type="text" name="weight" value="<?= $weight ?>" readonly placeholder="Enter Blotter Type" required><br>
+                <input id="we" class="inpu" type="text" name="weight" value="<?= $weight ?>" readonly placeholder="Enter Blotter Type" required><br>
                 <label>Date Requested:</label><br>
-                <input id="cp" class="inpu" type="text" name="daterequest2" value="<?= $Curdate ?>" readonly placeholder="Enter Complainant" required><br>
+                <input id="dreq" class="inpu" type="text" name="daterequest2" value="<?= $Curdate ?>" readonly placeholder="Enter Complainant" required><br>
                 <label>Purpose:</label><br>
-                <input  class="inpu" type="text" name="purpose" value="<?= $BCpurpose ?>" readonly placeholder="Enter Blotter Type" required><br>
-                <br> 
+                <input id="por" class="inpu" type="text" name="purpose" value="<?= $BCpurpose ?>" readonly placeholder="Enter Blotter Type" required><br>
+
+                <label>Civil Status:</label>
+                            <label for="stata"></label>
+                           <select id="stata" name="status" disabled class="inpu" style="margin-bottom: 80px;">
+                               <option value="Single" <?php if ($BCcstatus=="Single") echo 'selected="selected"';?>>Single</option>
+                              <option value="Married" <?php if ($BCcstatus=="Married") echo 'selected="selected"';?>>Married</option>
+                               <option value="Widowed" <?php if ($BCcstatus=="Widowed") echo 'selected="selected"';?>>Widowed</option>
+                               <option value="Divorced" <?php if ($BCcstatus=="Divorced") echo 'selected="selected"';?>>Divorced</option>
+                                
+                            </select>
             </div>
             <div class="inputpop3">
                  <?php 
@@ -424,7 +458,7 @@ include 'db_conn.php';
                                <option value="Picked-up" <?php if ($Status=="Picked-up") echo 'selected="selected"';?>>Picked-up</option>
                             </select>
                             <br />  
-                       <!--     <a href="asdfff.htm" style="font-size: 40px;margin-left: 50px; padding-top: 15px;"><i class='bx bx-printer'></i></a>    -->
+                        <a href="Clearance.htm" style="font-size: 40px;margin-left: 50px; margin-top: 15px;border: 1px solid black" onclick="saveInputValueC();"><i class='bx bx-printer'></i></a>
                     <button id="editsub" class="btndocu wer" name="submit4" type="submit" >Update</button>
                             <?php
                                 }
@@ -448,13 +482,13 @@ include 'db_conn.php';
             <div class="inputpop">    
                 <input type="text" name="email" value="<?= $useremail ?>" hidden>
              <label>Document Requested:</label><br>
-                <input id="cpd" class="inpu" type="text" name="Docutype2" value="<?= $documenttype ?>" readonly placeholder="Enter Complained" required><br>        
+                <input class="inpu" type="text" name="Docutype2" value="<?= $documenttype ?>" readonly placeholder="Enter Complained" required><br>        
                 <label>Full Name:</label><br>
-                <input  class="inpu" type="text" name="fname" value="<?= $fullname ?>" readonly placeholder="Fullname" required><br>
+                <input id="1q" class="inpu" type="text" name="fname" value="<?= $fullname ?>" readonly placeholder="Fullname" required><br>
                 <label>Residing Barangay:</label><br>
-                <input  class="inpu" type="text" name="rbrgy" value="<?= $BarcRBrgy ?>" readonly placeholder="Enter Blotter Type" required><br>
+                <input id="5q" class="inpu" type="text" name="rbrgy" value="<?= $BarcRBrgy ?>" readonly placeholder="Enter Blotter Type" required><br>
                 <label>Date Requested:</label><br>
-                <input id="cp" class="inpu" type="text" name="daterequest2" value="<?= $Curdate ?>" readonly placeholder="Enter Complainant" required><br>
+                <input class="inpu" type="text" name="daterequest2" value="<?= $Curdate ?>" readonly placeholder="Enter Complainant" required><br>
                 
                 
                 
@@ -462,11 +496,11 @@ include 'db_conn.php';
             </div>
             <div class="inputpop2">
                 <label>Agricultural Land Area: (sq.m.)</label><br>
-                <input  class="inpu" type="text" name="sqm" value="<?= $BarcALAsqm ?>" readonly placeholder="Enter Blotter Type" required><br>
+                <input id="2q" class="inpu" type="text" name="sqm" value="<?= $BarcALAsqm ?>" readonly placeholder="Enter Blotter Type" required><br>
                  <label>Agricultural Land Area: (Hectares)</label><br>
-                <input  class="inpu" type="text" name="hectare" value="<?= $BarcALAhectare ?>" readonly placeholder="Enter Blotter Type" required><br>
+                <input id="3q" class="inpu" type="text" name="hectare" value="<?= $BarcALAhectare ?>" readonly placeholder="Enter Blotter Type" required><br>
                 <label>Registered Owner of Agricultural Land:</label><br>
-                <input  class="inpu" type="text" name="owner" value="<?= $BarcOwner ?>" readonly placeholder="Enter Blotter Type" required><br>
+                <input id="4q" class="inpu" type="text" name="owner" value="<?= $BarcOwner ?>" readonly placeholder="Enter Blotter Type" required><br>
                  
                 <br> 
             </div>
@@ -507,7 +541,7 @@ include 'db_conn.php';
                                <option value="Picked-up" <?php if ($Status=="Picked-up") echo 'selected="selected"';?>>Picked-up</option>
                             </select>
                             <br />  
-                       <!--     <a href="asdfff.htm" style="font-size: 40px;margin-left: 50px; padding-top: 15px;"><i class='bx bx-printer'></i></a>    -->
+                        <a href="BARC.htm" style="font-size: 40px;margin-left: 50px; margin-top: 15px;border: 1px solid black" onclick="saveInputValueB();"><i class='bx bx-printer'></i></a>
                     <button id="editsub" class="btndocu wer" name="submit5" type="submit" >Update</button>
                             <?php
                                 }
@@ -678,6 +712,54 @@ include 'db_conn.php';
 
 </div>
 </div>
+ 
+<script type="text/javascript">
+
+    function saveInputValue() {
+        localStorage.setItem("dof", document.getElementById("dof").value);
+        localStorage.setItem("porok", document.getElementById("porok").value);
+        localStorage.setItem("bt", document.getElementById("bt").value);
+        localStorage.setItem("datereq", document.getElementById("datereq").value);
+        localStorage.setItem("docreq", document.getElementById("docreq").value);
+        localStorage.setItem("bt2", document.getElementById("bt2").value);
+    }  
+
+    function saveInputValueI() {
+        localStorage.setItem("bt2", document.getElementById("bt2").value);
+    }  
+
+    function saveInputValueC() {
+        localStorage.setItem("fnme", document.getElementById("fnme").value);
+        localStorage.setItem("prkk", document.getElementById("prkk").value);
+        localStorage.setItem("dobb", document.getElementById("dobb").value);
+        localStorage.setItem("pobb", document.getElementById("pobb").value);
+        localStorage.setItem("he", document.getElementById("he").value);
+        localStorage.setItem("we", document.getElementById("we").value);
+        localStorage.setItem("dreq", document.getElementById("dreq").value);
+        localStorage.setItem("por", document.getElementById("por").value);
+    }  
+
+    function saveInputValueK() {
+        localStorage.setItem("1a", document.getElementById("1a").value);
+        localStorage.setItem("2a", document.getElementById("2a").value);
+        localStorage.setItem("3a", document.getElementById("3a").value);
+        localStorage.setItem("4a", document.getElementById("4a").value);
+        localStorage.setItem("5a", document.getElementById("5a").value);
+        localStorage.setItem("6a", document.getElementById("6a").value);
+        localStorage.setItem("dtrq", document.getElementById("dtrq").value);
+        localStorage.setItem("cpd", document.getElementById("cpd").value);
+    } 
+
+    function saveInputValueB() {
+        localStorage.setItem("1q", document.getElementById("1q").value);
+        localStorage.setItem("2q", document.getElementById("2q").value);
+        localStorage.setItem("3q", document.getElementById("3q").value);
+        localStorage.setItem("4q", document.getElementById("4q").value);
+        localStorage.setItem("5q", document.getElementById("5q").value);
+    } 
+
+
+</script>
 <script type="text/javascript">
     window.onload = function() {
    sessionStorage.setItem("favoriteMovie", "Shrek");

@@ -42,7 +42,11 @@ include 'sidebar.php';
         <span class="closer">&times;</span>
     </a>
     <h2>Add Staff</h2>
-    
+    <?php 
+        if (isset($_POST['com'])) {
+            $coom = $_POST['com'];
+        }
+    ?>
     <form method="post" action="OffStaffCommitteeAdd2.php" enctype="multipart/form-data">
     <div class="modal-inside">
         <div class="models">
@@ -61,6 +65,8 @@ include 'sidebar.php';
                     <option id="select" value="select" disabled="" selected="">Please Select Position</option>
                     <option id="wk_sl_search_select_Chairperson" name="1" value="Chairperson">Chairperson</option>
                     <option id="wk_sl_search_select_Co-Chairperson" name="2" value="Co-Chairperson">Co-Chairperson</option>
+                    <?php if ($coom == "Health") { 
+                        echo '<option value="BHW">BHW</option>';} ?>
                 </select>
             </div>
             <div class="inputpop3">

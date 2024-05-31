@@ -3,10 +3,7 @@ include 'headAdmin.php';
 include 'topbarAdmin.php';
 
 
-if (isset($_SESSION['dele'])) {
-    header("location: TanodStaffdeleted");
-     exit();
-}
+$_SESSION['dele'] = 'nono';
 if (isset($_SESSION['iss'])) {
 $ids = $_SESSION['iss'];
 }
@@ -51,13 +48,8 @@ include 'db_conn.php';
                         unset($_SESSION['big']);
         }
     ?>
-    <button id="edi" class="edd" onclick="Edit()">EDIT</button> 
-
-    <button id="edi2" class="edd2" onclick="cancel()">CANCEL</button> 
-    <form action="TanodStaffremove.php" method="post" style="height:100%">
-         <input type="text" name="id" value="<?= $ids ?>" hidden>
-        <button class="delle" type="submit" name="lokooka">REMOVE</button> 
-    </form>
+    
+    
       </div>
 	<div class="admin-home-blot">
 
@@ -91,7 +83,7 @@ include 'db_conn.php';
     <a href="OffStaff">
         <span class="closer">&times;</span>
     </a>
-    <h2>Official Tanod Information</h2>
+    <h2>Removed Tanod Information</h2>
     
     <form method="post" action="TanodStaffmore2.php" enctype="multipart/form-data">
     <div class="modal-inside">
@@ -99,28 +91,28 @@ include 'db_conn.php';
             <div class="inputpop">
             <label>Official Photo:</label>            
                 <img src="image/<?= $image ?>" style="width: 250px;height: 240px;" id="output">
-               <input type="file" accept=".jpg, .jpeg, .png" name="image" id="image" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])" disabled> <br>
+               <input type="file" accept=".jpg, .jpeg, .png" name="image" id="image" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])" > <br>
             </div>
             <div class="inputpop2">
                 <label>Fullname:</label><br>
-                <input id="bt" class="inpu" type="text" name="name" value="<?= $name ?>" readonly placeholder="Enter Blotter Type" required><br>
+                <input id="bt" class="inpu" type="text" name="name" value="<?= $name ?>"  placeholder="Enter Blotter Type" required><br>
                 <label>Position:</label><br>
                 <input class="inpu" type="text" name="position" value="<?= $position ?>" disabled placeholder="Enter Complained"><br>
                  <label>Status:</label>
                         <label for="stat"></label>
-                        <select id="stat" name="status"  class="inpu" style="margin-bottom: 20px;" disabled>
+                        <select id="stat" name="status"  class="inpu" style="margin-bottom: 20px;" >
                             <option value="Active" <?php if ($Status=="Active") echo 'selected="selected"';?>>Active</option>
                             <option value="Inactive" <?php if ($Status=="Inactive") echo 'selected="selected"';?>>Inactive</option>
                         </select>
             </div>
             <div class="inputpop3">
                <label>Term Start:</label><br>
-                <input id="loi" class="inpu" type="date" name="termstart" value="<?= $termstart ?>" placeholder="Enter Location" readonly required><br>
+                <input id="loi" class="inpu" type="date" name="termstart" value="<?= $termstart ?>" placeholder="Enter Location"  required><br>
                 <label>Term End:</label><br>
-                <input id="dof" class="inpu" type="date" name="termend" value="<?= $termend ?>" readonly placeholder="Enter Date" required><br>
+                <input id="dof" class="inpu" type="date" name="termend" value="<?= $termend ?>"  placeholder="Enter Date" required><br>
                <input type="hidden" name="id" value="<?= $id ?>"/>
                    <button id="editsub" class="btndocu wer" name="submit" type="submit" hidden>Update</button> 
-
+                   <button class="btndocu wer" type="submit" name="jojo2">Update & Readd</button>
             </div>
         </div>  
 
