@@ -87,7 +87,7 @@ chart.render();
             $blotter = mysqli_num_rows($result); 
             mysqli_free_result($result); 
         }
-        $query2 = "SELECT id FROM docreq"; 
+        $query2 = "SELECT id FROM docreq WHERE Status = 'Processing'"; 
         $result2 = mysqli_query($connn, $query2); 
           
         if ($result2) 

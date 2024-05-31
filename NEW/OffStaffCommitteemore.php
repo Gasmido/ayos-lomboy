@@ -60,6 +60,7 @@ include 'db_conn.php';
                             $termend = $row['termend'];
                             $image = $row['image'];
                             $Status= $row['status'];
+                            $com = $row['committee'];
 
 
                         }
@@ -78,7 +79,15 @@ include 'db_conn.php';
         <span class="closer">&times;</span>
     </a>
     <h2>Edit Staff Information</h2>
-    
+    <?php
+        if (isset($_POST['com'])) {
+            $coom = $_POST['com'];
+            $_SESSION['coom'] = $coom;
+        }
+        elseif (isset($_SESSION['coom'])) {
+            $coom = $_SESSION['coom'];
+        }
+    ?>
     <form method="post" action="OffStaffCommitteemore2.php" enctype="multipart/form-data">
     <div class="modal-inside">
         <div class="models">
@@ -89,17 +98,27 @@ include 'db_conn.php';
             </div>
             <div class="inputpop2">
                 <label>Fullname:</label><br>
-                <input id="bt" class="inpu" type="text" name="name" value="<?= $name ?>" readonly placeholder="Enter Blotter Type" required><br>
+                <input id="bt" class="inpu" type="text" name="name" value="<?= $name ?>" readonly placeholder="Fullname" required><br>
                 <label>Position:</label><br>
-                <input id="po" class="inpu" type="text" name="position" value="<?= $position ?>" disabled placeholder="Enter Complained"><br>
+                    <select id="po" class="inpu" name="position" placeholder="position" disabled required><br>
+                    <option id="select" value="select" disabled="" selected="">Please Select Position</option>
+                    <option <?php if ($position=="Chairperson") echo 'selected="selected"';?> value="Chairperson">Chairperson</option>
+                    <option <?php if ($position=="Co-Chairperson") echo 'selected="selected"';?> value="Co-Chairperson">Co-Chairperson</option>
+                     <?php if ($coom == "Health") {
+                        echo '<option '; if ($position=="BHW") {echo 'selected="selected"';} echo 'value="BHW">BHW</option>';}  ?>
+                </select>
+                <br>
                  <label>Status:</label>
                         <label for="stat"></label>
                         <select id="stat" name="status"  class="inpu" style="margin-bottom: 20px;" disabled>
                             <option value="Active" <?php if ($Status=="Active") echo 'selected="selected"';?>>Active</option>
                             <option value="Inactive" <?php if ($Status=="Inactive") echo 'selected="selected"';?>>Inactive</option>
+                           
                         </select>
             </div>
             <div class="inputpop3">
+                <input name='com' value='<?= $com ?>' hidden>
+                <input name='position2' value='<?= $position ?>' hidden>
                <label>Term Start:</label><br>
                 <input id="loi" class="inpu" type="date" name="termstart" value="<?= $termstart ?>" placeholder="Enter Location" readonly required><br>
                 <label>Term End:</label><br>

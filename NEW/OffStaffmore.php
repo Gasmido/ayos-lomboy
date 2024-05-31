@@ -90,9 +90,9 @@ include 'db_conn.php';
             </div>
             <div class="inputpop2">
                 <label>Fullname:</label><br>
-                <input id="bt" class="inpu" type="text" name="name" value="<?= $name ?>" readonly placeholder="Enter Blotter Type" required><br>
-                <label>Chairmanship:</label><br>
-                <input id="cp" class="inpu" type="text" name="chairmanship" value="<?= $chairmanship ?>" readonly placeholder="Enter Complainant" required><br>
+                <input id="bt" class="inpu" type="text" name="name" value="<?= $name ?>" readonly placeholder="Enter Fullname" required>
+
+                <input id="cp" class="inpu" type="text" name="chairmanship" value="<?= $chairmanship ?>" readonly placeholder="Enter Complainant" hidden><br>
                 <label>Position:</label><br>
                 <input class="inpu" type="text" name="position" value="<?= $position ?>" disabled placeholder="Enter Complained"><br>
             </div>

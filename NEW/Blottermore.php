@@ -24,7 +24,16 @@ include 'db_conn.php';
 
                    ?>
 
-
+<script type="text/javascript">
+    localStorage.removeItem("bno")
+    localStorage.removeItem("bt")
+    localStorage.removeItem("cp")
+    localStorage.removeItem("cpd")
+    localStorage.removeItem("loi")
+    localStorage.removeItem("dof")
+    localStorage.removeItem("pin")
+    localStorage.removeItem("aaa")
+</script>
 <div class="home-section">	
     <div class="adddel">
         <?php
@@ -112,6 +121,8 @@ include 'db_conn.php';
                   <option <?php if ($Status=="Settled") echo 'selected="selected"';?> >Settled</option>
                 </select>
                 <br> 
+                <input type="text" id="aaa" name="aaa" value="<?= $blotter_info ?>" hidden>
+                <a href="BLOTTER.htm" style="font-size: 40px;margin-left: 50px; margin-top: 15px;border: 1px solid black" onclick="saveInputValue();"><i class='bx bx-printer'></i></a>
                    <button id="editsub" class="btndocu wer" name="submit" type="submit" hidden>Update</button> 
 
             </div>
@@ -157,6 +168,18 @@ include 'db_conn.php';
     function cancel() {
         location.reload();
     }
+</script>
+<script type="text/javascript">
+    function saveInputValue() {
+        localStorage.setItem("bno", document.getElementById("bno").value);
+        localStorage.setItem("bt", document.getElementById("bt").value);
+        localStorage.setItem("cp", document.getElementById("cp").value);
+        localStorage.setItem("cpd", document.getElementById("cpd").value);
+        localStorage.setItem("loi", document.getElementById("loi").value);
+        localStorage.setItem("dof", document.getElementById("dof").value);
+        localStorage.setItem("pin", document.getElementById("pin").value);
+        localStorage.setItem("aaa", document.getElementById("aaa").value);
+    }  
 </script>
 <script type="text/javascript">
     window.onload = function() {

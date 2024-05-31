@@ -62,9 +62,9 @@ if (isset($_SESSION['ID']) && $docutype != ""){
 					<form action="docreqadd" method="post"">
 					<label>Document Requesting:</label>
 				<input type="text" name="docutype" class="inputt" value="'. $docutype .'" required readonly></input>
-				<label>Full Name:</label>
+				<label>Full Name: <span style="color:red;font-weight:400">(1)</span></label>
 				<input id="q1" type="text" name="fName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
-				<label>Purok:</label>
+				<label>Purok: <span style="color:red;font-weight:400">(2)</span></label>
 				<label for="item"></label>
 	    		<select id="item" name="purok" class="hehe" class="inputt" required>
 			      <option>1</option>
@@ -73,7 +73,7 @@ if (isset($_SESSION['ID']) && $docutype != ""){
 			      <option>4</option>
 			    </select>
     		<br />
-    		<label>Date of Residence:</label>
+    		<label>Date of Residence: <span style="color:red;font-weight:400">(3)</span></label>
 				<input type="date" name="dateofres" class="inputt" max="'; echo date("Y-m-d"); echo '" min="1934-12-31" step="1" required></input>
 				<label>Purpose:</label><br />		
 				<label for="items"></label>
@@ -112,9 +112,9 @@ if (isset($_SESSION['ID']) && $docutype != ""){
 			<form action="docreqadd" method="post" id="halo">
 					<label>Document Requesting:</label>
 				<input type="text" name="docutype" class="inputt" value="'. $docutype .'" required readonly></input>
-				<label>Full Name:</label>
+				<label>Full Name: <span style="color:red;font-weight:400">(1)</span></label>
 				<input id="w1" type="text" name="fName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
-				<label>Reason for Indigency Request:</label>
+				<label>Reason for Indigency Request: <span style="color:red;font-weight:400">(2)</span></label>
 				<label for="item2"></label>
 	    		<select id="item2" name="reason" class="hehe" class="inputt" required>
 			      <option>Presently confine at the hospital</option>
@@ -122,7 +122,7 @@ if (isset($_SESSION['ID']) && $docutype != ""){
 			    </select>
     		<br />
         <input id="boxc2" type="checkbox" class="check" name="otherrs2"></input>
-    <label>Other:</label> <br>
+    <label>Other: <span style="color:red;font-weight:400">(3)</span></label> <br>
 
     <input id="otex2" type="text" class="ohter" name="oth2" maxlength="150" pattern="[A-Za-z ]{1,150}" title="Only letters and spaces. Maximum of 150" placeholder="max. of 150 letters only" required disabled></input>
     <section>
@@ -151,31 +151,33 @@ if (isset($_SESSION['ID']) && $docutype != ""){
 					<form action="docreqadd" method="post"">
 					<label>Document Requesting:</label>
 				<input type="text" name="docutype" class="inputt" value="'. $docutype .'" required readonly></input>
-				<label>Full Name:</label>
+				<label>Full Name: <span style="color:red;font-weight:400">(1)</span></label>
 				<input id="e1" type="text" name="fName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
-				<label>Purok:</label>
-				<label for="item"></label>
+				<label for="item">Purok: <span style="color:red;font-weight:400">(2)</span></label>
 	    		<select id="item" name="purok" class="hehe" class="inputt" required>
-			      <option>1</option>
-			      <option>2</option>
-			      <option>3</option>
-			      <option>4</option>
+			      <option value="1">1</option>
+			      <option value="2">2</option>
+			      <option value="3">3</option>
+			      <option value="4">4</option>
 			    </select>
     		<br />
-    		<label>Date of Birth:</label>
+    		<label>Date of Birth: <span style="color:red;font-weight:400">(3)</span></label>
 				<input type="date" name="dateofbirth" class="inputt" max="'; echo date("Y-m-d"); echo '" min="1934-12-31" step="1" required></input>
-				<label>Place of Birth:</label>
+				<label>Place of Birth: <span style="color:red;font-weight:400">(4)</span></label>
 				<input id="e2" type="text" name="placeofbirth" class="inputt" minlength="4" maxlength="50" pattern="[A-Za-z0-9 ]{4,50}" placeholder="Address" required></input>
-				<label>Height: (cm)</label>
+				<label>Height: (cm) <span style="color:red;font-weight:400">(5)</span></label>
 				<input id="e3" type="text" name="height" class="inputt" minlength="1" maxlength="3" pattern="[0-9 ]{1,3}" placeholder="Please use the Centimeters" step="0.01" title="Numbers only" required></input>
-				<label>Weight: (Kg)</label>
+				<label>Weight: (Kg) <span style="color:red;font-weight:400">(6)</span></label>
 				<input id="e4" type="text" name="weight" class="inputt" minlength="1" maxlength="3" pattern="[0-9 ]{1,3}" placeholder="Please use the Kilograms" title="Numbers only"  step="0.01" required></input>
-				<label>Purpose:</label><br />		
-				<label for="items"></label>
-			    <select id="items" name="purpose" class="hehe" class="inputt" required>
-			      <option>Personal/Reference Purposes</option>
-			      <option>Other</option>
+				<label for="csts">Civil Status: <span style="color:red;font-weight:400">(7)</span></label>
+	    		<select id="csts" name="civilstat" class="hehe" class="inputt" required>
+			      <option value="Single">Single</option>
+			      <option value="Married">Married</option>
+			      <option value="Widowed">Widowed</option>
+			      <option value="Divorced">Divorced</option>
 			    </select>
+				<label for="items">Purpose:</label>
+    <input id="items" type="text" class="ohter" name="purpose" maxlength="150" pattern="[A-Za-z/ ]{1,150}" title="Only letters and spaces. Maximum of 150" placeholder="max. of 150 letters only" value="Personal/Reference Purposes" required></input>
    			 <br />
     <section>
 				<button type="submit" name="submit3" class="docusub">Submit</button>
@@ -212,18 +214,18 @@ if (isset($_SESSION['ID']) && $docutype != ""){
 					<form action="docreqadd" method="post"">
 					<label>Document Requesting:</label>
 				<input type="text" name="docutype" class="inputt" value="'. $docutype .'" required readonly></input>
-				<label>Borrower:</label>
+				<label>Borrower: <span style="color:red;font-weight:400">(1)</span></label>
 				<input id="r1" type="text" name="BName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
-				<label>Lender:</label>
+				<label>Lender: <span style="color:red;font-weight:400">(4)</span></label>
 				<input id="r2" type="text" name="LName" class="inputt" minlength="4" maxlength="50"  pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
-				<label>Full Address:</label>
-				<input id="r3" type="text" name="address" class="inputt" minlength="4" maxlength="50" pattern="[A-Za-z0-9 ]{4,50}" placeholder="Address" required></input>
-				<label>Money Borrowed:</label>
+				<label>Borrower'; echo "'"; echo 's Barangay:  <span style="color:red;font-weight:400">(2)</span></label>
+				<input id="r3" type="text" name="address" class="inputt" minlength="4" maxlength="50" pattern="[A-Za-z0-9 ]{4,50}" placeholder="e.g. Maturanoc" required></input>
+				<label>Money Borrowed: <span style="color:red;font-weight:400">(3)</span></label>
 				<input id="r4" type="text" name="Money" class="inputt" minlength="1" maxlength="9" pattern="[0-9 ]{1,9}" placeholder="Php" title="Numbers only" required></input>
-				<label>Borrower'; echo"'"; echo 's Agricultural Land Size: (Hectares)</label>
-				<input id="r5" type="text" name="BAL" class="inputt" minlength="4" maxlength="50" pattern="[0-9. ]{4,50}" placeholder="Land you will lent to the Lender" step="0.001" required></input>
-				<label>Borrower'; echo"'"; echo 's Agricultural Land Location:</label>
-				<input id="r6" type="text" name="BALL" class="inputt" minlength="4" maxlength="50" placeholder="Address" required></input>    		
+				<label>Borrower'; echo"'"; echo 's Agricultural Land Size: (Hectares) <span style="color:red;font-weight:400">(5)</span></label>
+				<input id="r5" type="text" name="BAL" class="inputt" minlength="4" maxlength="50" pattern="[0-9. ]{1,50}" placeholder="Land you will lent to the Lender" step="0.001" required></input>
+				<label>Borrower'; echo"'"; echo 's Agricultural Land Barangay Location: <span style="color:red;font-weight:400">(6)</span></label>
+				<input id="r6" type="text" name="BALL" class="inputt" minlength="4" maxlength="50" placeholder="e.g. Ayos Lomboy" required></input>    		
     <section>
 				<button type="submit" name="submit4" class="docusub">Submit</button>
 			</section>
@@ -269,14 +271,14 @@ if (isset($_SESSION['ID']) && $docutype != ""){
 					<form action="docreqadd" method="post"">
 					<label>Document Requesting:</label>
 				<input type="text" name="docutype" class="inputt" value="'. $docutype .' Certification	" required readonly></input>
-				<label>Full Name:</label>
+				<label>Full Name: <span style="color:red;font-weight:400">(1)</span></label>
 				<input id="t1" type="text" name="fName" class="inputt" value="'. $firstnames," ", $middlename, " ", $lastname, " ", $extensionname .'" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full name" required></input>
-				<label>Residing Barangay:</label>
+				<label>Residing Barangay: <span style="color:red;font-weight:400">(2)</span></label>
 				<input id="t2" type="text" name="rbrgy" class="inputt" minlength="4" maxlength="50" pattern="[A-Za-z0-9 ]{4,50}" placeholder="e.g. Cavite" required></input>
-				<label>Agricultural Land area: (sq.m. & hectares)</label><br>
+				<label>Agricultural Land area: (sq.m. & hectares) <span style="color:red;font-weight:400">(3 & 4)</span></label><br>
 				<input id="t3" type="text" name="sqm" class="inputt" minlength="1" maxlength="10" pattern="[0-9 ]{1,10}" placeholder="sq. m." step="0.01" title="Numbers only" style="width:49%;" required></input>
 				<input id="t4" type="text" name="hectare" class="inputt" minlength="1" maxlength="10" pattern="[0-9 ]{1,10}" placeholder="Hectares" step="0.01" title="Numbers only" style="width:49%;" required></input><br>
-				<label>Registered Owner of Agricultural Land:</label>
+				<label>Registered Owner of Agricultural Land: <span style="color:red;font-weight:400">(5)</span></label>
 				<input id="t5" type="text" name="owner" class="inputt" minlength="4" maxlength="50" pattern="[A-Za-z., ]{4,50}" placeholder="Full Name" required></input>
    			 <br />
     <section>
@@ -394,7 +396,15 @@ if (isset($_SESSION['ID']) && $docutype != ""){
 		?>
 			</form>
 		</div>
+		<br>
+	    <div style="flex-direction: column;
+  flex-basis: 100%;
+  margin-top:50px">
+	       <h1>GUIDE</h1>
+	       <img style="width:70%" src="certificatepic/<?php if ($docutype == "Certificate of Residency") { echo 'COR.jpg'; } elseif ($docutype == "Certificate of Indigency") { echo 'Indigency.jpg'; } elseif ($docutype == "BARC") { echo 'BARC.jpg'; } elseif ($docutype == "Barangay Clearance") { echo 'Clearance.jpg'; } elseif ($docutype == "Kasunduan") { echo 'Kasunduan.jpg'; }?>">
+	    </div>
 	</div>
+		
 </div>
 <script type="text/javascript">
 	  	

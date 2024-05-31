@@ -221,7 +221,7 @@ $sql = "UPDATE users SET user_password=? WHERE user_email=?";
 		header("location: login.php?error=Successp");
 		exit();
 }
-function loginUser($connn, $user, $pass, $type, $date, $time, $id2, $fingerprint) {
+function loginUser($connn, $user, $pass, $type, $date, $time, $id2, $fingerprint, $comp, $cookk) {
 	$userexist = duplicateEmail($connn, $user);
 	
 	if ($userexist === false) {
@@ -246,25 +246,35 @@ function loginUser($connn, $user, $pass, $type, $date, $time, $id2, $fingerprint
 		
 
 		$userid = $userexist["user_id"];
-
+        session_start();
 		if (fingerprint($connn, $userid) !== false) {
-		$sql11 = "INSERT INTO users_browser (user_id, fingerprint) VALUES (?,?);";
+		$sql11 = "INSERT INTO users_browser (user_id, IP_Address, userBrowser, browserFingerprint) VALUES (?,?,?,?);";
 			$stmt11 = mysqli_stmt_init($connn);
 			if (!mysqli_stmt_prepare($stmt11, $sql11)) {
 				header("location: sign_up?error=stmtfailed");
 				exit();
 			}
-			mysqli_stmt_bind_param($stmt11, "ss", $userid, $fingerprint);
+			mysqli_stmt_bind_param($stmt11, "ssss", $userid, $fingerprint,$comp, $cookk);
 			mysqli_stmt_execute($stmt11);
 			
 				
 		}
-		elseif (fingerprint2($connn, $userid, $fingerprint) !== false) {
-		header("location: loginWebS.php");
+		elseif (fingerprint3($connn, $userid, $fingerprint, $cookk) !== false) {
 		$_SESSION["useriD"] = $userid;
 		$_SESSION["fingerprint"] = $fingerprint;
+		$_SESSION["comp"] = $comp;
 		$_SESSION["emailll"] = $user;
 		$_SESSION['ssap'] = $pass;
+		header("location: loginWebS.php");
+		exit();
+		}
+		elseif (fingerprint2($connn, $userid, $cookk, $comp) !== false) {
+		$_SESSION["useriD"] = $userid;
+		$_SESSION["fingerprint"] = $fingerprint;
+		$_SESSION["comp"] = $comp;
+		$_SESSION["emailll"] = $user;
+		$_SESSION['ssap'] = $pass;
+		header("location: loginWebS.php");
 		exit();
 		}
 
@@ -361,7 +371,7 @@ function createdoc2($connn, $docutype, $fname, $reason, $currentDate, $id, $stat
 	header("location: doctrack?error=none");
 		exit();
 }
-function createdoc4($connn, $docutype, $fname, $purok, $dateofbirth, $placeofbirth, $height, $weight, $purpose, $currentDate, $id, $stat) {
+function createdoc4($connn, $docutype, $fname, $purok, $dateofbirth, $placeofbirth, $height, $weight, $purpose, $currentDate, $id, $stat, $cstatus) {
 	$sql2 = "SELECT RequestNo FROM users WHERE user_id=$id";
 	$result = mysqli_query($connn, $sql2);
 	if ($result-> num_rows > 0) {
@@ -385,13 +395,13 @@ function createdoc4($connn, $docutype, $fname, $purok, $dateofbirth, $placeofbir
 	$_SESSION['statusss'] = "Document Requested Successfully!";
 
 
-	$sql = "INSERT INTO docreq (documentType, Fullname, purok, dateOfBirth, placeOfBirth, height, weight, BCpurpose, CURDATE, user_id, Status) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+	$sql = "INSERT INTO docreq (documentType, Fullname, purok, dateOfBirth, placeOfBirth, height, weight, BCpurpose, CURDATE, user_id, Status, COR_civilStatus) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
 		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
-	mysqli_stmt_bind_param($stmt, "sssssssssis",  $docutype, $fname, $purok, $dateofbirth, $placeofbirth, $height, $weight, $purpose, $currentDate, $id, $stat);
+	mysqli_stmt_bind_param($stmt, "sssssssssiss",  $docutype, $fname, $purok, $dateofbirth, $placeofbirth, $height, $weight, $purpose, $currentDate, $id, $stat, $cstatus);
 	mysqli_stmt_execute($stmt);
 	mysqli_stmt_close($stmt);
 
@@ -660,9 +670,13 @@ function editDocReq($connn, $fname, $daterequest, $dt, $purok, $BI, $dof, $dp, $
 	session_start();
 	$_SESSION["statu"] = "Data Successfully Updatedd!";
 	$_SESSION["iss"] = $id;
-
+	if (isset($_SESSION['COR'])) {
+		header("location: DocReqmoreCOR");
+		exit();
+	}else {
 	header("location: DocReqmore");
 		exit();
+	}
 }
 function editDocReq11($connn, $fname, $daterequest, $dt, $purok, $BI, $dof, $status, $id, $emaiil)  {
 	$sql = "UPDATE docreq SET Fullname=?, CURDATE=?, documentType=?, purok=?, CORPurpose=?, DateofResidence=?, Status=? WHERE id=?";
@@ -692,10 +706,13 @@ function editDocReq11($connn, $fname, $daterequest, $dt, $purok, $BI, $dof, $sta
 		header('location: DocReqEmail');
 		exit();
 	}
-	else {
-		header('location: DocReqmore');
+	if (isset($_SESSION['COR'])) {
+		header("location: DocReqmoreCOR");
 		exit();
-	}
+	}else {
+	header("location: DocReqmore");
+		exit();
+	} 
 }
 function editDocReq2($connn, $fname, $daterequest, $dt, $BI, $dp, $ap, $status, $emaiil, $id)  {
 	$sql = "UPDATE docreq SET Fullname=?, CURDATE=?, documentType=?, CORPurpose=?, datePickedup=?, amountpaid=?, Status=? WHERE id=?";
@@ -722,8 +739,13 @@ function editDocReq2($connn, $fname, $daterequest, $dt, $BI, $dp, $ap, $status, 
 	$_SESSION["statu"] = "Data Successfully Updatedd!";
 	$_SESSION["iss"] = $id;
 	
+	if (isset($_SESSION['COR'])) {
+		header("location: DocReqmoreCOR");
+		exit();
+	}else {
 	header("location: DocReqmore");
 		exit();
+	} 
 }
 function editDocReq22($connn, $fname, $daterequest, $dt, $BI, $status, $id, $emaiil)  {
 	$sql = "UPDATE docreq SET Fullname=?, CURDATE=?, documentType=?, CORPurpose=?, Status=? WHERE id=?";
@@ -753,10 +775,13 @@ if ($status == "Ready-for-pick-up") {
 		header('location: DocReqEmail');
 		exit();
 	}
-	else {
-		header('location: DocReqmore');
+	if (isset($_SESSION['COR'])) {
+		header("location: DocReqmoreCOR");
 		exit();
-	}
+	}else {
+	header("location: DocReqmore");
+		exit();
+	} 
 }
 function editDocReq3($connn, $Bname, $Lname,$address, $money, $BAL,$BALL, $daterequest, $dt, $dp, $ap, $status, $emaiil, $id)  {
 	$sql = "UPDATE docreq SET Bname=?,Lname=? ,Kaddress=? ,Kmoney=? ,KBAL=? ,KBALL=?, CURDATE=?, documentType=?, datePickedup=?, amountpaid=?, Status=? WHERE id=?";
@@ -783,8 +808,13 @@ function editDocReq3($connn, $Bname, $Lname,$address, $money, $BAL,$BALL, $dater
 	$_SESSION["statu"] = "Data Successfully Updatedd!";
 	$_SESSION["iss"] = $id;
 	
+	if (isset($_SESSION['COR'])) {
+		header("location: DocReqmoreCOR");
+		exit();
+	}else {
 	header("location: DocReqmore");
 		exit();
+	} 
 }
 function editDocReq33($connn, $Bname, $Lname,$address, $money, $BAL,$BALL, $daterequest, $dt, $status, $id, $emaiil)  {
 	$sql = "UPDATE docreq SET Bname=?,Lname=? ,Kaddress=? ,Kmoney=? ,KBAL=? ,KBALL=?, CURDATE=?, documentType=?, Status=? WHERE id=?";
@@ -815,10 +845,13 @@ function editDocReq33($connn, $Bname, $Lname,$address, $money, $BAL,$BALL, $date
 		header('location: DocReqEmail');
 		exit();
 	}
-	else {
-		header('location: DocReqmore');
+	if (isset($_SESSION['COR'])) {
+		header("location: DocReqmoreCOR");
 		exit();
-	}
+	}else {
+	header("location: DocReqmore");
+		exit();
+	} 
 }
 function editDocReq4($connn, $fname, $purok,$dob, $pob, $height,$weight,$purpose, $daterequest, $dt, $dp, $ap, $status, $emaiil, $id)  {
 	$sql = "UPDATE docreq SET Fullname=?,purok=? ,dateOfBirth=? ,placeOfBirth=? ,height=? ,weight=?, BCpurpose=?, CURDATE=?, documentType=?, datePickedup=?, amountpaid=?, Status=? WHERE id=?";
@@ -845,8 +878,13 @@ function editDocReq4($connn, $fname, $purok,$dob, $pob, $height,$weight,$purpose
 	$_SESSION["statu"] = "Data Successfully Updatedd!";
 	$_SESSION["iss"] = $id;
 	
+	if (isset($_SESSION['COR'])) {
+		header("location: DocReqmoreCOR");
+		exit();
+	}else {
 	header("location: DocReqmore");
 		exit();
+	} 
 }
 function editDocReq44($connn,$fname, $purok,$dob, $pob, $height,$weight,$purpose, $daterequest, $dt, $status, $id, $emaiil)  {
 	$sql = "UPDATE docreq SET Fullname=?,purok=? ,dateOfBirth=? ,placeOfBirth=? ,height=? ,weight=?, BCpurpose=?, CURDATE=?, documentType=?, Status=? WHERE id=?";
@@ -877,10 +915,13 @@ function editDocReq44($connn,$fname, $purok,$dob, $pob, $height,$weight,$purpose
 		header('location: DocReqEmail');
 		exit();
 	}
-	else {
-		header('location: DocReqmore');
+	if (isset($_SESSION['COR'])) {
+		header("location: DocReqmoreCOR");
 		exit();
-	}
+	}else {
+	header("location: DocReqmore");
+		exit();
+	} 
 }
 function editDocReq5($connn, $fname, $rbrgy,$sqm, $hectare, $owner,$daterequest, $dt, $dp, $ap, $status, $emaiil, $id)  {
 	$sql = "UPDATE docreq SET Fullname=?,BarcRBrgy=? ,BarcALAsqm=? ,BarcALAhectare=? ,BarcOwner=?, CURDATE=?, documentType=?, datePickedup=?, amountpaid=?, Status=? WHERE id=?";
@@ -907,8 +948,13 @@ function editDocReq5($connn, $fname, $rbrgy,$sqm, $hectare, $owner,$daterequest,
 	$_SESSION["statu"] = "Data Successfully Updatedd!";
 	$_SESSION["iss"] = $id;
 	
+	if (isset($_SESSION['COR'])) {
+		header("location: DocReqmoreCOR");
+		exit();
+	}else {
 	header("location: DocReqmore");
 		exit();
+	} 
 }
 function editDocReq55($connn, $fname, $rbrgy,$sqm, $hectare, $owner,$daterequest, $dt, $status, $id, $emaiil)  {
 	$sql = "UPDATE docreq SET Fullname=?,BarcRBrgy=? ,BarcALAsqm=? ,BarcALAhectare=? ,BarcOwner=?, CURDATE=?, documentType=?, Status=? WHERE id=?";
@@ -939,10 +985,13 @@ function editDocReq55($connn, $fname, $rbrgy,$sqm, $hectare, $owner,$daterequest
 		header('location: DocReqEmail');
 		exit();
 	}
-	else {
-		header('location: DocReqmore');
+	if (isset($_SESSION['COR'])) {
+		header("location: DocReqmoreCOR");
 		exit();
-	}
+	}else {
+	header("location: DocReqmore");
+		exit();
+	} 
 }
 function editUserAcc($connn, $status, $id)  {
 	$sql = "UPDATE users SET Status=? WHERE user_id=?";
@@ -1517,14 +1566,14 @@ function addCom($connn, $newImageName, $fname, $position, $termstart, $termend,$
 	header("location: OffStaffCommittee");
 		exit();
 }
-function editCom($connn, $name, $termstart, $termend, $newImageName, $status, $id) {
-	$sql = "UPDATE officials SET name=?, termstart=?, termend=?, image=?, status=? WHERE id=?";
+function editCom($connn, $name, $termstart, $termend, $newImageName, $status, $id, $position) {
+	$sql = "UPDATE officials SET name=?, termstart=?, termend=?, image=?, status=?, position=? WHERE id=?";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
 		header("location: OffStaff?error=stmtfailed");
 		exit();
 	}
-	mysqli_stmt_bind_param($stmt, "sssssi", $name, $termstart, $termend, $newImageName, $status, $id);
+	mysqli_stmt_bind_param($stmt, "ssssssi", $name, $termstart, $termend, $newImageName, $status, $position, $id);
 	mysqli_stmt_execute($stmt);
 	mysqli_stmt_close($stmt);
 	session_start();
@@ -1534,14 +1583,14 @@ function editCom($connn, $name, $termstart, $termend, $newImageName, $status, $i
 	header("location: OffStaffCommitteemore");
 		exit();
 }
-function editCom2($connn, $name, $termstart, $termend, $status, $id) {
-	$sql = "UPDATE officials SET name=?, termstart=?, termend=?, status=? WHERE id=?";
+function editCom2($connn, $name, $termstart, $termend, $status, $id, $position) {
+	$sql = "UPDATE officials SET name=?, termstart=?, termend=?, status=?, position=? WHERE id=?";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
 		header("location: OffStaff?error=stmtfailed");
 		exit();
 	}
-	mysqli_stmt_bind_param($stmt, "ssssi", $name, $termstart, $termend, $status, $id);
+	mysqli_stmt_bind_param($stmt, "sssssi", $name, $termstart, $termend, $status, $position, $id);
 	mysqli_stmt_execute($stmt);
 	mysqli_stmt_close($stmt);
 	session_start();
@@ -1595,18 +1644,24 @@ function fingerprint($connn, $userid) {
 	}
 	
 }
-function fingerprint2($connn, $userid, $fingerprint) {
-	$sql = "SELECT * FROM users_browser WHERE user_id = ? AND fingerprint = ?;";
+function fingerprint2($connn, $userid, $cookk, $comp) {
+	$sql = "SELECT * FROM users_browser WHERE user_id = ? AND browserFingerprint = ? AND userBrowser = ?;";
 	$stmt = mysqli_stmt_init($connn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
 		header("location: sign_up?error=stmtfailed");
 		exit();
 	}
 	
-	mysqli_stmt_bind_param($stmt, "ss", $userid, $fingerprint);
+	mysqli_stmt_bind_param($stmt, "sss", $userid, $cookk, $comp);
 	mysqli_stmt_execute($stmt);
-	
-	$resultdata = mysqli_stmt_get_result($stmt);
+	/*
+	$result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+        $ips = $row['IP_Address'];
+        $brw = $row['userBrowser'];
+    }
+    */
+    	$resultdata = mysqli_stmt_get_result($stmt);
 	
 	if ($row = mysqli_fetch_assoc($resultdata)) {
 		$result = false;
@@ -1616,4 +1671,91 @@ function fingerprint2($connn, $userid, $fingerprint) {
 	}
 	
 	mysqli_stmt_close($stmt);
+}
+function fingerprint3($connn, $userid, $fingerprint, $cookk) {
+	$sql4 = "SELECT * FROM users_browser WHERE user_id = ? AND browserFingerprint = ?;";
+	$stmt4 = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt4, $sql4)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	
+	mysqli_stmt_bind_param($stmt4, "ss", $userid, $cookk);
+	mysqli_stmt_execute($stmt4);
+	/*
+	$result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+        $ips = $row['IP_Address'];
+        $brw = $row['userBrowser'];
+    }
+    */
+    	$resultdata = mysqli_stmt_get_result($stmt4);
+	
+	if ($row = mysqli_fetch_assoc($resultdata)) {
+		$result = false;
+		return $result;
+	} else {
+		return $row;
+	}
+	
+	mysqli_stmt_close($stmt4);
+}
+function removeTanod($connn, $id) {
+	$r = 1;
+	$sql = "UPDATE officials SET removed=? WHERE id=?;";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: sign_up?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "si", $r, $id);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	session_start();
+	$_SESSION["statuss"] = "Tanod Removed!";
+	$_SESSION["iss"] = $id;
+	$_SESSION["dele"] = "nono";
+	
+	header("location: TanodStaffdeleted");
+		exit();
+}
+function editTanod22($connn,  $name, $termstart, $termend, $status, $id) {
+	$r = NULL;
+	$sql = "UPDATE officials SET name=?, termstart=?, termend=?, status=?, removed=? WHERE id=?";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: OffStaff?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "sssssi", $name, $termstart, $termend, $status, $r, $id);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	
+	session_start();
+	session_start();
+	unset($_SESSION['dele']);
+	$_SESSION["statuss"] = "Tanod Successfully Readded!";
+	$_SESSION["iss"] = $id;
+	
+	header("location: TanodStaffmore");
+		exit();
+}
+function editTanod222($connn,$name, $termstart, $termend, $newImageName, $status, $id) {
+	$r = NULL;
+	$sql = "UPDATE officials SET name=?, termstart=?, termend=?, image=?, status=?, removed=? WHERE id=?";
+	$stmt = mysqli_stmt_init($connn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: OffStaff?error=stmtfailed");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt, "ssssssi", $name, $termstart, $termend, $newImageName, $status, $r, $id);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	session_start();
+	unset($_SESSION['dele']);
+	$_SESSION["statuss"] = "Tanod Successfully Readded!";
+	$_SESSION["iss"] = $id;
+	
+	header("location: TanodStaffmore");
+		exit();
 }

@@ -237,15 +237,16 @@ elseif (isset($_POST['c5'])) {
 	require 'db_conn.php';
 	require 'func.php';
 
-
-	if (positionCheck($connn, $com, $position) !== false) {
-		session_start();
-			$connn->close();
-			$_SESSION["sta"] = "Position Already Taken!";
-			header("location: OffStaffCommitteeAddH");
-			exit();
-			
-	}
+    if ($position != "BHW") {
+	    if (positionCheck($connn, $com, $position) !== false) {
+	    	session_start();
+	    		$connn->close();
+		    	$_SESSION["sta"] = "Position Already Taken!";
+	    		header("location: OffStaffCommitteeAddH");
+			    exit();
+		    	
+	    }
+    }
 
 	if ($_FILES['image']['error'] === 4) {
 		$_SESSION['wrongs'] = "Please Add Image!";

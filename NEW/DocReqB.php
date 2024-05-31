@@ -3,7 +3,6 @@ include 'headAdmin.php';
 include 'topbarAdmin.php';
 include 'sidebar.php';
 require_once "db_conn.php";
-unset($_SESSION['COR']);
 unset($_SESSION['iss']);
 unset($_SESSION['iiii']);
 unset($_SESSION['iiiia']);
@@ -25,104 +24,14 @@ unset($_SESSION['iiiias']);
                         echo $_SESSION['statu']; echo "</p>";
                         unset($_SESSION['statu']);
         }
-    ?> 
+
+    ?>
+    <button class="addd" onclick="document.location='DocReq'">BACK</button>  
       </div>  
       <div class="admin-blotter">
-
-          <div class="admin-home-box" style="min-width: 100px; width: 190px;">
-                <a href="DocReqCOR">
-            <h2>
-                Certificate of Residency
-            </h2>
-            <p style="height:120px;">
-                <?php
-                    $sql= "SELECT documentType FROM docreq WHERE documentType ='Certificate of Residency'";
-                    $result = mysqli_query($connn, $sql);
-
-                    $num_rows = mysqli_num_rows($result);
-
-                    echo $num_rows;
-                ?>
-            </p>
-            </a>
-        </div>  
-
-          <div class="admin-home-box c" style="min-width: 100px; width: 190px;">
-                <a href="DocReqCOI">
-            <h2>
-                Certificate of Indigency
-            </h2>
-            <p style="height:120px;">
-                <?php
-                    $sql= "SELECT documentType FROM docreq WHERE documentType ='Certificate of Indigency'";
-                    $result = mysqli_query($connn, $sql);
-
-                    $num_rows = mysqli_num_rows($result);
-
-                    echo $num_rows;
-                ?>
-            </p>
-            </a>
-        </div>  
-
-          <div class="admin-home-box" style="min-width: 100px; width: 190px;">
-                <a href="DocReqBC">
-            <h2>
-                Barangay Clearance
-            </h2>
-            <p style="height:120px;">
-                <?php
-                    $sql= "SELECT documentType FROM docreq WHERE documentType ='Barangay Clearance'";
-                    $result = mysqli_query($connn, $sql);
-
-                    $num_rows = mysqli_num_rows($result);
-
-                    echo $num_rows;
-                ?>
-            </p>
-            </a>
-        </div>  
-
-        <div class="admin-home-box c" style="min-width: 100px; width: 190px;">
-                <a href="DocReqK">
-            <h2>
-                Kasunduan
-            </h2>
-            <p style="height:120px;">
-                <?php
-                    $sql= "SELECT documentType FROM docreq WHERE documentType ='Kasunduan'";
-                    $result = mysqli_query($connn, $sql);
-
-                    $num_rows = mysqli_num_rows($result);
-
-                    echo $num_rows;
-                ?>
-            </p>
-            </a>
-        </div>  
-
-        <div class="admin-home-box" style="min-width: 100px; width: 190px;">
-                <a href="DocReqB">
-            <h2>
-                BARC Certification
-            </h2>
-            <p style="height:120px;">
-                <?php
-                    $sql= "SELECT documentType FROM docreq WHERE documentType ='BARC Certification'";
-                    $result = mysqli_query($connn, $sql);
-
-                    $num_rows = mysqli_num_rows($result);
-
-                    echo $num_rows;
-                ?>
-            </p>
-            </a>
-        </div>  
-
-    </div>
-
-      <div style="height: 20px;width: 100%;"></div>   
-      <h1 style="padding-left: 30px;padding-bottom: 20px;">All Requested Barangay Certificates</h1>
+         
+</div>       
+<h1 style="padding-left: 30px;padding-bottom: 20px;">Requested BARC Certification</h1>
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
@@ -140,7 +49,7 @@ unset($_SESSION['iiiias']);
             <tbody>
 
                 <?php
-                    $sql = "SELECT id, user_id, CURDATE, documentType, Status from docreq";
+                    $sql = "SELECT id, user_id, CURDATE, documentType, Status from docreq WHERE documentType = 'BARC Certification'";
                     $result = $connn-> query($sql);
 
                     if ($result-> num_rows > 0) {
@@ -155,8 +64,9 @@ unset($_SESSION['iiiias']);
                             }
                             echo "<tr><td>". $row["id"] ."</td><td>"; echo $email; echo "</td><td>". $row["CURDATE"] ."</td><td>". $row["documentType"] ."</td><td>". $row["Status"] ."</td>
                                     <td>
-                                        <form action='DocReqmore' method='POST'>
+                                        <form action='DocReqmoreCOR' method='POST'>
                                             <input name='id' value='". $row['id'] ."' hidden>
+                                            <input name='cor' value='B' hidden>
                                             <button class='editt' name='submit' type='submit'>MORE</button>
                                         </form>
                                     </td>

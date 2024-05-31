@@ -4,6 +4,7 @@ include 'topbarAdmin.php';
 include 'sidebar.php';
 include 'db_conn.php';
 unset($_SESSION['iss']);
+unset($_SESSION['blot']);
 
 ?>
 <script type="text/javascript">
@@ -69,6 +70,7 @@ unset($_SESSION['iss']);
                 </select>
                 <br />
                 <input type="hidden" name="status" value="Active"/>
+                <input type="hidden" name="blot" value="Active"/>
                 <label for="blotterin">Blotter Information: (WHY)</label><br>
                 <textarea class="inpuer" id="blotterin" name="BI" rows="35" cols="5" required></textarea>
                 <br> 
@@ -116,6 +118,7 @@ unset($_SESSION['iss']);
                                         
                                           <form action='BlottermoreA' method='POST'>
                                             <input name='id' value='". $row['id'] ."' hidden>
+                                            <input name='blot' value='Active' hidden>
                                             <button class='editt' name='submit' type='submit'>MORE</button>
                                         </form>
                                     </td>

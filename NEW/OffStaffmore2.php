@@ -4,7 +4,7 @@ session_start();
 if (isset($_POST['submit'])) {
 	$id = $_POST['id'];
     $name = $_POST['name'];
-    $chairmanship = $_POST['chairmanship'];
+   
     $termstart = $_POST['termstart'];
     $termend = $_POST['termend'];
     $status = $_POST['status'];

@@ -157,80 +157,7 @@ $sql = "SELECT * from officials WHERE committee = 'PeaceAndOrder' AND position =
       
         ?>
       </div>
-      <div class="committeecontent">
-        <div class="gallery" style="border: none;background-color: #f5f5f5;">
-            <img src="officials/0.png" alt="picture" width="350" height="600" style="border-radius: 50%; display: block;margin-left: auto;margin-right: auto;">
-          <div class="desc">
-            <h3>Sunny Deleon</h3>
-            <p></p>
-           
-          </div>
-        </div>
-        <div class="gallery" style="border: none;background-color: #f5f5f5;">
-            <img src="officials/0.png" alt="picture" width="350" height="600" style="border-radius: 50%; display: block;margin-left: auto;margin-right: auto;">
-          <div class="desc">
-            <h3>Alfonso Mendoza</h3>
-            <p></p>
-           
-          </div>
-        </div>
-        <div class="gallery" style="border: none;background-color: #f5f5f5;">
-            <img src="officials/0.png" alt="picture" width="350" height="600" style="border-radius: 50%; display: block;margin-left: auto;margin-right: auto;">
-          <div class="desc">
-            <h3>Mario De Guzman</h3>
-            <p></p>
-           
-          </div>
-        </div>
-        <div class="gallery" style="border: none;background-color: #f5f5f5;">
-            <img src="officials/0.png" alt="picture" width="350" height="600" style="border-radius: 50%; display: block;margin-left: auto;margin-right: auto;">
-          <div class="desc">
-            <h3>Jessie Martinez</h3>
-            <p></p>
-           
-          </div>
-        </div>
-        <div class="gallery" style="border: none;background-color: #f5f5f5;">
-            <img src="officials/0.png" alt="picture" width="350" height="600" style="border-radius: 50%; display: block;margin-left: auto;margin-right: auto;">
-          <div class="desc">
-            <h3>Ariel Baliola</h3>
-            <p></p>
-           
-          </div>
-        </div>
-        <div class="gallery" style="border: none;background-color: #f5f5f5;">
-            <img src="officials/0.png" alt="picture" width="350" height="600" style="border-radius: 50%; display: block;margin-left: auto;margin-right: auto;">
-          <div class="desc">
-            <h3>Warlito Castillo</h3>
-            <p></p>
-           
-          </div>
-        </div>
-        <div class="gallery" style="border: none;background-color: #f5f5f5;">
-            <img src="officials/0.png" alt="picture" width="350" height="600" style="border-radius: 50%; display: block;margin-left: auto;margin-right: auto;">
-          <div class="desc">
-            <h3>Romeo Soliman</h3>
-            <p></p>
-           
-          </div>
-        </div>
-        <div class="gallery" style="border: none;background-color: #f5f5f5;">
-            <img src="officials/0.png" alt="picture" width="350" height="600" style="border-radius: 50%; display: block;margin-left: auto;margin-right: auto;">
-          <div class="desc">
-            <h3>Vircillo Soliman</h3>
-            <p></p>
-           
-          </div>
-        </div>
-        <div class="gallery" style="border: none;background-color: #f5f5f5;">
-            <img src="officials/0.png" alt="picture" width="350" height="600" style="border-radius: 50%; display: block;margin-left: auto;margin-right: auto;">
-          <div class="desc">
-            <h3>Michael Romano</h3>
-            <p></p>
-           
-          </div>
-        </div>
-      </div>
+      
     </div>
     <div id="Infra" style="display:none">
       <section style="text-align:center;margin-top: 15px;font-size: 40px;"><h1>Infrastructure</h1></section><br>
@@ -280,62 +207,26 @@ $sql = "SELECT * from officials WHERE committee = 'Health' AND position = 'Chair
         ?>
       </div>
       <div class="committeecontent">
-        <div class="gallery" style="border: none;background-color: #f5f5f5;">
-            <img src="officials/0.png" alt="picture" width="350" height="600" style="border-radius: 50%; display: block;margin-left: auto;margin-right: auto;">
-          <div class="desc">
-            <h3>Flordeliza L. Liwanag</h3>
-            <p>BNS/BHW</p>
-           
-          </div>
-        </div>
-        <div class="gallery" style="border: none;background-color: #f5f5f5;">
-            <img src="officials/0.png" alt="picture" width="350" height="600" style="border-radius: 50%; display: block;margin-left: auto;margin-right: auto;">
-          <div class="desc">
-            <h3>Gregoria L. Faustino</h3>
-            <p>BHW</p>
-           
-          </div>
-        </div>
-        <div class="gallery" style="border: none;background-color: #f5f5f5;">
-            <img src="officials/0.png" alt="picture" width="350" height="600" style="border-radius: 50%; display: block;margin-left: auto;margin-right: auto;">
-          <div class="desc">
-            <h3>Cherry May M. Gardose</h3>
-            <p>BHW</p>
-           
-          </div>
-        </div>
-        <div class="gallery" style="border: none;background-color: #f5f5f5;">
-            <img src="officials/0.png" alt="picture" width="350" height="600" style="border-radius: 50%; display: block;margin-left: auto;margin-right: auto;">
-          <div class="desc">
-            <h3>Maria Lourdes B. Luis</h3>
-            <p>BHW</p>
-           
-          </div>
-        </div>
-        <div class="gallery" style="border: none;background-color: #f5f5f5;">
-            <img src="officials/0.png" alt="picture" width="350" height="600" style="border-radius: 50%; display: block;margin-left: auto;margin-right: auto;">
-          <div class="desc">
-            <h3>Erlinda S. Liwanag</h3>
-            <p>BHW</p>
-           
-          </div>
-        </div>
-        <div class="gallery" style="border: none;background-color: #f5f5f5;">
-            <img src="officials/0.png" alt="picture" width="350" height="600" style="border-radius: 50%; display: block;margin-left: auto;margin-right: auto;">
-          <div class="desc">
-            <h3>Arlene C. Duenas</h3>
-            <p>BHW</p>
-           
-          </div>
-        </div>
-        <div class="gallery" style="border: none;background-color: #f5f5f5;">
-            <img src="officials/0.png" alt="picture" width="350" height="600" style="border-radius: 50%; display: block;margin-left: auto;margin-right: auto;">
-          <div class="desc">
-            <h3>Marcelina R. Paynor</h3>
-            <p>BHW</p>
-           
-          </div>
-        </div>
+        <?php
+$sql = "SELECT * from officials WHERE committee = 'Health' AND position = 'BHW'";
+                    $result = $connn-> query($sql);
+
+                    if ($result-> num_rows > 0) {
+                        while ($row = $result-> fetch_assoc()) {
+                          echo '
+                          <div class="gallery" style="border: none;background-color: #f5f5f5;">
+                              <img src="image/'. $row["image"] .'" alt="picture" width="350" height="600" style="border-radius: 50%; display: block;margin-left: auto;margin-right: auto;">
+                            <div class="desc">
+                              <h3>'. $row["name"] .'</h3>
+                              <p>'. $row["position"] .'</p>
+                             
+                            </div>
+                          </div>
+                          ';
+                        }
+                      }
+        ?>
+        
       </div>
     </div>
     <div id="Edu" style="display:none">

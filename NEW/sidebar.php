@@ -41,13 +41,14 @@
         </li>
        <li>
           <a href="Announcements">
-            <i class='bx bxs-building-house' ></i>
+              <i class='bx bxs-notepad'></i>
+            
             <span class="links_name">&nbsp;Announcements</span>
           </a>
         </li>
         <li>
           <a href="Household">
-           <i class='bx bx-building-house'></i>
+           <i class='bx bxs-building-house' ></i>
             <span class="links_name">&nbsp;Household</span>
           </a>
         </li>
