@@ -212,20 +212,18 @@ style='font-size:18.0pt;line-height:107%'>&nbsp;</span></p>
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><span style='font-size:18.0pt'>&nbsp;</span></p>
   <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal'>           Ako si /G./Gng________________________________  may asawa
-  at anak  kasalukuyang nakatira sa BARANGAY_______________ GUIMBA  NUEVA
-  ECIJA. Na may sapat ng gulang na nakahiram ng halagang _____________,
-  Philippine money kay G./Gng._______________________ bilang ganti ang aking
-  sinsakang bukid na may sukat ________ hektarya na nasasakupan ng Barangay
-  _________________ ay aking  ipapahiram  kay
-  G./Gng.___________________________ habang hindi ko pa ito natutubos ay sya
+  normal'>           Ako si /G./Gng <span id="s1"></span>  may asawa
+  at anak  kasalukuyang nakatira sa BARANGAY <span id="s2"></span> GUIMBA  NUEVA
+  ECIJA. Na may sapat ng gulang na nakahiram ng halagang <span id="s3"></span>,
+  Philippine money kay G./Gng. <span id="s4"></span> bilang ganti ang aking
+  sinsakang bukid na may sukat <span id="s5"></span> hektarya na nasasakupan ng Barangay <span id="s6"></span> ay aking  ipapahiram  kay
+  G./Gng. <span id="s42"></span> habang hindi ko pa ito natutubos ay sya
   parin ang magsasaka sa loob ng dalawang taon.</p>
   <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
   normal'>&nbsp;</p>
   <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
   normal'>          Bilang katibayan sa kasunduang ito kami ay lalagda sa
-  ibabaw ng aming  pangalan kasama ang mga saksi. ngayong  ikaw ____ ng
-  ___________ taong kasalukuyan  (2024).</p>
+  ibabaw ng aming  pangalan kasama ang mga saksi. ngayong  ikaw <span id="datee"></span> ng <span id="datemonth"></span> taong kasalukuyan  (2024).</p>
   <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
   normal'><span style='font-size:10.0pt'>&nbsp;</span></p>
   <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
@@ -253,14 +251,14 @@ style='font-size:18.0pt;line-height:107%'>&nbsp;</span></p>
   normal'><span style='font-size:10.0pt'>&nbsp;</span></p>
   <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
   normal'><span style='font-size:10.0pt'>&nbsp;</span></p>
-  <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  <p class=MsoNormal align=right style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
   normal'><span style='font-size:10.0pt'>     _________________________</span></p>
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><span style='font-size:10.0pt'>&nbsp;</span></p>
   <p class=MsoNormal align=right style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:right;line-height:normal'><b>ROGER ARANDA </b></p>
   <p class=MsoNormal align=right style='margin-bottom:0in;margin-bottom:.0001pt;
-  text-align:right;line-height:normal'><b>BARC CHAIRMAN</b></p>
+  text-align:right;line-height:normal'>BARC CHAIRMAN</p>
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b><span style='font-size:18.0pt'>&nbsp;</span></b></p>
   <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
@@ -275,6 +273,36 @@ style='font-size:18.0pt;line-height:107%'>&nbsp;</span></p>
 <p class=MsoNormal>&nbsp;</p>
 
 </div>
+<script type="text/javascript">
+        document.getElementById("s1").innerHTML = getSavedValue("1a"); 
+        document.getElementById("s2").innerHTML = getSavedValue("2a"); 
+        document.getElementById("s3").innerHTML = getSavedValue("3a"); 
+        document.getElementById("s4").innerHTML = getSavedValue("4a"); 
+        document.getElementById("s42").innerHTML = getSavedValue("4a");
+        document.getElementById("s5").innerHTML = getSavedValue("5a"); 
+        document.getElementById("s6").innerHTML = getSavedValue("6a"); 
+        
+        const d = new Date();
+        let day = d.getDate();
+
+        const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+        const d1 = new Date();
+        let namemonth = month[d1.getMonth()];
+
+        const d2 = new Date();
+        let year = d2.getFullYear();
+
+        document.getElementById("datee").innerHTML = day; 
+        document.getElementById("datemonth").innerHTML = namemonth;
+
+         function getSavedValue  (v){
+            if (!localStorage.getItem(v)) {
+                return "";
+            }
+            return localStorage.getItem(v);
+        }
+</script>
 <script>
 
 var x = 0
@@ -293,10 +321,17 @@ document.getElementById("print").innerHTML = favoriteMovie;
  <script type="text/javascript">
     $(document).ready(function () {
         window.print();
-        setTimeout("closePrintView()", 100);
+        setTimeout("closePrintView()", 300);
     });
     function closePrintView() {
-        document.location.href = 'Homepage';
+        var roc = getSavedValue("COR");
+        
+         if (roc == 'COR') {
+                document.location.href = 'DocReqmoreCOR';
+         }
+         else {
+                document.location.href = 'DocReqmore';
+         }
     }
 </script>
 </body>

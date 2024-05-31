@@ -47,9 +47,13 @@ function smtp_mailer($to,$subject, $msg){
 		unset($_SESSION['emal']);
 		unset($_SESSION['dt']);
 		unset($_SESSION['de']);
-		header("location: DocReqmore");
-
+		if (isset($_SESSION['COR'])) {
+		header("location: DocReqmoreCOR");
 		exit();
+		}else {
+		header("location: DocReqmore");
+			exit();
+	}
 	}
 }
 

@@ -23,7 +23,17 @@ include 'sidebar.php';
 include 'db_conn.php';
                    ?>
 
-
+<script type="text/javascript">
+    localStorage.removeItem("bno")
+    localStorage.removeItem("bt")
+    localStorage.removeItem("cp")
+    localStorage.removeItem("cpd")
+    localStorage.removeItem("loi")
+    localStorage.removeItem("dof")
+    localStorage.removeItem("pin")
+    localStorage.removeItem("aaa")
+    localStorage.removeItem("blot")
+</script>
 <div class="home-section">	
     <div class="adddel">
         <?php
@@ -36,6 +46,13 @@ include 'db_conn.php';
                          echo "<p style='text-align:center;font-size:20px;font-weight:bold;padding-top:15px;color:red;' id='ha'>Blotter number ";
                         echo $_SESSION['sta']; echo "</p>";
                         unset($_SESSION['sta']);
+                    }
+                    if (isset($_POST['blot'])) {
+                        $_SESSION['blot'] = $_POST['blot'];
+                        $blott = $_POST['blot'];
+                    }
+                    elseif (isset($_SESSION['blot'])) {
+                        $blott = $_SESSION['blot'];
                     }
     ?>
     <button id="edi" class="edd" onclick="Edit()">EDIT BLOTTER</button> 
@@ -111,6 +128,9 @@ include 'db_conn.php';
                   <option <?php if ($Status=="Settled") echo 'selected="selected"';?> >Settled</option>
                 </select>
                 <br> 
+                <input id="blot" name="blot" value="<?= $blott ?>" hidden>
+                    <input type="text" id="aaa" name="aaa" value="<?= $blotter_info ?>" hidden>
+                <a href="BLOTTER.htm" style="font-size: 40px;margin-left: 50px; margin-top: 15px;border: 1px solid black" onclick="saveInputValue();"><i class='bx bx-printer'></i></a>
                    <button id="editsub" class="btndocu wer" name="submitis" type="submit" hidden>Update</button> 
 
             </div>
@@ -156,6 +176,19 @@ include 'db_conn.php';
     function cancel() {
         location.reload();
     }
+</script>
+<script type="text/javascript">
+    function saveInputValue() {
+        localStorage.setItem("bno", document.getElementById("bno").value);
+        localStorage.setItem("bt", document.getElementById("bt").value);
+        localStorage.setItem("cp", document.getElementById("cp").value);
+        localStorage.setItem("cpd", document.getElementById("cpd").value);
+        localStorage.setItem("loi", document.getElementById("loi").value);
+        localStorage.setItem("dof", document.getElementById("dof").value);
+        localStorage.setItem("pin", document.getElementById("pin").value);
+        localStorage.setItem("aaa", document.getElementById("aaa").value);
+        localStorage.setItem("blot", document.getElementById("blot").value);
+    }  
 </script>
 <script type="text/javascript">
     window.onload = function() {

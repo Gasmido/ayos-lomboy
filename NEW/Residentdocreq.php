@@ -77,7 +77,7 @@ include 'sidebar.php';
 
   <!-- Modal content -->
   <div class="modal-contentRr2">
-    <a href="DocReqmore">
+    <a href="<?php if (isset($_SESSION['COR'])) { echo 'DocReqmoreCOR'; } else { echo 'DocReqmore';}?>">
         <span class="closer">&times;</span>
     </a>
     <h2>Resident Information</h2>

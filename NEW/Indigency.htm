@@ -244,8 +244,8 @@ style='font-size:18.0pt;line-height:107%'>&nbsp;</span></p>
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b><span style='font-size:18.0pt'>&nbsp;</span></b></p>
   <p class=MsoNormal align=center style='margin-top:0in;margin-right:0in;
-  margin-bottom:0in;margin-left:4.0in;margin-bottom:.0001pt;text-align:center;
-  line-height:normal'>DATE:_________</p>
+  margin-bottom:0in;margin-left:3.0in;margin-bottom:.0001pt;text-align:center;
+  line-height:normal'>DATE: <span id="datee"></span></p>
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><span style='font-size:18.0pt'>&nbsp;</span></p>
   <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
@@ -255,8 +255,8 @@ style='font-size:18.0pt;line-height:107%'>&nbsp;</span></p>
   <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
   margin-left:9.75pt;margin-bottom:.0001pt;line-height:normal'>&nbsp;</p>
   <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal'>        THIS IS CERTIFY that
-  ________________________________________________, a resident of Barangay Ayos
+  normal'>        THIS IS CERTIFY that <span id="name" style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
+  normal'></span>, a resident of Barangay Ayos
   lomboy, Guimba, Nueva Ecija is known to me personally belong to one of the INDIGENT
   FAMILIES in the Barangay, Said person needs assistance for the following
   reason(s).</p>
@@ -338,6 +338,30 @@ style='font-size:18.0pt;line-height:107%'>&nbsp;</span></p>
 <p class=MsoNormal>&nbsp;</p>
 
 </div>
+<script type="text/javascript">
+        document.getElementById("name").innerHTML = getSavedValue("bt2"); 
+
+        const d = new Date();
+        let day = d.getDate();
+
+        const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+        const d1 = new Date();
+        let namemonth = month[d1.getMonth()];
+
+        const d2 = new Date();
+        let year = d2.getFullYear();
+
+        let dateee = namemonth + ", " + day + ", " + year;
+        document.getElementById("datee").innerHTML = dateee; 
+
+         function getSavedValue  (v){
+            if (!localStorage.getItem(v)) {
+                return "";
+            }
+            return localStorage.getItem(v);
+        }
+</script>
 <script>
 
 var x = 0
@@ -356,10 +380,17 @@ document.getElementById("print").innerHTML = favoriteMovie;
  <script type="text/javascript">
     $(document).ready(function () {
         window.print();
-        setTimeout("closePrintView()", 100);
+        setTimeout("closePrintView()", 300);
     });
     function closePrintView() {
-        document.location.href = 'Homepage';
+       var roc = getSavedValue("COR");
+        
+         if (roc == 'COR') {
+                document.location.href = 'DocReqmoreCOR';
+         }
+         else {
+                document.location.href = 'DocReqmore';
+         }
     }
 </script>
 </body>

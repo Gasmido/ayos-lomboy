@@ -4,6 +4,7 @@ include 'topbarAdmin.php';
 include 'sidebar.php';
 include 'db_conn.php';
 unset($_SESSION['iss']);
+unset($_SESSION['coom']);
 ?>
 <script type="text/javascript">
     localStorage.removeItem("selectedtem")
@@ -39,9 +40,10 @@ unset($_SESSION['iss']);
 <div id="Finance" style="width: 100%;">
       <section style="text-align:center;margin-top: 15px;font-size: 40px;"><h1>Finance</h1></section><br>
       <div style="text-align: right;width: 100%;height: 50px; margin-bottom: 20px;padding-right: 20px;">    
-       
-        <button class="addd" onclick="document.location='OffStaffCommitteeAdd'" style="height:100%">ADD STAFF</button>
-
+        <form method="post" action="OffStaffCommitteeAdd" style="height:100%;">
+            <input name='com' value='Finance' hidden>
+            <button class="addd" type="submit" name="submit" style="height:100%">ADD STAFF</button>
+        </form>
         </div>
       
         <div class="container" style="width: 100%;">
@@ -69,6 +71,7 @@ unset($_SESSION['iss']);
                                     <td>
                                         <form action='OffStaffCommitteemore' method='POST'>
                                             <input name='id' value='". $row['id'] ."' hidden>
+                                            <input name='com' value='Finance' hidden>
                                             <button class='editt' name='submit' type='submit'>MORE</button>
                                         </form>
                                     </td>
@@ -92,7 +95,10 @@ unset($_SESSION['iss']);
     <div id="LandTax" style="display:none;width: 100%;">
       <section style="text-align:center;margin-top: 15px;font-size: 40px;"><h1>Land Tax</h1></section><br>
       <div style="text-align: right;width: 100%;height: 50px; margin-bottom: 20px;padding-right: 20px;">
-        <button class="addd" onclick="document.location='OffStaffCommitteeAddL'" style="height:100%">ADD STAFF</button>
+        <form method="post" action="OffStaffCommitteeAddL" style="height:100%;">
+            <input name='com' value='LandTax' hidden>
+            <button class="addd" type="submit" name="submit" style="height:100%">ADD STAFF</button>
+        </form>
         </div>
         <div class="container" style="width: 100%;">
             <div class="row">
@@ -119,6 +125,7 @@ unset($_SESSION['iss']);
                                     <td>
                                         <form action='OffStaffCommitteemore' method='POST'>
                                             <input name='id' value='". $row['id'] ."' hidden>
+                                            <input name='com' value='LandTax' hidden>
                                             <button class='editt' name='submit' type='submit'>MORE</button>
                                         </form>
                                     </td>
@@ -141,7 +148,10 @@ unset($_SESSION['iss']);
     <div id="Peace" style="display:none;width: 100%;">
       <section style="text-align:center;margin-top: 15px;font-size: 40px;"><h1>Peace & Order</h1></section><br>
       <div style="text-align: right;width: 100%;height: 50px; margin-bottom: 20px;padding-right: 20px;">
-        <button class="addd" onclick="document.location='OffStaffCommitteeAddP'" style="height:100%">ADD STAFF</button>
+       <form method="post" action="OffStaffCommitteeAddP" style="height:100%;">
+            <input name='com' value='PeaceAndOrder' hidden>
+            <button class="addd" type="submit" name="submit" style="height:100%">ADD STAFF</button>
+        </form>
         </div>
         <div class="container" style="width: 100%;">
             <div class="row">
@@ -168,6 +178,7 @@ unset($_SESSION['iss']);
                                     <td>
                                         <form action='OffStaffCommitteemore' method='POST'>
                                             <input name='id' value='". $row['id'] ."' hidden>
+                                            <input name='com' value='PeaceAndOrder' hidden>
                                             <button class='editt' name='submit' type='submit'>MORE</button>
                                         </form>
                                     </td>
@@ -190,7 +201,10 @@ unset($_SESSION['iss']);
     <div id="Infra" style="display:none;width: 100%;">
       <section style="text-align:center;margin-top: 15px;font-size: 40px;"><h1>Infrastructure</h1></section><br>
       <div style="text-align: right;width: 100%;height: 50px; margin-bottom: 20px;padding-right: 20px;">
-        <button class="addd" onclick="document.location='OffStaffCommitteeAddI'" style="height:100%">ADD STAFF</button>
+        <form method="post" action="OffStaffCommitteeAddI" style="height:100%;">
+            <input name='com' value='Infrastructure' hidden>
+            <button class="addd" type="submit" name="submit" style="height:100%">ADD STAFF</button>
+        </form>
         </div>
         <div class="container" style="width: 100%;">
             <div class="row">
@@ -217,6 +231,7 @@ unset($_SESSION['iss']);
                                     <td>
                                         <form action='OffStaffCommitteemore' method='POST'>
                                             <input name='id' value='". $row['id'] ."' hidden>
+                                            <input name='com' value='Infrastructure' hidden>
                                             <button class='editt' name='submit' type='submit'>MORE</button>
                                         </form>
                                     </td>
@@ -239,7 +254,10 @@ unset($_SESSION['iss']);
     <div id="Health" style="display:none;width: 100%;">
       <section style="text-align:center;margin-top: 15px;font-size: 40px;"><h1>Health</h1></section><br>
       <div style="text-align: right;width: 100%;height: 50px; margin-bottom: 20px;padding-right: 20px;">
-        <button class="addd" onclick="document.location='OffStaffCommitteeAddH'" style="height:100%">ADD STAFF</button>
+        <form method="post" action="OffStaffCommitteeAddH" style="height:100%;">
+            <input name='com' value='Health' hidden>
+            <button class="addd" type="submit" name="submit" style="height:100%">ADD STAFF</button>
+        </form>
         </div>
         <div class="container" style="width: 100%;">
             <div class="row">
@@ -266,6 +284,7 @@ unset($_SESSION['iss']);
                                     <td>
                                         <form action='OffStaffCommitteemore' method='POST'>
                                             <input name='id' value='". $row['id'] ."' hidden>
+                                            <input name='com' value='Health' hidden>
                                             <button class='editt' name='submit' type='submit'>MORE</button>
                                         </form>
                                     </td>
@@ -288,7 +307,10 @@ unset($_SESSION['iss']);
     <div id="Edu" style="display:none;width: 100%;">
       <section style="text-align:center;margin-top: 15px;font-size: 40px;"><h1>Education</h1></section><br>
       <div style="text-align: right;width: 100%;height: 50px; margin-bottom: 20px;padding-right: 20px;">
-        <button class="addd" onclick="document.location='OffStaffCommitteeAddE'" style="height:100%">ADD STAFF</button>
+        <form method="post" action="OffStaffCommitteeAddE" style="height:100%;">
+            <input name='com' value='Education' hidden>
+            <button class="addd" type="submit" name="submit" style="height:100%">ADD STAFF</button>
+        </form>
         </div>
         <div class="container" style="width: 100%;">
             <div class="row">
@@ -315,6 +337,7 @@ unset($_SESSION['iss']);
                                     <td>
                                         <form action='OffStaffCommitteemore' method='POST'>
                                             <input name='id' value='". $row['id'] ."' hidden>
+                                            <input name='com' value='Education' hidden>
                                             <button class='editt' name='submit' type='submit'>MORE</button>
                                         </form>
                                     </td>
@@ -337,7 +360,10 @@ unset($_SESSION['iss']);
     <div id="Social" style="display:none;width: 100%;">
       <section style="text-align:center;margin-top: 15px;font-size: 40px;"><h1>Social Services</h1></section><br>
       <div style="text-align: right;width: 100%;height: 50px; margin-bottom: 20px;padding-right: 20px;">
-        <button class="addd" onclick="document.location='OffStaffCommitteeAddS'" style="height:100%">ADD STAFF</button>
+        <form method="post" action="OffStaffCommitteeAddS" style="height:100%;">
+            <input name='com' value='SocialServices' hidden>
+            <button class="addd" type="submit" name="submit" style="height:100%">ADD STAFF</button>
+        </form>
         </div>
         <div class="container" style="width: 100%;">
             <div class="row">
@@ -364,6 +390,7 @@ unset($_SESSION['iss']);
                                     <td>
                                         <form action='OffStaffCommitteemore' method='POST'>
                                             <input name='id' value='". $row['id'] ."' hidden>
+                                            <input name='com' value='SocialServices' hidden>
                                             <button class='editt' name='submit' type='submit'>MORE</button>
                                         </form>
                                     </td>
@@ -386,7 +413,10 @@ unset($_SESSION['iss']);
     <div id="Agri" style="display:none;width: 100%;">
       <section style="text-align:center;margin-top: 15px;font-size: 40px;"><h1>Agriculture</h1></section><br>
       <div style="text-align: right;width: 100%;height: 50px; margin-bottom: 20px;padding-right: 20px;">
-        <button class="addd" onclick="document.location='OffStaffCommitteeAddA'" style="height:100%">ADD STAFF</button>
+        <form method="post" action="OffStaffCommitteeAddA" style="height:100%;">
+            <input name='com' value='Agriculture' hidden>
+            <button class="addd" type="submit" name="submit" style="height:100%">ADD STAFF</button>
+        </form>
         </div>
         <div class="container" style="width: 100%;">
             <div class="row">
@@ -413,6 +443,7 @@ unset($_SESSION['iss']);
                                     <td>
                                         <form action='OffStaffCommitteemore' method='POST'>
                                             <input name='id' value='". $row['id'] ."' hidden>
+                                            <input name='com' value='Agriculture' hidden>
                                             <button class='editt' name='submit' type='submit'>MORE</button>
                                         </form>
                                     </td>
@@ -435,7 +466,10 @@ unset($_SESSION['iss']);
     <div id="SK" style="display:none;width: 100%;">
       <section style="text-align:center;margin-top: 15px;font-size: 40px;"><h1>Sangguniang Kabataan</h1></section><br>
       <div style="text-align: right;width: 100%;height: 50px; margin-bottom: 20px;padding-right: 20px;">
-        <button class="addd" onclick="document.location='OffStaffCommitteeAddSK'" style="height:100%">ADD STAFF</button>
+        <form method="post" action="OffStaffCommitteeAddSK" style="height:100%;">
+            <input name='com' value='SK' hidden>
+            <button class="addd" type="submit" name="submit" style="height:100%">ADD STAFF</button>
+        </form>
         </div>
         <div class="container" style="width: 100%;">
             <div class="row">
@@ -462,6 +496,7 @@ unset($_SESSION['iss']);
                                     <td>
                                         <form action='OffStaffCommitteemore' method='POST'>
                                             <input name='id' value='". $row['id'] ."' hidden>
+                                            <input name='com' value='SK' hidden>
                                             <button class='editt' name='submit' type='submit'>MORE</button>
                                         </form>
                                     </td>

@@ -85,10 +85,11 @@ elseif (isset($_POST['submit3'])) {
 	$height = $_POST["height"];
 	$weight = $_POST["weight"];
 	$purpose = $_POST["purpose"];
+	$cstatus = $_POST["civilstat"];
 
 
 
-	createdoc4($connn, $docutype, $fname, $purok, $dateofbirth, $placeofbirth, $height, $weight, $purpose, $currentDate, $id, $stat);
+	createdoc4($connn, $docutype, $fname, $purok, $dateofbirth, $placeofbirth, $height, $weight, $purpose, $currentDate, $id, $stat, $cstatus);
 	
 }
 elseif (isset($_POST['submit4'])) {

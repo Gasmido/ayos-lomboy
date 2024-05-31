@@ -160,7 +160,31 @@
     </section>
 </div>
 </div>
-
+<script>
+    const GetUniqueID = () => {
+        const uniqueID = localStorage.getItem("uniqueID");
+        
+        if (uniqueID == undefined) {
+            const newUniqueID = crypto.randomUUID();
+            localStorage.setItem("uniqueID", newUniqueID);
+            return newUniqueID;
+        }
+        else {
+            return uniqueID;
+        }
+    }
+    function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    }
+    setCookie("newID", GetUniqueID(), 1);
+    console.log(GetUniqueID());
+</script>
 <script>
     function myFunctions() {
   var x = document.getElementById("txt6");

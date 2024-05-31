@@ -1,6 +1,7 @@
 <html>
 
-<head>
+<head onload="f()">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <meta http-equiv=Content-Type content="text/html; charset=windows-1252">
 <meta name=Generator content="Microsoft Word 15 (filtered)">
 <style>
@@ -243,33 +244,31 @@ THE SANGGUNIANG BARANGAY</span></b></p>
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><b><span style='font-size:18.0pt'>&nbsp;</span></b></p>
   <p class=MsoNormal align=center style='margin-top:0in;margin-right:0in;
-  margin-bottom:0in;margin-left:4.0in;margin-bottom:.0001pt;text-align:center;
-  line-height:normal'>DATE:_________</p>
+  margin-bottom:0in;margin-left:3.0in;margin-bottom:.0001pt;text-align:center;
+  line-height:normal'>DATE: <span id="datee"></span></p>
   <p class=MsoNormal align=center style='margin-bottom:0in;margin-bottom:.0001pt;
   text-align:center;line-height:normal'><span style='font-size:9.0pt'>&nbsp;</span></p>
   <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
   margin-left:9.75pt;margin-bottom:.0001pt;line-height:normal'><span
   style='position:absolute;z-index:-1895805952;left:0px;margin-left:-122px;
   margin-top:33px;width:619px;height:468px'><img width=619 height=468
-  src="Clearance_files/image004.png"></span>Name:
-  ____________________________________________________________________</p>
+  src="Clearance_files/image004.png"></span>Name: <span id="name"></span></p>
   <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
   margin-left:9.75pt;margin-bottom:.0001pt;line-height:normal'>&nbsp;</p>
   <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
   margin-left:9.75pt;margin-bottom:.0001pt;line-height:normal'>Address:
-  Purok:______ Barangay Ayos Lomboy, Guimba, Nueva Ecija</p>
+  Purok: <span id="purok"></span> Barangay Ayos Lomboy, Guimba, Nueva Ecija</p>
   <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
   margin-left:9.75pt;margin-bottom:.0001pt;line-height:normal'>&nbsp;</p>
   <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
   margin-left:9.75pt;margin-bottom:.0001pt;line-height:normal'>Date of
-  Birth:__________________ Place of Birth: __________________________</p>
+  Birth: <span id="dateofbirth"></span> Place of Birth: <span id="placeofbirth"></span></p>
   <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:0in;
   margin-left:9.75pt;margin-bottom:.0001pt;line-height:normal'>&nbsp;</p>
   <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
   normal'>&nbsp;</p>
   <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal'>Height:__________ Weight: __________ Civil Status:
-  _____________________</p>
+  normal'>Height: <span id="height"></span>           Weight: <span id="weight"></span>          Civil Status: <span id="civilstatus"></span></p>
   <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
   normal'>&nbsp;</p>
   <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
@@ -280,7 +279,7 @@ THE SANGGUNIANG BARANGAY</span></b></p>
   normal'>PURPOSES: PERSONAL? REFERENCE PURPOSES<br>
   <br>
   TO WHOM IT MAY CONCERN:<br>
-                 THIS IS TO CERTIFY that ___________________________________________
+                 THIS IS TO CERTIFY that <span id="name2"></span>
   whose Left and Right thumbmark and signature appears below has undergone the
   Identification Process of this office. This clearance is valid for (90) days
   from date of issuance.</p>
@@ -296,7 +295,7 @@ THE SANGGUNIANG BARANGAY</span></b></p>
   alt="PREPARE AND VERIFIED BY:&#13;&#10;&#13;&#10;LERMA T. ESCOBAR&#13;&#10;Barangay Secretary&#13;&#10;&#13;&#10;APPROVED BY:&#13;&#10;&#13;&#10;RICHARD G. SOLIMAN&#13;&#10;Punong Barangay&#13;&#10;&#13;&#10;">Community
   Tax No._____________</p>
   <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
-  normal'>Issued at:_____________________</p>
+  normal'>Issued at: <span id="datereq"></span></p>
   <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
   normal'>Issued on: ____________________</p>
   <p class=MsoNormal style='margin-bottom:0in;margin-bottom:.0001pt;line-height:
@@ -341,7 +340,68 @@ THE SANGGUNIANG BARANGAY</span></b></p>
 <p class=MsoNormal>&nbsp;</p>
 
 </div>
+<script type="text/javascript">
+        document.getElementById("name").innerHTML = getSavedValue("fnme"); 
+        document.getElementById("name2").innerHTML = getSavedValue("fnme"); 
+        document.getElementById("purok").innerHTML = getSavedValue("prkk");
+        document.getElementById("dateofbirth").innerHTML = getSavedValue("dobb");
+        document.getElementById("placeofbirth").innerHTML = getSavedValue("pobb");
+        document.getElementById("height").innerHTML = getSavedValue("he") + "cm";
+        document.getElementById("weight").innerHTML = getSavedValue("we") + "kg";
+        document.getElementById("datereq").innerHTML = getSavedValue("dreq");
 
+        const d = new Date();
+        let day = d.getDate();
+
+        const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+        const d1 = new Date();
+        let namemonth = month[d1.getMonth()];
+
+        const d2 = new Date();
+        let year = d2.getFullYear();
+
+        let dateee = namemonth + ", " + day + ", " + year;
+        document.getElementById("datee").innerHTML = dateee; 
+
+         function getSavedValue  (v){
+            if (!localStorage.getItem(v)) {
+                return "";
+            }
+            return localStorage.getItem(v);
+        }
+</script>
+<script>
+
+var x = 0
+
+ function f() {
+x++;
+};
+
+
+
+
+var favoriteMovie = sessionStorage.getItem('favoriteMovie');
+document.getElementById("print").innerHTML = favoriteMovie;
+
+</script>
+ <script type="text/javascript">
+    $(document).ready(function () {
+        window.print();
+        setTimeout("closePrintView()", 300);
+    });
+    function closePrintView() {
+        var roc = getSavedValue("COR");
+        
+         if (roc == 'COR') {
+                document.location.href = 'DocReqmoreCOR';
+         }
+         else {
+                document.location.href = 'DocReqmore';
+         }
+    }
+</script>
 </body>
 
 </html>

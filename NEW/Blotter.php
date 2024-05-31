@@ -8,6 +8,7 @@ unset($_SESSION['iiii']);
 unset($_SESSION['iiiia']);
 unset($_SESSION['iii']);
 unset($_SESSION['iiiias']);
+unset($_SESSION['blot']);
 ?>
 <script type="text/javascript">
         localStorage.removeItem("bn")

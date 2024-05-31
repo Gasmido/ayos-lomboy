@@ -4,6 +4,7 @@ include 'topbarAdmin.php';
 include 'sidebar.php';
 include 'db_conn.php';
 unset($_SESSION['iss']);
+unset($_SESSION['dele']);
 ?>
 <script type="text/javascript">
         localStorage.removeItem("bt")
@@ -46,7 +47,7 @@ unset($_SESSION['iss']);
              <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Chairmanship</th>
+                    
                     <th>Position</th>
                     <th>Status</th>
                     <th>Action</th>
@@ -60,7 +61,7 @@ unset($_SESSION['iss']);
 
                     if ($result-> num_rows > 0) {
                         while ($row = $result-> fetch_assoc()) {
-                            echo "<tr><td>". $row["name"] ."</td><td>". $row["chairmanship"] ."</td><td>". $row["position"] ."</td>
+                            echo "<tr><td>". $row["name"] ."</td><td>". $row["position"] ."</td>
                             <td>". $row["status"] ."</td>
                                     <td>
                                         <form action='OffStaffmore' method='POST'>
@@ -105,7 +106,7 @@ unset($_SESSION['iss']);
             <tbody>
 
                  <?php
-                    $sql = "SELECT * from officials WHERE position = 'Tanod'";
+                    $sql = "SELECT * from officials WHERE position = 'Tanod' AND removed IS NULL";
                     $result = $connn-> query($sql);
 
                     if ($result-> num_rows > 0) {
@@ -124,6 +125,54 @@ unset($_SESSION['iss']);
                     else {
                         echo "<p style='text-align:center;font-size:25px;padding-bottom:15px;'>There are currently no tanod information at the moment</p>";
                     }
+                    
+                   ?>
+
+            
+        </tbody>
+        </table>
+                </div>
+            </div>  
+
+<hr style="margin-top:50px">
+             <div style="height: 70px;width: 100%;padding:10px;padding-left:20px;display:flex;margin-bottom:20px">
+                <h1 style="width:50%">
+                    Removed Barangay Tanod
+                </h1>
+            </div>
+<div class="row">
+                <div class="col-xs-12">
+                    <table id="example" class="table table-striped table-bordered" style="width:100%">
+             <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                 <?php
+                    $sql = "SELECT * from officials WHERE position = 'Tanod' AND removed = 1";
+                    $result = $connn-> query($sql);
+
+                    if ($result-> num_rows > 0) {
+                        while ($row = $result-> fetch_assoc()) {
+                            echo "<tr><td>". $row["name"] ."</td><td>". $row["position"] ."</td>
+                            <td>". $row["status"] ."</td>
+                                    <td>
+                                        <form action='TanodStaffdeleted' method='POST'>
+                                            <input name='id' value='". $row['id'] ."' hidden>
+                                            <button class='editt' name='submit' type='submit'>MORE</button>
+                                        </form>
+                                    </td>
+                                    </tr>";
+                        }
+                    }
+                    else {
+                        echo "<p style='text-align:center;font-size:25px;padding-bottom:15px;'>There are currently no removed tanod information at the moment</p>";
+                    }
                     $connn-> close();
                    ?>
 
@@ -132,6 +181,7 @@ unset($_SESSION['iss']);
         </table>
                 </div>
             </div>  
+
         </div>
        
         

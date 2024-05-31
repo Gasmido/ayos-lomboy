@@ -4,7 +4,7 @@ include 'topbarAdmin.php';
 include 'sidebar.php';
 include 'db_conn.php';
 unset($_SESSION['iss']);
-
+unset($_SESSION['blot']);
 ?>
 <script type="text/javascript">
         localStorage.removeItem("bn")
@@ -116,6 +116,7 @@ unset($_SESSION['iss']);
                                         
                                           <form action='BlottermoreS' method='POST'>
                                             <input name='id' value='". $row['id'] ."' hidden>
+                                            <input name='blot' value='Settled' hidden>
                                             <button class='editt' name='submit' type='submit'>MORE</button>
                                         </form>
                                     </td>

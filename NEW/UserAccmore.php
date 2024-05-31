@@ -88,7 +88,7 @@ include 'db_conn.php';
                 <label>Date Registered: (D-M-Y)</label><br>
                 <input class="inpu" type="date" name="datereg" value="<?= $datereg ?>" readonly placeholder="Enter Complainant" required><br>
                 <label>Birth Date:</label><br>
-                <input class="inpu" type="date" name="date" value="<?= $birth ?>" readonly placeholder="Enter Blotter Type" required><br>
+                <input class="inpu" type="date" name="date" value="<?= $birth ?>" readonly placeholder="Not Yet entered"><br>
                 <label>Address:</label><br>
                 <input class="inpu" type="text" name="name" value="Ayos Lomboy, Purok <?= $purok ?>, Guimba, Nueva Ecija" readonly placeholder="Enter Blotter Type" required><br>
                
@@ -101,9 +101,9 @@ include 'db_conn.php';
                 <label>Last Log-in Time:</label><br>
                 <input  class="inpu" type="time" name="logtime" value="<?= $logtime ?>" readonly placeholder="Enter Complained" required><br>
                 <label>Sex:</label><br>
-                <input class="inpu" type="text" name="name" value="<?= $sex ?>" readonly placeholder="Enter Blotter Type" required><br>
+                <input class="inpu" type="text" name="name" value="<?= $sex ?>" readonly placeholder="Not yet decalred by user"><br>
                 <label>Citizenship:</label><br>
-                <input class="inpu" type="text" name="name" value="<?= $citizenship ?>" readonly placeholder="Enter Blotter Type" required><br>
+                <input class="inpu" type="text" name="name" value="<?= $citizenship ?>" readonly placeholder="Not yet decalred by user"><br>
                 
             </div>
             <div class="inputpop3">
